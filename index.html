@@ -1,0 +1,2081 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Gesso Natureza | Gesso e Drywall em Arujá - SP</title>
+
+  <meta name="description" content="Gesso Natureza em Arujá. Venda e instalação de drywall, gesso, chapas verdes, rosas, normais, cimentícias, Glassroc, ferramentas, molduras e decoração 3D. Solicite seu orçamento.">
+
+  <meta name="keywords" content="
+  gesso em Arujá,
+  drywall em Arujá,
+  gesso Arujá,
+  chapa drywall Arujá,
+  placa cimentícia Arujá,
+  gesso liso Arujá,
+  forro drywall Arujá,
+  divisória drywall Arujá,
+  moldura de gesso Arujá,
+  ferramentas para gesseiro Arujá
+  ">
+
+  <meta name="theme-color" content="#08752c">
+
+  <link rel="icon" href="assets/logo-gesso-natureza.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --verde: #08752c;
+      --verde-dark: #04551f;
+      --verde-deep: #022c13;
+      --verde-light: #eaf7ee;
+      --verde-neon: #1ed63b;
+      --branco: #ffffff;
+      --preto: #102018;
+      --cinza: #637069;
+      --borda: #dce8df;
+      --amarelo: #f5b800;
+      --sombra: 0 20px 60px rgba(4, 42, 20, .12);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", Arial, sans-serif;
+      color: var(--preto);
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: auto;
+    }
+
+    /* ================= HEADER ================= */
+
+    .topbar {
+      background: var(--verde-dark);
+      color: white;
+      font-size: 12px;
+    }
+
+    .topbar-content {
+      min-height: 38px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .topbar-left,
+    .topbar-right {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .nav {
+      height: 82px;
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .logo {
+      width: 190px;
+    }
+
+    .menu {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .menu a {
+      font-size: 13px;
+      font-weight: 800;
+      color: #385044;
+      transition: .2s;
+    }
+
+    .menu a:hover {
+      color: var(--verde);
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 48px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .btn-green {
+      background: var(--verde);
+      color: white;
+    }
+
+    .btn-green:hover {
+      background: var(--verde-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border-color: var(--verde);
+      color: var(--verde);
+      background: white;
+    }
+
+    .btn-outline:hover {
+      background: var(--verde-light);
+    }
+
+    .mobile-button {
+      display: none;
+      border: 0;
+      background: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      padding: 75px 0;
+      background:
+        radial-gradient(circle at 90% 10%, rgba(30,214,59,.12), transparent 30%),
+        linear-gradient(135deg, #f4fff7, #fff);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .tag {
+      color: var(--verde);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .17em;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 5vw, 68px);
+      line-height: 1.02;
+      letter-spacing: -.055em;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: var(--verde);
+    }
+
+    .hero p {
+      color: var(--cinza);
+      font-size: 18px;
+      max-width: 650px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .hero-benefits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .hero-benefit {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-benefit strong {
+      color: var(--verde);
+      font-size: 14px;
+    }
+
+    .hero-benefit span {
+      font-size: 11px;
+      color: var(--cinza);
+    }
+
+    .hero-card {
+      background: white;
+      padding: 12px;
+      border-radius: 25px;
+      box-shadow: var(--sombra);
+      transform: rotate(1deg);
+    }
+
+    .hero-card img {
+      width: 100%;
+      border-radius: 17px;
+    }
+
+    /* ================= MARCAS ================= */
+
+    .brands {
+      border-top: 1px solid var(--borda);
+      border-bottom: 1px solid var(--borda);
+      overflow: hidden;
+      padding: 17px 0;
+      background: white;
+    }
+
+    .brands-track {
+      display: flex;
+      width: max-content;
+      gap: 18px;
+      animation: marcas 28s linear infinite;
+    }
+
+    .brand {
+      min-width: 150px;
+      height: 52px;
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 900;
+      letter-spacing: .04em;
+      background: white;
+    }
+
+    .brand.dewalt,
+    .brand.stanley {
+      background: #ffd000;
+      color: #111;
+    }
+
+    .brand.knauf {
+      color: #174e9c;
+    }
+
+    .brand.compel {
+      color: #164f2b;
+    }
+
+    .brand.ancora {
+      color: #174d2a;
+    }
+
+    .brand.walsywa {
+      color: #bd241c;
+    }
+
+    @keyframes marcas {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ================= SEÇÕES ================= */
+
+    .section {
+      padding: 95px 0;
+    }
+
+    .section.gray {
+      background: #f6faf7;
+    }
+
+    .section-title {
+      max-width: 760px;
+      margin-bottom: 42px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1.08;
+      letter-spacing: -.045em;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: var(--cinza);
+    }
+
+    /* ================= PRODUTOS ================= */
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .product {
+      background: white;
+      border: 1px solid var(--borda);
+      border-radius: 20px;
+      overflow: hidden;
+      padding: 12px;
+      transition: .2s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--sombra);
+    }
+
+    .product-image {
+      height: 180px;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .product-image span {
+      font-size: 12px;
+      letter-spacing: .13em;
+    }
+
+    .product-image strong {
+      font-size: 50px;
+      line-height: 1;
+      margin-top: 8px;
+    }
+
+    .normal {
+      background: linear-gradient(135deg,#eee,#bbb);
+      color: #555;
+    }
+
+    .verde {
+      background: linear-gradient(135deg,#61ae73,#0c602d);
+    }
+
+    .rosa {
+      background: linear-gradient(135deg,#ee9aa9,#a84058);
+    }
+
+    .cimenticia {
+      background: linear-gradient(135deg,#ddd,#969c98);
+      color: #333;
+    }
+
+    .glassroc {
+      background: linear-gradient(135deg,#edf2f0,#b6c1bb);
+      color: #234c36;
+    }
+
+    .gesso {
+      background: linear-gradient(135deg,#fff,#d7d7d7);
+      color: #555;
+    }
+
+    .decoracao {
+      background: linear-gradient(135deg,#e2f4e8,#83bb94);
+      color: #165d31;
+    }
+
+    .ferramentas {
+      background: linear-gradient(135deg,#171717,#606060);
+    }
+
+    .product h3 {
+      font-size: 17px;
+      margin: 15px 4px 5px;
+    }
+
+    .product p {
+      color: var(--cinza);
+      font-size: 13px;
+      margin: 0 4px 13px;
+      min-height: 58px;
+    }
+
+    .product a {
+      color: var(--verde);
+      font-size: 13px;
+      font-weight: 900;
+      margin: 0 4px;
+    }
+
+    /* ================= SERVIÇOS ================= */
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .service {
+      background: white;
+      border: 1px solid var(--borda);
+      border-radius: 20px;
+      padding: 25px;
+    }
+
+    .service-number {
+      color: var(--verde);
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .service h3 {
+      margin: 20px 0 8px;
+    }
+
+    .service p {
+      color: var(--cinza);
+      font-size: 14px;
+    }
+
+    /* ================= ANTES DEPOIS ================= */
+
+    .comparison {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      border-radius: 24px;
+      box-shadow: var(--sombra);
+      background: #ddd;
+    }
+
+    .comparison img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+    }
+
+    .after {
+      z-index: 1;
+    }
+
+    .before-container {
+      position: absolute;
+      inset: 0;
+      width: 50%;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .before-container img {
+      width: 100vw;
+      max-width: none;
+    }
+
+    .comparison-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 3px;
+      background: white;
+      z-index: 4;
+    }
+
+    .comparison-line::after {
+      content: "↔";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 45px;
+      height: 45px;
+      background: white;
+      color: var(--verde);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      box-shadow: 0 5px 20px rgba(0,0,0,.2);
+    }
+
+    .comparison input {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: ew-resize;
+      z-index: 5;
+    }
+
+    /* ================= AVALIAÇÕES ================= */
+
+    .reviews-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+      margin-bottom: 35px;
+    }
+
+    .rating {
+      text-align: right;
+    }
+
+    .rating strong {
+      font-size: 55px;
+      line-height: 1;
+    }
+
+    .stars {
+      color: var(--amarelo);
+      font-size: 21px;
+      letter-spacing: 2px;
+    }
+
+    .rating small {
+      color: var(--cinza);
+    }
+
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .review {
+      background: white;
+      border: 1px solid var(--borda);
+      border-radius: 20px;
+      padding: 24px;
+    }
+
+    .review-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .review p {
+      margin: 18px 0;
+      font-size: 14px;
+    }
+
+    .review small {
+      color: var(--cinza);
+    }
+
+    .review-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    /* ================= CONTATO ================= */
+
+    .contact {
+      background: var(--verde-deep);
+      color: white;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .contact h2 {
+      font-size: clamp(35px,4vw,52px);
+      line-height: 1.05;
+      letter-spacing: -.04em;
+      margin-bottom: 15px;
+    }
+
+    .contact p {
+      color: #c9ddd0;
+    }
+
+    .contact-info {
+      display: grid;
+      gap: 13px;
+      margin-top: 30px;
+    }
+
+    .contact-info a {
+      font-weight: 700;
+    }
+
+    .form {
+      background: white;
+      color: var(--preto);
+      padding: 27px;
+      border-radius: 24px;
+      display: grid;
+      gap: 15px;
+      box-shadow: var(--sombra);
+    }
+
+    .form label {
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .form input,
+    .form textarea,
+    .form select {
+      width: 100%;
+      display: block;
+      margin-top: 7px;
+      padding: 13px;
+      border-radius: 12px;
+      border: 1px solid var(--borda);
+      font: inherit;
+      outline: none;
+    }
+
+    .form input:focus,
+    .form textarea:focus,
+    .form select:focus {
+      border-color: var(--verde);
+      box-shadow: 0 0 0 3px rgba(8,117,44,.08);
+    }
+
+    /* ================= MAPA ================= */
+
+    .map-section {
+      padding: 80px 0 40px;
+    }
+
+    .map {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--borda);
+      box-shadow: var(--sombra);
+    }
+
+    .map iframe {
+      width: 100%;
+      height: 430px;
+      border: 0;
+      display: block;
+    }
+
+    .hours {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .hour {
+      border: 1px solid var(--borda);
+      padding: 15px;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hour span {
+      color: var(--cinza);
+      font-size: 13px;
+    }
+
+    /* ================= WHATSAPP ================= */
+
+    .whatsapp {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 999;
+      background: #1dcc55;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      box-shadow: 0 15px 35px rgba(0,0,0,.22);
+      animation: pulsar 1.7s infinite;
+    }
+
+    .whatsapp-icon {
+      font-size: 24px;
+    }
+
+    @keyframes pulsar {
+      0%,100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.06);
+      }
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      background: #011e0d;
+      color: white;
+      padding: 35px 0 20px;
+    }
+
+    .footer-grid {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      width: 120px;
+      background: white;
+      border-radius: 12px;
+      padding: 5px;
+    }
+
+    .footer-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-links {
+      margin-left: auto;
+      display: flex;
+      gap: 20px;
+      font-weight: 700;
+    }
+
+    .copyright {
+      border-top: 1px solid rgba(255,255,255,.1);
+      margin-top: 25px;
+      padding-top: 18px;
+      color: #a9bdb0;
+      font-size: 12px;
+    }
+
+    /* ================= RESPONSIVO ================= */
+
+    @media(max-width: 1000px) {
+      .menu {
+        display: none;
+      }
+
+      .mobile-button {
+        display: block;
+        margin-left: auto;
+      }
+
+      .hero-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .products {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .services {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .reviews {
+        grid-template-columns: 1fr;
+      }
+
+      .hours {
+        grid-template-columns: repeat(2,1fr);
+      }
+    }
+
+    @media(max-width: 600px) {
+      .topbar-content {
+        padding: 8px 0;
+      }
+
+      .topbar-left,
+      .topbar-right {
+        gap: 8px;
+      }
+
+      .topbar-right {
+        display: none;
+      }
+
+      .logo {
+        width: 155px;
+      }
+
+      .hero {
+        padding: 55px 0;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+
+      .products,
+      .services {
+        grid-template-columns: 1fr;
+      }
+
+      .reviews-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .rating {
+        text-align: left;
+      }
+
+      .hours {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-grid {
+        flex-wrap: wrap;
+      }
+
+      .footer-links {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .whatsapp {
+        right: 12px;
+        bottom: 12px;
+      }
+
+      .whatsapp span {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ================= TOP BAR ================= -->
+
+<div class="topbar">
+  <div class="container topbar-content">
+
+    <div class="topbar-left">
+      <span>☎ (11) 2887-5777</span>
+      <span>☏ (11) 99848-3800</span>
+      <span>✉ gessonatureza@hotmail.com</span>
+    </div>
+
+    <div class="topbar-right">
+      <span>📍 Arujá - SP</span>
+      <a href="https://www.instagram.com/gessonatureza/" target="_blank">
+        Instagram
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+  <div class="container nav">
+
+    <a href="#inicio">
+      <img
+        src="assets/logo-gesso-natureza.png"
+        class="logo"
+        alt="Gesso Natureza Decorações"
+      >
+    </a>
+
+    <button class="mobile-button" id="mobileButton">
+      ☰
+    </button>
+
+    <nav class="menu" id="menu">
+
+      <a href="#inicio">Início</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#antes-depois">Antes e Depois</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#contato">Contato</a>
+
+      <a
+        class="btn btn-green"
+        href="https://wa.me/5511998483800?text=Olá%20Gesso%20Natureza!%20Quero%20um%20orçamento."
+        target="_blank"
+      >
+        Orçamento
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="inicio">
+
+  <div class="container hero-grid">
+
+    <div>
+
+      <div class="tag">
+        VENDA • INSTALAÇÃO • ENTREGA
+      </div>
+
+      <h1>
+        Tudo em <span>Gesso e Drywall</span> em Arujá
+      </h1>
+
+      <p>
+        Materiais de qualidade, ferramentas e instalação profissional
+        para sua obra. Atendemos Arujá e região.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a
+          class="btn btn-green"
+          href="https://wa.me/5511998483800?text=Olá%20Gesso%20Natureza!%20Quero%20um%20orçamento."
+          target="_blank"
+        >
+          ☏ Fale no WhatsApp
+        </a>
+
+        <a class="btn btn-outline" href="#contato">
+          Solicitar orçamento
+        </a>
+
+      </div>
+
+      <div class="hero-benefits">
+
+        <div class="hero-benefit">
+          <strong>✓ Produtos de qualidade</strong>
+          <span>Trabalhamos com grandes marcas</span>
+        </div>
+
+        <div class="hero-benefit">
+          <strong>✓ Atendimento local</strong>
+          <span>Arujá e região</span>
+        </div>
+
+        <div class="hero-benefit">
+          <strong>✓ Instalação profissional</strong>
+          <span>Equipe especializada</span>
+        </div>
+
+        <div class="hero-benefit">
+          <strong>✓ 10+ anos</strong>
+          <span>de experiência</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="hero-card">
+
+      <img
+        src="assets/cartao-gesso-natureza.png"
+        alt="Gesso Natureza - Venda e instalação"
+      >
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= MARCAS ================= -->
+
+<section class="brands">
+
+  <div class="brands-track">
+
+    <div class="brand">LOTUS</div>
+    <div class="brand dewalt">DEWALT</div>
+    <div class="brand stanley">STANLEY</div>
+    <div class="brand compel">COMPEL</div>
+    <div class="brand knauf">KNAUF</div>
+    <div class="brand ancora">ÂNCORA</div>
+    <div class="brand walsywa">WALSYWA</div>
+
+    <div class="brand">LOTUS</div>
+    <div class="brand dewalt">DEWALT</div>
+    <div class="brand stanley">STANLEY</div>
+    <div class="brand compel">COMPEL</div>
+    <div class="brand knauf">KNAUF</div>
+    <div class="brand ancora">ÂNCORA</div>
+    <div class="brand walsywa">WALSYWA</div>
+
+  </div>
+
+</section>
+
+<!-- ================= PRODUTOS ================= -->
+
+<section class="section" id="produtos">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="tag">
+        MATERIAIS
+      </div>
+
+      <h2>
+        Tudo para sua obra
+      </h2>
+
+      <p>
+        Trabalhamos com materiais para drywall, gesso, construção a seco,
+        ferramentas e acabamentos.
+      </p>
+
+    </div>
+
+    <div class="products">
+
+      <article class="product">
+
+        <div class="product-image normal">
+          <span>DRYWALL</span>
+          <strong>ST</strong>
+        </div>
+
+        <h3>Chapa Normal</h3>
+
+        <p>
+          Chapa drywall para paredes, forros e ambientes secos.
+        </p>
+
+        <a href="#contato">
+          Consultar preço →
+        </a>
+
+      </article>
+
+
+      <article class="product">
+
+        <div class="product-image verde">
+          <span>DRYWALL</span>
+          <strong>RU</strong>
+        </div>
+
+        <h3>Chapa Verde</h3>
+
+        <p>
+          Chapa indicada para ambientes internos com maior umidade.
+        </p>
+
+        <a href="#contato">
+          Consultar preço →
+        </a>
+
+      </article>
+
+
+      <article class="product">
+
+        <div class="product-image rosa">
+          <span>DRYWALL</span>
+          <strong>RF</strong>
+        </div>
+
+        <h3>Chapa Rosa</h3>
+
+        <p>
+          Chapa para sistemas que exigem resistência ao fogo.
+        </p>
+
+        <a href="#contato">
+          Consultar preço →
+        </a>
+
+      </article>
+
+
+      <article class="product">
+
+        <div class="product-image cimenticia">
+          <span>CIMENTÍCIA</span>
+          <strong>6MM</strong>
+        </div>
+
+        <h3>Chapa Cimentícia 6mm</h3>
+
+        <p>
+          Consulte disponibilidade e aplicação.
+        </p>
+
+        <a href="#contato">
+          Consultar preço →
+        </a>
+
+      </article>
+
+
+      <article class="product">
+
+        <div class="product-image cimenticia">
+          <span>CIMENTÍCIA</span>
+          <strong>8MM</strong>
+        </div>
+
+        <h3>Chapa Cimentícia 8mm</h3>
+
+        <p>
+          Para diferentes sistemas construtivos.
+        </p>
+
+        <a href="#contato">
+          Consultar preço →
+        </a>
+
+      </article>
+
+
+      <article class="product">
+
+        <div class="product-image cimenticia">
+          <span>CIMENTÍCIA</span>
+          <strong>10MM</strong>
+        </div>
+
+        <h3>Chapa Cimentícia 10mm</h3>
+
+        <p>
+          Consulte disponibilidade e aplicação.
+        </p>
+
+        <a href="#contato">
+          Consultar preço →
+        </a>
+
+      </article>
+
+
+      <article class="product">
+
+        <div class="product-image glassroc">
+          <span>GLASSROC</span>
+          <strong>+</strong>
+        </div>
+
+        <h3>Chapas Glassroc</h3>
+
+        <p>
+          Soluções especiais para construção a seco.
+        </p>
+
+        <a href="#contato">
+          Consultar preço →
+        </a>
+
+      </article>
+
+
+      <article class="product">
+
+        <div class="product-image gesso">
+          <span>GESSO</span>
+          <strong>KG</strong>
+        </div>
+
+        <h3>Gesso em pó</h3>
+
+        <p>
+          Gesso e materiais complementares para acabamento.
+        </p>
+
+        <a href="#contato">
+          Consultar preço →
+        </a>
+
+      </article>
+
+
+      <article class="product">
+
+        <div class="product-image decoracao">
+          <span>DECORAÇÃO</span>
+          <strong>3D</strong>
+        </div>
+
+        <h3>Plaquinhas 60x60</h3>
+
+        <p>
+          Plaquinhas e soluções decorativas.
+        </p>
+
+        <a href="#contato">
+          Consultar preço →
+        </a>
+
+      </article>
+
+
+      <article class="product">
+
+        <div class="product-image decoracao">
+          <span>ACABAMENTO</span>
+          <strong>★</strong>
+        </div>
+
+        <h3>Molduras de Gesso</h3>
+
+        <p>
+          Molduras e detalhes para teto e paredes.
+        </p>
+
+        <a href="#contato">
+          Consultar preço →
+        </a>
+
+      </article>
+
+
+      <article class="product">
+
+        <div class="product-image normal">
+          <span>DRYWALL</span>
+          <strong>▤</strong>
+        </div>
+
+        <h3>Perfis e acessórios</h3>
+
+        <p>
+          Perfis, parafusos, fitas, massas e acessórios.
+        </p>
+
+        <a href="#contato">
+          Consultar preço →
+        </a>
+
+      </article>
+
+
+      <article class="product">
+
+        <div class="product-image ferramentas">
+          <span>FERRAMENTAS</span>
+          <strong>⚒</strong>
+        </div>
+
+        <h3>Ferramentas</h3>
+
+        <p>
+          Ferramentas Stanley, DeWalt, Compel e outras marcas.
+        </p>
+
+        <a href="#contato">
+          Consultar preço →
+        </a>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= SERVIÇOS ================= -->
+
+<section class="section gray" id="servicos">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="tag">
+        SERVIÇOS
+      </div>
+
+      <h2>
+        Venda e instalação em Arujá
+      </h2>
+
+      <p>
+        Soluções completas para sua obra, do material à instalação.
+      </p>
+
+    </div>
+
+    <div class="services">
+
+      <article class="service">
+        <span class="service-number">01</span>
+        <h3>Forro de Drywall</h3>
+        <p>
+          Forros modernos para residências e empresas.
+        </p>
+      </article>
+
+      <article class="service">
+        <span class="service-number">02</span>
+        <h3>Divisórias</h3>
+        <p>
+          Divisórias em drywall para criação de novos ambientes.
+        </p>
+      </article>
+
+      <article class="service">
+        <span class="service-number">03</span>
+        <h3>Forro de Plaquinha</h3>
+        <p>
+          Forros modulares 60x60.
+        </p>
+      </article>
+
+      <article class="service">
+        <span class="service-number">04</span>
+        <h3>Gesso Liso</h3>
+        <p>
+          Acabamentos modernos e uniformes.
+        </p>
+      </article>
+
+      <article class="service">
+        <span class="service-number">05</span>
+        <h3>Instalação 3D</h3>
+        <p>
+          Decoração 3D para paredes e ambientes.
+        </p>
+      </article>
+
+      <article class="service">
+        <span class="service-number">06</span>
+        <h3>Molduras</h3>
+        <p>
+          Molduras e acabamentos decorativos.
+        </p>
+      </article>
+
+      <article class="service">
+        <span class="service-number">07</span>
+        <h3>Luminárias LED</h3>
+        <p>
+          Iluminação para complementar seu projeto.
+        </p>
+      </article>
+
+      <article class="service">
+        <span class="service-number">08</span>
+        <h3>Reformas</h3>
+        <p>
+          Soluções para reformas e construção a seco.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= ANTES E DEPOIS ================= -->
+
+<section class="section" id="antes-depois">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="tag">
+        RESULTADOS
+      </div>
+
+      <h2>
+        Antes e depois
+      </h2>
+
+      <p>
+        Arraste para os lados e veja a transformação.
+      </p>
+
+    </div>
+
+    <div class="comparison" id="comparison">
+
+      <img
+        class="after"
+        src="assets/depois.jpg"
+        alt="Depois da instalação de gesso e drywall"
+      >
+
+      <div class="before-container" id="beforeContainer">
+
+        <img
+          src="assets/antes.jpg"
+          alt="Antes da instalação de gesso e drywall"
+        >
+
+      </div>
+
+      <div
+        class="comparison-line"
+        id="comparisonLine"
+      ></div>
+
+      <input
+        type="range"
+        min="0"
+        max="100"
+        value="50"
+        id="comparisonRange"
+        aria-label="Comparar antes e depois"
+      >
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= AVALIAÇÕES ================= -->
+
+<section class="section gray" id="avaliacoes">
+
+  <div class="container">
+
+    <div class="reviews-header">
+
+      <div class="section-title" style="margin-bottom:0">
+
+        <div class="tag">
+          GOOGLE REVIEWS
+        </div>
+
+        <h2>
+          O que nossos clientes dizem
+        </h2>
+
+        <p>
+          Confira nossas avaliações e deixe também a sua opinião.
+        </p>
+
+      </div>
+
+      <div class="rating">
+
+        <strong id="rating">
+          5,0
+        </strong>
+
+        <div class="stars">
+          ★★★★★
+        </div>
+
+        <small id="reviewCount">
+          18 avaliações
+        </small>
+
+      </div>
+
+    </div>
+
+    <div class="reviews">
+
+      <article class="review">
+
+        <div class="review-top">
+          <strong>Cliente Gesso Natureza</strong>
+          <span class="stars">★★★★★</span>
+        </div>
+
+        <p>
+          Excelente atendimento, material de qualidade e serviço muito bem feito.
+        </p>
+
+        <small>
+          Google Reviews
+        </small>
+
+      </article>
+
+
+      <article class="review">
+
+        <div class="review-top">
+          <strong>Cliente Gesso Natureza</strong>
+          <span class="stars">★★★★★</span>
+        </div>
+
+        <p>
+          Atendimento rápido, equipe profissional e ótimo custo-benefício.
+        </p>
+
+        <small>
+          Google Reviews
+        </small>
+
+      </article>
+
+
+      <article class="review">
+
+        <div class="review-top">
+          <strong>Cliente Gesso Natureza</strong>
+          <span class="stars">★★★★★</span>
+        </div>
+
+        <p>
+          Recomendo para quem procura gesso e drywall em Arujá.
+        </p>
+
+        <small>
+          Google Reviews
+        </small>
+
+      </article>
+
+    </div>
+
+    <div class="review-buttons">
+
+      <a
+        class="btn btn-outline"
+        href="https://www.google.com/search?q=Gesso+Natureza+Arujá"
+        target="_blank"
+      >
+        Ver avaliações no Google
+      </a>
+
+      <a
+        class="btn btn-green"
+        href="https://www.google.com/search?q=Gesso+Natureza+Arujá"
+        target="_blank"
+      >
+        Avaliar no Google
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= CONTATO ================= -->
+
+<section class="section contact" id="contato">
+
+  <div class="container contact-grid">
+
+    <div>
+
+      <div class="tag" style="color:#5eea7a">
+        SOLICITE SEU ORÇAMENTO
+      </div>
+
+      <h2>
+        Conte o que você precisa.
+      </h2>
+
+      <p>
+        Preencha o formulário e nossa equipe entrará em contato pelo WhatsApp.
+      </p>
+
+      <div class="contact-info">
+
+        <a href="tel:+551128875777">
+          ☎ (11) 2887-5777
+        </a>
+
+        <a href="https://wa.me/5511998483800" target="_blank">
+          ☏ (11) 99848-3800
+        </a>
+
+        <a href="https://wa.me/5511999059409" target="_blank">
+          Instalação: (11) 99905-9409
+        </a>
+
+        <a href="mailto:gessonatureza@hotmail.com">
+          ✉ gessonatureza@hotmail.com
+        </a>
+
+        <a
+          href="https://www.instagram.com/gessonatureza/"
+          target="_blank"
+        >
+          ◎ @gessonatureza
+        </a>
+
+      </div>
+
+    </div>
+
+    <form class="form" id="quoteForm">
+
+      <label>
+        Nome
+
+        <input
+          type="text"
+          name="nome"
+          placeholder="Seu nome"
+          required
+        >
+      </label>
+
+      <label>
+        WhatsApp
+
+        <input
+          type="tel"
+          name="whatsapp"
+          placeholder="(11) 99999-9999"
+          required
+        >
+      </label>
+
+      <label>
+        O que você precisa?
+
+        <select name="interesse">
+
+          <option>
+            Orçamento de material
+          </option>
+
+          <option>
+            Instalação de drywall
+          </option>
+
+          <option>
+            Forro de gesso
+          </option>
+
+          <option>
+            Gesso liso
+          </option>
+
+          <option>
+            Divisória
+          </option>
+
+          <option>
+            Molduras
+          </option>
+
+          <option>
+            Decoração 3D
+          </option>
+
+          <option>
+            Ferramentas
+          </option>
+
+          <option>
+            Outro
+          </option>
+
+        </select>
+
+      </label>
+
+      <label>
+        Detalhes da obra
+
+        <textarea
+          name="detalhes"
+          rows="5"
+          placeholder="Informe medidas, material, bairro, prazo, etc."
+        ></textarea>
+
+      </label>
+
+      <button
+        type="submit"
+        class="btn btn-green"
+      >
+        ☏ Enviar orçamento pelo WhatsApp
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
+
+<!-- ================= MAPA ================= -->
+
+<section class="map-section">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="tag">
+        VISITE A LOJA
+      </div>
+
+      <h2>
+        Onde estamos
+      </h2>
+
+      <p>
+        Avenida Dr. Armando Colângelo, 660 —
+        Pq. Rodrigo Barreto, Arujá - SP.
+        CEP 07401-075.
+      </p>
+
+    </div>
+
+    <div class="map">
+
+      <iframe
+        src="https://www.google.com/maps?q=Gesso%20Natureza%20Arujá%20Avenida%20Dr.%20Armando%20Colângelo%20660&output=embed"
+        loading="lazy"
+        title="Mapa Gesso Natureza Arujá"
+      ></iframe>
+
+    </div>
+
+    <div class="hours">
+
+      <div class="hour">
+        <strong>Segunda a quinta</strong>
+        <span>07:30 às 17:30</span>
+      </div>
+
+      <div class="hour">
+        <strong>Sexta</strong>
+        <span>07:30 às 17:00</span>
+      </div>
+
+      <div class="hour">
+        <strong>Sábado</strong>
+        <span>08:00 às 13:00</span>
+      </div>
+
+      <div class="hour">
+        <strong>Domingo</strong>
+        <span>Fechado</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+  <div class="container footer-grid">
+
+    <img
+      src="assets/logo-gesso-natureza.png"
+      class="footer-logo"
+      alt="Gesso Natureza"
+    >
+
+    <div class="footer-text">
+
+      <strong>
+        Gesso Natureza Decorações
+      </strong>
+
+      <span>
+        Gesso • Drywall • Ferramentas • Instalação
+      </span>
+
+    </div>
+
+    <div class="footer-links">
+
+      <a
+        href="https://www.instagram.com/gessonatureza/"
+        target="_blank"
+      >
+        Instagram
+      </a>
+
+      <a href="mailto:gessonatureza@hotmail.com">
+        E-mail
+      </a>
+
+      <a href="tel:+551128875777">
+        Telefone
+      </a>
+
+    </div>
+
+  </div>
+
+  <div class="container copyright">
+
+    © <span id="year"></span> Gesso Natureza.
+    Todos os direitos reservados.
+
+  </div>
+
+</footer>
+
+<!-- ================= WHATSAPP FLUTUANTE ================= -->
+
+<a
+  class="whatsapp"
+  href="https://wa.me/5511998483800?text=Olá%20Gesso%20Natureza!%20Quero%20um%20orçamento."
+  target="_blank"
+  aria-label="Falar com a Gesso Natureza pelo WhatsApp"
+>
+
+  <span class="whatsapp-icon">☏</span>
+  <span>Fale conosco pelo WhatsApp</span>
+
+</a>
+
+<script>
+
+  /* ================= MENU MOBILE ================= */
+
+  const mobileButton = document.getElementById("mobileButton");
+  const menu = document.getElementById("menu");
+
+  mobileButton.addEventListener("click", () => {
+
+    if (menu.style.display === "flex") {
+
+      menu.style.display = "";
+
+    } else {
+
+      menu.style.display = "flex";
+      menu.style.position = "absolute";
+      menu.style.top = "82px";
+      menu.style.left = "0";
+      menu.style.right = "0";
+      menu.style.background = "#fff";
+      menu.style.padding = "20px";
+      menu.style.flexDirection = "column";
+      menu.style.alignItems = "flex-start";
+      menu.style.borderBottom = "1px solid #dce8df";
+      menu.style.boxShadow = "0 20px 40px rgba(0,0,0,.08)";
+
+    }
+
+  });
+
+
+  /* ================= ANO ================= */
+
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+
+  /* ================= ANTES E DEPOIS ================= */
+
+  const range = document.getElementById("comparisonRange");
+  const before = document.getElementById("beforeContainer");
+  const line = document.getElementById("comparisonLine");
+
+  function updateComparison() {
+
+    const value = range.value;
+
+    before.style.width = value + "%";
+    line.style.left = value + "%";
+
+  }
+
+  range.addEventListener("input", updateComparison);
+
+  updateComparison();
+
+
+  /* ================= FORMULÁRIO WHATSAPP ================= */
+
+  document
+    .getElementById("quoteForm")
+    .addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      const formData = new FormData(this);
+
+      const nome = formData.get("nome");
+      const whatsapp = formData.get("whatsapp");
+      const interesse = formData.get("interesse");
+      const detalhes = formData.get("detalhes");
+
+      const mensagem =
+
+        "Olá, Gesso Natureza! Quero solicitar um orçamento.%0A%0A" +
+
+        "Nome: " +
+        encodeURIComponent(nome) +
+
+        "%0AWhatsApp: " +
+        encodeURIComponent(whatsapp) +
+
+        "%0AInteresse: " +
+        encodeURIComponent(interesse) +
+
+        "%0ADetalhes: " +
+        encodeURIComponent(detalhes || "Não informado");
+
+      window.open(
+        "https://wa.me/5511998483800?text=" + mensagem,
+        "_blank"
+      );
+
+    });
+
+
+  /* ================= PRODUTOS → FORMULÁRIO ================= */
+
+  document.querySelectorAll(".product a").forEach(link => {
+
+    link.addEventListener("click", function() {
+
+      const product = this
+        .closest(".product")
+        .querySelector("h3")
+        .innerText;
+
+      setTimeout(() => {
+
+        const textarea =
+          document.querySelector('textarea[name="detalhes"]');
+
+        if (textarea) {
+
+          textarea.value =
+            "Tenho interesse em: " + product;
+
+        }
+
+      }, 300);
+
+    });
+
+  });
+
+</script>
+
+<!-- ================= SEO LOCAL ================= -->
+
+<script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Gesso Natureza",
+  "image": "assets/logo-gesso-natureza.png",
+  "telephone": "+55 11 99848-3800",
+  "email": "gessonatureza@hotmail.com",
+  "url": "https://SEU-DOMINIO.com.br",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Avenida Dr. Armando Colângelo, 660",
+    "addressLocality": "Arujá",
+    "addressRegion": "SP",
+    "postalCode": "07401-075",
+    "addressCountry": "BR"
+  },
+  "sameAs": [
+    "https://www.instagram.com/gessonatureza/"
+  ],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday"
+      ],
+      "opens": "07:30",
+      "closes": "17:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Friday",
+      "opens": "07:30",
+      "closes": "17:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "08:00",
+      "closes": "13:00"
+    }
+  ]
+}
+
+</script>
+
+</body>
+</html>
