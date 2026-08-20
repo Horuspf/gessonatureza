@@ -1,259 +1,953 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gesso Natureza | Drywall, Ferramentas e Materiais de Construção em Arujá</title>
-  <meta name="description" content="Gesso Natureza em Arujá - SP. Especialistas em Drywall, Placas 3D, Forros, Ferramentas e venda de iluminação LED.">
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    /* Animação pulsante para o botão do WhatsApp */
-    @keyframes pulse-whatsapp {
-      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-      70% { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-    }
-    .btn-whatsapp-pulse {
-      animation: pulse-whatsapp 1.8s infinite;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gesso Natureza | Gesso e Drywall em Arujá - SP</title>
+<meta name="description" content="Gesso Natureza em Arujá. Venda e instalação de drywall, gesso, chapas verdes, rosas, normais, cimentícias, Glassroc, ferramentas, molduras e decoração 3D. Solicite seu orçamento pelo WhatsApp.">
+<meta name="keywords" content="gesso em Arujá, drywall em Arujá, loja de gesso Arujá, chapa drywall Arujá, placa cimentícia Arujá, gesso liso Arujá, forro drywall Arujá, divisória drywall Arujá, moldura de gesso Arujá, reforma residencial Arujá">
+<meta name="theme-color" content="#0b5d2e">
+<link rel="icon" href="assets/logo-gesso-natureza.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+
+/* =========================================================
+   DESIGN TOKENS
+   Paleta extraída da logo oficial: verde escuro (#0A5718) e
+   branco, com um verde mais vivo como acento pontual.
+   ========================================================= */
+:root{
+  --gesso:      #FFFFFF;   /* fundo principal — branco */
+  --gesso-alt:  #EEF5F0;   /* seção alternada — branco esverdeado, quase imperceptível */
+  --pedra:      #D6E3DA;   /* linhas/bordas em tom verde-acinzentado claro */
+  --tinta:      #10241A;   /* texto principal, verde quase preto */
+  --grafite:    #5B6B60;   /* texto secundário */
+  --verde:      #0A5718;   /* verde exato da logo */
+  --verde-esc:  #063C10;   /* verde da logo, escurecido para contraste */
+  --verde-vivo: #2F9146;   /* verde mais vivo — acento no lugar do ocre */
+  --amarelo:    #F5B800;   /* só para estrelas de avaliação — convenção universal */
+  --branco:     #FFFFFF;
+  --raio:       18px;
+  --raio-sm:    10px;
+  --sombra:     0 24px 60px -20px rgba(6,60,16,.28);
+  --sombra-sm:  0 10px 24px -12px rgba(16,36,26,.18);
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+body{
+  font-family:"Inter",Arial,sans-serif;
+  color:var(--tinta);
+  background:var(--gesso);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{ text-decoration:none; color:inherit; }
+img{ max-width:100%; display:block; }
+.container{ width:min(1180px, calc(100% - 40px)); margin:auto; }
+h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
+.mono{ font-family:"JetBrains Mono",monospace; }
+
+:focus-visible{
+  outline:2px solid var(--verde);
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; }
+}
+
+/* =========================================================
+   TOPBAR + HEADER
+   ========================================================= */
+.topbar{ background:var(--verde-esc); color:#DCEBDF; font-size:12.5px; }
+.topbar-content{ min-height:38px; display:flex; justify-content:space-between; align-items:center; gap:20px; }
+.topbar-left,.topbar-right{ display:flex; gap:22px; align-items:center; flex-wrap:wrap; }
+.topbar a:hover{ color:#fff; }
+
+.header{
+  position:sticky; top:0; z-index:100;
+  background:rgba(246,243,236,.92);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--pedra);
+}
+.nav{ height:80px; display:flex; align-items:center; gap:25px; }
+.logo{ width:180px; }
+.menu{ margin-left:auto; display:flex; align-items:center; gap:26px; }
+.menu a{ font-size:13px; font-weight:700; color:var(--tinta); }
+.menu a:hover{ color:var(--verde); }
+
+.btn{
+  display:inline-flex; justify-content:center; align-items:center;
+  min-height:46px; padding:12px 22px; border-radius:999px;
+  border:1px solid transparent; font-weight:700; font-size:14px;
+  cursor:pointer; transition:.2s;
+}
+.btn-green{ background:var(--verde); color:#fff; }
+.btn-green:hover{ background:var(--verde-esc); transform:translateY(-1px); }
+.btn-outline{ border-color:var(--tinta); color:var(--tinta); background:transparent; }
+.btn-outline:hover{ background:var(--tinta); color:#fff; }
+
+.mobile-button{ display:none; border:0; background:none; font-size:26px; cursor:pointer; color:var(--tinta); }
+
+/* =========================================================
+   RÉGUA — elemento de assinatura
+   Faixa de trena com marcações, usada com moderação como
+   divisor entre seções (transição hero→marcas e antes do rodapé).
+   ========================================================= */
+.regua{
+  height:26px;
+  background:
+    repeating-linear-gradient(90deg, var(--verde) 0 2px, transparent 2px 10px),
+    repeating-linear-gradient(90deg, var(--verde) 0 2px, transparent 2px 50px);
+  background-size: 10px 10px, 50px 18px;
+  background-position: 0 100%, 0 100%;
+  background-repeat: repeat-x;
+  border-top:1px solid var(--pedra);
+  border-bottom:1px solid var(--pedra);
+  background-color:var(--gesso);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero{
+  padding:70px 0 60px;
+  background:
+    radial-gradient(ellipse 900px 500px at 85% -10%, rgba(10,87,24,.10), transparent 60%),
+    var(--gesso);
+}
+.hero-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:center; }
+.eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  color:var(--verde); font-size:11.5px; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; margin-bottom:18px;
+}
+.eyebrow::before{ content:""; width:22px; height:1px; background:var(--verde); }
+
+.hero h1{
+  font-size:clamp(38px,4.6vw,60px);
+  font-weight:600;
+  line-height:1.05;
+  letter-spacing:-.02em;
+  margin-bottom:20px;
+}
+.hero h1 em{ font-style:italic; color:var(--verde); font-weight:500; }
+
+.hero p.lead{ color:var(--grafite); font-size:17.5px; max-width:520px; }
+
+.hero-buttons{ display:flex; gap:12px; flex-wrap:wrap; margin-top:30px; }
+
+.hero-trust{ display:flex; gap:28px; margin-top:38px; flex-wrap:wrap; }
+.hero-trust div{ display:flex; flex-direction:column; }
+.hero-trust strong{ font-family:"JetBrains Mono",monospace; color:var(--verde); font-size:20px; font-weight:700; }
+.hero-trust span{ font-size:11.5px; color:var(--grafite); }
+
+/* Placa de especificação — substitui a foto do cartão da loja */
+.spec-plate{
+  position:relative;
+  background:var(--branco);
+  border:1px solid var(--pedra);
+  border-radius:var(--raio);
+  padding:34px 30px 28px;
+  box-shadow:var(--sombra);
+  transform:rotate(1.2deg);
+}
+.spec-plate::before{
+  content:"";
+  position:absolute; top:-11px; left:50%; transform:translateX(-50%);
+  width:22px; height:22px; border-radius:50%;
+  background:var(--gesso);
+  border:2px dashed var(--pedra);
+}
+.spec-plate-head{
+  display:flex; justify-content:space-between; align-items:baseline;
+  border-bottom:1px dashed var(--pedra); padding-bottom:14px; margin-bottom:14px;
+}
+.spec-plate-head span{ font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.1em; color:var(--verde-vivo); font-weight:700; }
+.spec-plate-head strong{ font-family:"Fraunces",serif; font-size:19px; }
+.spec-row{
+  display:flex; justify-content:space-between; gap:16px;
+  padding:10px 0; border-bottom:1px solid var(--gesso-alt);
+  font-size:13.5px;
+}
+.spec-row:last-child{ border-bottom:0; }
+.spec-row span:first-child{ color:var(--grafite); }
+.spec-row span:last-child{ font-weight:700; text-align:right; }
+
+/* =========================================================
+   MARCAS
+   ========================================================= */
+.brands{ overflow:hidden; padding:20px 0; background:var(--branco); border-top:1px solid var(--pedra); border-bottom:1px solid var(--pedra); }
+.brands-label{ text-align:center; font-size:11px; letter-spacing:.16em; color:var(--grafite); font-weight:700; margin-bottom:14px; text-transform:uppercase; }
+.brands-track{ display:flex; width:max-content; gap:14px; animation:marcas 30s linear infinite; }
+@media (prefers-reduced-motion: reduce){ .brands-track{ animation:none; overflow-x:auto; } }
+.brand{
+  min-width:150px; height:54px; border:1px solid var(--pedra); border-radius:var(--raio-sm);
+  display:flex; justify-content:center; align-items:center; padding:6px 12px;
+  background:var(--gesso); overflow:hidden;
+}
+.brand img{ max-height:100%; max-width:100%; object-fit:contain; }
+.brand-fallback{ font-family:"JetBrains Mono",monospace; font-weight:700; letter-spacing:.05em; color:var(--tinta); font-size:13px; }
+@keyframes marcas{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+/* =========================================================
+   SEÇÕES GERAIS
+   ========================================================= */
+.section{ padding:90px 0; }
+.section.alt{ background:var(--gesso-alt); }
+.section-title{ max-width:680px; margin-bottom:44px; }
+.section-title .eyebrow{ margin-bottom:12px; }
+.section-title h2{ font-size:clamp(30px,3.4vw,44px); font-weight:600; line-height:1.1; margin-bottom:10px; }
+.section-title p{ color:var(--grafite); font-size:16px; }
+
+.asset-note{
+  background:#EAF5EC; border:1px dashed var(--verde-vivo); color:var(--verde-esc);
+  font-size:13px; padding:14px 18px; border-radius:var(--raio-sm); margin-bottom:32px;
+}
+
+/* =========================================================
+   PRODUTOS — etiqueta técnica
+   ========================================================= */
+.products{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+.product{
+  background:var(--branco); border:1px solid var(--pedra); border-radius:var(--raio);
+  overflow:hidden; transition:.2s;
+}
+.product:hover{ transform:translateY(-4px); box-shadow:var(--sombra-sm); }
+.product-image{
+  height:150px; position:relative; display:flex; align-items:flex-end; padding:14px;
+}
+.product-tag{
+  position:relative; z-index:1;
+  background:rgba(255,255,255,.92); color:var(--tinta);
+  font-family:"JetBrains Mono",monospace; font-size:12px; font-weight:700;
+  padding:5px 10px; border-radius:6px; transform:rotate(-2deg);
+  box-shadow:0 4px 10px rgba(0,0,0,.12);
+}
+.product-body{ padding:16px 16px 18px; }
+.product h3{ font-size:16.5px; font-weight:600; margin-bottom:6px; }
+.product p{ color:var(--grafite); font-size:13px; min-height:52px; margin-bottom:12px; }
+.product a{ color:var(--verde); font-size:13px; font-weight:700; }
+.product a:hover{ text-decoration:underline; }
+
+.normal{ background:linear-gradient(160deg,#f1efe9,#c9c3b4); }
+.verde-m{ background:linear-gradient(160deg,#7fbb8e,#215c37); }
+.rosa{ background:linear-gradient(160deg,#f0aebc,#b3536a); }
+.cimenticia{ background:linear-gradient(160deg,#dcdad2,#9c988c); }
+.glassroc{ background:linear-gradient(160deg,#eef0ea,#b7c0b3); }
+.gesso-m{ background:linear-gradient(160deg,#fbfaf6,#d9d4c6); }
+.decoracao{ background:linear-gradient(160deg,#dcebe0,#7ba98a); }
+.ferramentas{ background:linear-gradient(160deg,#3a3a38,#171716); }
+.led{ background:linear-gradient(160deg,#3a3220,#B8842A); }
+
+/* =========================================================
+   SERVIÇOS — ícones em vez de numeração
+   ========================================================= */
+.services{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.service{ background:var(--branco); border:1px solid var(--pedra); border-radius:var(--raio); padding:26px 22px; }
+.service-icon{
+  width:42px; height:42px; border-radius:10px; background:var(--gesso-alt);
+  display:flex; align-items:center; justify-content:center; color:var(--verde); margin-bottom:16px;
+}
+.service-icon svg{ width:22px; height:22px; }
+.service h3{ font-size:16px; font-weight:600; margin-bottom:6px; }
+.service p{ color:var(--grafite); font-size:13.5px; }
+
+/* =========================================================
+   ANTES / DEPOIS
+   ========================================================= */
+.comparison{ position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; border-radius:var(--raio); box-shadow:var(--sombra); background:#ddd; border:1px solid var(--pedra); }
+.comparison img{ width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+.after{ z-index:1; }
+.before-container{ position:absolute; inset:0; width:50%; overflow:hidden; z-index:2; }
+.before-container img{ width:100vw; max-width:none; }
+.comparison-line{ position:absolute; top:0; bottom:0; left:50%; width:3px; background:#fff; z-index:4; }
+.comparison-line::after{
+  content:"↔"; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:44px; height:44px; background:#fff; color:var(--verde); border-radius:50%;
+  display:grid; place-items:center; font-weight:900; box-shadow:0 5px 20px rgba(0,0,0,.2);
+}
+.comparison input{ position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:ew-resize; z-index:5; }
+
+/* =========================================================
+   AVALIAÇÕES — recibo com furo
+   ========================================================= */
+.reviews-header{ display:flex; justify-content:space-between; align-items:end; gap:30px; margin-bottom:36px; flex-wrap:wrap; }
+.rating{ text-align:right; }
+.rating strong{ font-family:"Fraunces",serif; font-size:52px; line-height:1; font-weight:600; }
+.stars{ color:var(--amarelo); font-size:19px; letter-spacing:2px; }
+.rating small{ color:var(--grafite); }
+.reviews{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.review{
+  position:relative; background:var(--branco); border:1px solid var(--pedra); border-radius:var(--raio);
+  padding:24px; background-image:
+    linear-gradient(90deg, var(--pedra) 50%, transparent 0);
+  background-size:14px 1px; background-repeat:repeat-x; background-position:0 62px;
+}
+.review::before,.review::after{
+  content:""; position:absolute; top:62px; width:16px; height:16px; border-radius:50%;
+  background:var(--gesso-alt); transform:translateY(-50%);
+}
+.review::before{ left:-8px; }
+.review::after{ right:-8px; }
+.review-top{ display:flex; justify-content:space-between; gap:10px; padding-bottom:16px; }
+.review p{ margin:20px 0 10px; font-size:14px; }
+.review small{ color:var(--grafite); }
+.review-buttons{ display:flex; justify-content:center; gap:12px; margin-top:30px; flex-wrap:wrap; }
+
+/* =========================================================
+   CONTATO — ficha de pedido
+   ========================================================= */
+.contact{ background:var(--verde-esc); color:#fff; }
+.contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:start; }
+.contact .eyebrow{ color:#7BD494; }
+.contact .eyebrow::before{ background:#7BD494; }
+.contact h2{ font-size:clamp(32px,3.6vw,46px); font-weight:600; line-height:1.08; margin-bottom:14px; }
+.contact p{ color:#BFE0C9; }
+.contact-info{ display:grid; gap:12px; margin-top:28px; }
+.contact-info a{ font-weight:700; font-size:14.5px; }
+.contact-info a:hover{ color:#7BD494; }
+
+.form{ background:var(--gesso); color:var(--tinta); padding:28px; border-radius:var(--raio); display:grid; gap:15px; box-shadow:var(--sombra); }
+.form-head{ font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.1em; color:var(--verde-vivo); font-weight:700; text-transform:uppercase; }
+.form label{ font-size:13px; font-weight:700; }
+.form input,.form textarea,.form select{
+  width:100%; display:block; margin-top:7px; padding:12px 13px; border-radius:var(--raio-sm);
+  border:1px solid var(--pedra); background:var(--branco); font:inherit; outline:none; color:var(--tinta);
+}
+.form input:focus,.form textarea:focus,.form select:focus{ border-color:var(--verde); box-shadow:0 0 0 3px rgba(10,87,24,.12); }
+
+/* =========================================================
+   MAPA + HORÁRIOS
+   ========================================================= */
+.map-section{ padding:80px 0 40px; }
+.map{ border-radius:var(--raio); overflow:hidden; border:1px solid var(--pedra); box-shadow:var(--sombra-sm); }
+.map iframe{ width:100%; height:420px; border:0; display:block; filter:grayscale(.15); }
+.hours{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:16px; }
+.hour{ border:1px solid var(--pedra); background:var(--branco); padding:16px; border-radius:var(--raio-sm); display:flex; flex-direction:column; gap:4px; }
+.hour strong{ font-size:14px; }
+.hour span{ font-family:"JetBrains Mono",monospace; color:var(--grafite); font-size:13px; }
+.hour.closed span{ color:#B24545; }
+
+/* =========================================================
+   WHATSAPP FLUTUANTE
+   ========================================================= */
+.whatsapp{
+  position:fixed; right:22px; bottom:22px; z-index:999;
+  background:#1DCC55; color:#fff; width:60px; height:60px; border-radius:999px;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 15px 35px rgba(0,0,0,.24); animation:pulsar 1.8s infinite;
+}
+.whatsapp svg{ width:30px; height:30px; }
+@keyframes pulsar{
+  0%,100%{ transform:scale(1); box-shadow:0 0 0 0 rgba(29,204,85,.55),0 15px 35px rgba(0,0,0,.24); }
+  50%{ transform:scale(1.07); box-shadow:0 0 0 14px rgba(29,204,85,0),0 15px 35px rgba(0,0,0,.24); }
+}
+@media (prefers-reduced-motion: reduce){ .whatsapp{ animation:none; } }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+footer{ background:#052013; color:#fff; padding:36px 0 20px; }
+.footer-grid{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+.footer-logo{ width:110px; background:#fff; border-radius:10px; padding:6px; }
+.footer-text{ display:flex; flex-direction:column; }
+.footer-text span{ color:#9FC0AA; font-size:13px; }
+.footer-links{ margin-left:auto; display:flex; gap:20px; font-weight:700; font-size:13.5px; }
+.copyright{ border-top:1px solid rgba(255,255,255,.1); margin-top:26px; padding-top:18px; color:#82A08D; font-size:12px; }
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+@media(max-width:1000px){
+  .menu{ display:none; }
+  .mobile-button{ display:block; margin-left:auto; }
+  .hero-grid,.contact-grid{ grid-template-columns:1fr; }
+  .spec-plate{ transform:none; max-width:420px; }
+  .products,.services{ grid-template-columns:repeat(2,1fr); }
+  .reviews{ grid-template-columns:1fr; }
+  .hours{ grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:600px){
+  .topbar-right{ display:none; }
+  .logo{ width:150px; }
+  .hero{ padding:50px 0; }
+  .section{ padding:64px 0; }
+  .products,.services{ grid-template-columns:1fr; }
+  .reviews-header{ flex-direction:column; align-items:flex-start; }
+  .rating{ text-align:left; }
+  .hours{ grid-template-columns:1fr 1fr; }
+  .footer-links{ width:100%; margin-left:0; }
+  .whatsapp{ right:14px; bottom:14px; width:54px; height:54px; }
+}
+</style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+<body>
 
-  <!-- CABEÇALHO -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <a href="#inicio" class="flex items-center gap-2">
-        <span class="text-2xl font-black tracking-tight text-emerald-800">GESSO <span class="text-amber-600">NATUREZA</span></span>
-      </a>
-
-      <!-- Menu -->
-      <nav class="hidden md:flex items-center gap-6 font-medium text-gray-600">
-        <a href="#inicio" class="hover:text-emerald-700 transition-colors">Início</a>
-        <a href="#materiais" class="hover:text-emerald-700 transition-colors">Produtos</a>
-        <a href="#marcas" class="hover:text-emerald-700 transition-colors">Marcas</a>
-        <a href="#horarios" class="hover:text-emerald-700 transition-colors">Horários</a>
-        <a href="#contato" class="hover:text-emerald-700 transition-colors">Contato</a>
-      </nav>
-
-      <!-- Botão Orçamento Topo -->
-      <a href="https://wa.me/5511998483800?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20or%C3%A7amento." 
-         target="_blank" 
-         class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-full font-semibold shadow-md transition-all">
-        <i data-lucide="phone-call" class="w-4 h-4"></i>
-        <span>Solicitar Orçamento</span>
-      </a>
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="container topbar-content">
+    <div class="topbar-left">
+      <span>☎ (11) 2887-5777</span>
+      <span>☏ (11) 99848-3800</span>
+      <span>✉ gessonatureza@hotmail.com</span>
     </div>
-  </header>
+    <div class="topbar-right">
+      <span>📍 Arujá - SP</span>
+      <a href="https://www.instagram.com/gessonatureza/" target="_blank">Instagram</a>
+    </div>
+  </div>
+</div>
 
-  <!-- BANNER PRINCIPAL (HERO) -->
-  <section id="inicio" class="relative bg-gradient-to-br from-emerald-900 via-emerald-800 to-slate-900 text-white py-20 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <span class="inline-block bg-emerald-500/20 text-emerald-300 text-xs uppercase tracking-wider font-bold px-3.5 py-1.5 rounded-full border border-emerald-400/30 mb-4">
-          Drywall, Gesso e Ferramentas em Arujá
-        </span>
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
-          Sua obra em <span class="text-amber-400">Gesso & Drywall</span> com os melhores materiais.
-        </h1>
-        <p class="text-lg text-emerald-100 mb-8 max-w-xl">
-          Linha completa de placas, perfis, forros, molduras 3D e ferramentas profissionais para construção a seco a pronta entrega.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="https://wa.me/5511998483800?text=Ol%C3%A1!%20Gostaria de um orçamento." 
-             target="_blank" 
-             class="bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold px-7 py-3.5 rounded-xl shadow-lg transition-transform hover:-translate-y-0.5 flex items-center gap-2">
-            <i data-lucide="message-circle" class="w-5 h-5"></i>
-            WhatsApp
-          </a>
-          <a href="#materiais" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-7 py-3.5 rounded-xl border border-white/20 transition-colors">
-            Ver Produtos
-          </a>
-        </div>
+<!-- HEADER -->
+<header class="header">
+  <div class="container nav">
+    <a href="#inicio">
+      <img src="assets/logo-gesso-natureza.png" class="logo" alt="Gesso Natureza Decorações">
+    </a>
+    <button class="mobile-button" id="mobileButton" aria-label="Abrir menu">☰</button>
+    <nav class="menu" id="menu">
+      <a href="#inicio">Início</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#antes-depois">Antes e Depois</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#contato">Contato</a>
+      <a class="btn btn-green" href="https://wa.me/5511998483800?text=Olá%20Gesso%20Natureza!%20Quero%20um%20orçamento." target="_blank">Orçamento</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Venda • Instalação • Entrega em Arujá</div>
+      <h1>Gesso e drywall<br>com <em>acabamento de verdade</em>.</h1>
+      <p class="lead">Chapas, gesso, ferramentas e acabamento decorativo para transformar sua casa — do material à instalação, com atendimento direto para você.</p>
+      <div class="hero-buttons">
+        <a class="btn btn-green" href="https://wa.me/5511998483800?text=Olá%20Gesso%20Natureza!%20Quero%20um%20orçamento." target="_blank">☏ Falar no WhatsApp</a>
+        <a class="btn btn-outline" href="#contato">Solicitar orçamento</a>
       </div>
-
-      <!-- Card Informativo de Horários -->
-      <div id="horarios" class="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/20 shadow-2xl">
-        <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-amber-300">
-          <i data-lucide="clock" class="w-5 h-5"></i> Horário de Atendimento
-        </h3>
-        <div class="space-y-3 text-sm border-t border-white/10 pt-4">
-          <div class="flex justify-between py-1 border-b border-white/5">
-            <span class="text-gray-300">Segunda a Quarta:</span>
-            <span class="font-bold text-white">07:30 às 17:30</span>
-          </div>
-          <div class="flex justify-between py-1 border-b border-white/5">
-            <span class="text-gray-300">Quinta e Sexta:</span>
-            <span class="font-bold text-white">07:00 às 17:00</span>
-          </div>
-          <div class="flex justify-between py-1 border-b border-white/5">
-            <span class="text-gray-300">Sábado:</span>
-            <span class="font-bold text-amber-300">08:00 às 13:00</span>
-          </div>
-          <div class="flex justify-between py-1 text-red-300">
-            <span>Domingo:</span>
-            <span class="font-medium">Fechado</span>
-          </div>
-        </div>
+      <div class="hero-trust">
+        <div><strong>10+</strong><span>anos de estrada</span></div>
+        <div><strong>7</strong><span>marcas trabalhadas</span></div>
+        <div><strong>18</strong><span>avaliações 5★ no Google</span></div>
       </div>
     </div>
-  </section>
 
-  <!-- SEÇÃO DE MATERIAIS -->
-  <section id="materiais" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Categorias de Produtos</h2>
-        <p class="text-gray-600 text-lg">Tudo o que você precisa, da estrutura ao acabamento final.</p>
+    <div class="spec-plate">
+      <div class="spec-plate-head">
+        <span>FICHA — LOJA</span>
+        <strong>Gesso Natureza</strong>
       </div>
+      <div class="spec-row"><span>Material</span><span>Gesso &amp; Drywall</span></div>
+      <div class="spec-row"><span>Atuação</span><span>Arujá e região</span></div>
+      <div class="spec-row"><span>Atendimento</span><span>Loja + sua casa</span></div>
+      <div class="spec-row"><span>Marcas</span><span>Knauf, DeWalt, Stanley +4</span></div>
+      <div class="spec-row"><span>Contato</span><span>(11) 99848-3800</span></div>
+    </div>
+  </div>
+</section>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <!-- Card 1 -->
-        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200 flex flex-col justify-between hover:border-emerald-300 transition-all">
-          <div>
-            <div class="w-12 h-12 bg-emerald-100 text-emerald-800 rounded-xl flex items-center justify-center mb-4">
-              <i data-lucide="layers" class="w-6 h-6"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Placas & Drywall</h3>
-            <p class="text-gray-600 text-sm mb-4 leading-relaxed">Placas Standard, Resistentes à Umidade e Fogo, e perfis estruturais de aço galvanizado.</p>
-          </div>
-          <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 py-1.5 px-3 rounded-lg border border-emerald-200 self-start">Estrutura</span>
-        </div>
+<div class="regua" role="presentation"></div>
 
-        <!-- Card 2 -->
-        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200 flex flex-col justify-between hover:border-emerald-300 transition-all">
-          <div>
-            <div class="w-12 h-12 bg-emerald-100 text-emerald-800 rounded-xl flex items-center justify-center mb-4">
-              <i data-lucide="grid-3x3" class="w-6 h-6"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Molduras & Placas 3D</h3>
-            <p class="text-gray-600 text-sm mb-4 leading-relaxed">Vários modelos de molduras, sancas e placas de gesso 3D para decoração.</p>
-          </div>
-          <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 py-1.5 px-3 rounded-lg border border-emerald-200 self-start">Acabamento</span>
-        </div>
+<!-- MARCAS -->
+<!-- Espaço pronto para logos oficiais: salve o arquivo em assets/marcas/nome-da-marca.png
+     (letras minúsculas, sem acento) e ele substitui o texto automaticamente. -->
+<section class="brands">
+  <div class="container">
+    <div class="brands-label">Trabalhamos com</div>
+  </div>
+  <div class="brands-track" id="brandsTrack"></div>
+</section>
 
-        <!-- Card 3 -->
-        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200 flex flex-col justify-between hover:border-emerald-300 transition-all">
-          <div>
-            <div class="w-12 h-12 bg-amber-100 text-amber-800 rounded-xl flex items-center justify-center mb-4">
-              <i data-lucide="wrench" class="w-6 h-6"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Ferramentas & Fixação</h3>
-            <p class="text-gray-600 text-sm mb-4 leading-relaxed">Parafusos, buchas, fitas, e ferramentas profissionais das marcas Stanley, DeWalt, Compel e Lotus.</p>
-          </div>
-          <span class="text-xs font-semibold text-amber-700 bg-amber-50 py-1.5 px-3 rounded-lg border border-amber-200 self-start">Profissional</span>
-        </div>
+<!-- PRODUTOS -->
+<section class="section" id="produtos">
+  <div class="container">
+    <div class="section-title">
+      <div class="eyebrow">Materiais</div>
+      <h2>Tudo para sua obra</h2>
+      <p>Chapas para todos os ambientes, gesso, ferramentas e acabamento decorativo.</p>
+    </div>
 
-        <!-- Card 4 -->
-        <div class="bg-amber-50/50 rounded-2xl p-6 border border-amber-200 flex flex-col justify-between hover:border-amber-300 transition-all">
-          <div>
-            <div class="w-12 h-12 bg-amber-100 text-amber-800 rounded-xl flex items-center justify-center mb-4">
-              <i data-lucide="lightbulb" class="w-6 h-6"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Iluminação LED</h3>
-            <p class="text-gray-600 text-sm mb-3 leading-relaxed">Spots, painéis, plafons e fitas de LED para sanca e cortineiros.</p>
-            <div class="bg-amber-100 border-l-4 border-amber-500 p-2 text-xs text-amber-900 mb-4"><strong>Aviso:</strong> Apenas <u>venda de materiais</u> (não instalamos).</div>
-          </div>
-          <span class="text-xs font-semibold text-amber-800 bg-amber-100 py-1.5 px-3 rounded-lg border border-amber-300 self-start">Apenas Venda</span>
+    <div class="asset-note">
+      📸 As fotos reais dos produtos ainda não foram enviadas. Cada card já está pronto para receber a imagem — salve o arquivo em <strong>assets/produtos/</strong> com o nome indicado no comentário do código e ela substitui a cor de fundo automaticamente.
+    </div>
+
+    <div class="products">
+
+      <!-- foto sugerida: assets/produtos/chapa-normal.jpg -->
+      <article class="product">
+        <div class="product-image normal"><span class="product-tag">ST · 12,5mm</span></div>
+        <div class="product-body">
+          <h3>Chapa Normal</h3>
+          <p>Chapa drywall para paredes, forros e ambientes secos.</p>
+          <a href="#contato">Consultar preço →</a>
         </div>
+      </article>
+
+      <!-- foto sugerida: assets/produtos/chapa-verde.jpg -->
+      <article class="product">
+        <div class="product-image verde-m"><span class="product-tag">RU · Área úmida</span></div>
+        <div class="product-body">
+          <h3>Chapa Verde</h3>
+          <p>Indicada para ambientes internos com maior umidade.</p>
+          <a href="#contato">Consultar preço →</a>
+        </div>
+      </article>
+
+      <!-- foto sugerida: assets/produtos/chapa-rosa.jpg -->
+      <article class="product">
+        <div class="product-image rosa"><span class="product-tag">RF · Corta-fogo</span></div>
+        <div class="product-body">
+          <h3>Chapa Rosa</h3>
+          <p>Para sistemas que exigem resistência ao fogo.</p>
+          <a href="#contato">Consultar preço →</a>
+        </div>
+      </article>
+
+      <!-- foto sugerida: assets/produtos/cimenticia-6mm.jpg -->
+      <article class="product">
+        <div class="product-image cimenticia"><span class="product-tag">6mm</span></div>
+        <div class="product-body">
+          <h3>Chapa Cimentícia 6mm</h3>
+          <p>Consulte disponibilidade e aplicação.</p>
+          <a href="#contato">Consultar preço →</a>
+        </div>
+      </article>
+
+      <!-- foto sugerida: assets/produtos/cimenticia-8mm.jpg -->
+      <article class="product">
+        <div class="product-image cimenticia"><span class="product-tag">8mm</span></div>
+        <div class="product-body">
+          <h3>Chapa Cimentícia 8mm</h3>
+          <p>Para diferentes sistemas construtivos.</p>
+          <a href="#contato">Consultar preço →</a>
+        </div>
+      </article>
+
+      <!-- foto sugerida: assets/produtos/cimenticia-10mm.jpg -->
+      <article class="product">
+        <div class="product-image cimenticia"><span class="product-tag">10mm</span></div>
+        <div class="product-body">
+          <h3>Chapa Cimentícia 10mm</h3>
+          <p>Consulte disponibilidade e aplicação.</p>
+          <a href="#contato">Consultar preço →</a>
+        </div>
+      </article>
+
+      <!-- foto sugerida: assets/produtos/glassroc.jpg -->
+      <article class="product">
+        <div class="product-image glassroc"><span class="product-tag">Glassroc+</span></div>
+        <div class="product-body">
+          <h3>Chapas Glassroc</h3>
+          <p>Soluções especiais para construção a seco.</p>
+          <a href="#contato">Consultar preço →</a>
+        </div>
+      </article>
+
+      <!-- foto sugerida: assets/produtos/gesso-po.jpg -->
+      <article class="product">
+        <div class="product-image gesso-m"><span class="product-tag">Saco 20kg</span></div>
+        <div class="product-body">
+          <h3>Gesso em pó</h3>
+          <p>Gesso e materiais complementares para acabamento.</p>
+          <a href="#contato">Consultar preço →</a>
+        </div>
+      </article>
+
+      <!-- foto sugerida: assets/produtos/plaquinhas-3d.jpg -->
+      <article class="product">
+        <div class="product-image decoracao"><span class="product-tag">60×60cm</span></div>
+        <div class="product-body">
+          <h3>Plaquinhas 60x60</h3>
+          <p>Plaquinhas e soluções decorativas para forro.</p>
+          <a href="#contato">Consultar preço →</a>
+        </div>
+      </article>
+
+      <!-- foto sugerida: assets/produtos/molduras.jpg -->
+      <article class="product">
+        <div class="product-image decoracao"><span class="product-tag">Sob medida</span></div>
+        <div class="product-body">
+          <h3>Molduras de Gesso</h3>
+          <p>Molduras e detalhes para teto e paredes.</p>
+          <a href="#contato">Consultar preço →</a>
+        </div>
+      </article>
+
+      <!-- foto sugerida: assets/produtos/perfis-acessorios.jpg -->
+      <article class="product">
+        <div class="product-image normal"><span class="product-tag">Kit completo</span></div>
+        <div class="product-body">
+          <h3>Perfis e acessórios</h3>
+          <p>Perfis, parafusos, fitas, massas e acessórios.</p>
+          <a href="#contato">Consultar preço →</a>
+        </div>
+      </article>
+
+      <!-- foto sugerida: assets/produtos/ferramentas.jpg -->
+      <article class="product">
+        <div class="product-image ferramentas"><span class="product-tag">Profissional</span></div>
+        <div class="product-body">
+          <h3>Ferramentas</h3>
+          <p>Ferramentas Stanley, DeWalt, Compel e outras marcas.</p>
+          <a href="#contato">Consultar preço →</a>
+        </div>
+      </article>
+
+      <!-- foto sugerida: assets/produtos/luminarias-led.jpg -->
+      <article class="product">
+        <div class="product-image led"><span class="product-tag">Só venda</span></div>
+        <div class="product-body">
+          <h3>Luminárias LED</h3>
+          <p>Vendemos luminárias de LED para complementar seu projeto. Não realizamos instalação.</p>
+          <a href="#contato">Consultar preço →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="section alt" id="servicos">
+  <div class="container">
+    <div class="section-title">
+      <div class="eyebrow">Serviços</div>
+      <h2>Venda e instalação em Arujá</h2>
+      <p>Soluções completas para sua obra, do material à instalação.</p>
+    </div>
+
+    <div class="services">
+      <article class="service">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></div>
+        <h3>Forro de Drywall</h3>
+        <p>Forros modernos para residências e empresas.</p>
+      </article>
+
+      <article class="service">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 4v16M20 4v16M4 12h6M14 12h6"/></svg></div>
+        <h3>Divisórias</h3>
+        <p>Divisórias em drywall para criação de novos ambientes.</p>
+      </article>
+
+      <article class="service">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+        <h3>Forro de Plaquinha</h3>
+        <p>Forros modulares 60x60.</p>
+      </article>
+
+      <article class="service">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 10c3-5 15-5 18 0"/><path d="M3 15c3-4 15-4 18 0"/></svg></div>
+        <h3>Gesso Liso</h3>
+        <p>Acabamentos modernos e uniformes.</p>
+      </article>
+
+      <article class="service">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M12 3l8 4.6v8.8L12 21l-8-4.6V7.6L12 3z"/><path d="M12 12v9M12 12l8-4.6M12 12L4 7.4"/></svg></div>
+        <h3>Instalação 3D</h3>
+        <p>Decoração 3D para paredes e ambientes.</p>
+      </article>
+
+      <article class="service">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4h6M4 4l7 7"/></svg></div>
+        <h3>Molduras</h3>
+        <p>Molduras e acabamentos decorativos.</p>
+      </article>
+
+      <article class="service">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg></div>
+        <h3>Reformas</h3>
+        <p>Soluções para reformas e construção a seco.</p>
+      </article>
+
+      <article class="service">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20l4.5-1.2L19 7.3a1.5 1.5 0 0 0 0-2.1l-1.2-1.2a1.5 1.5 0 0 0-2.1 0L4.2 15.5 3 20z"/><path d="M13.5 5.5l3 3"/></svg></div>
+        <h3>Orçamento no local</h3>
+        <p>Medimos e orientamos o melhor sistema para sua obra.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ANTES E DEPOIS -->
+<section class="section" id="antes-depois">
+  <div class="container">
+    <div class="section-title">
+      <div class="eyebrow">Resultados</div>
+      <h2>Antes e depois</h2>
+      <p>Arraste para os lados e veja a transformação.</p>
+    </div>
+
+    <div class="comparison" id="comparison">
+      <img class="after" src="assets/depois.jpg" alt="Depois da instalação de gesso e drywall">
+      <div class="before-container" id="beforeContainer">
+        <img src="assets/antes.jpg" alt="Antes da instalação de gesso e drywall">
+      </div>
+      <div class="comparison-line" id="comparisonLine"></div>
+      <input type="range" min="0" max="100" value="50" id="comparisonRange" aria-label="Comparar antes e depois">
+    </div>
+  </div>
+</section>
+
+<!-- AVALIAÇÕES -->
+<section class="section alt" id="avaliacoes">
+  <div class="container">
+    <div class="reviews-header">
+      <div class="section-title" style="margin-bottom:0">
+        <div class="eyebrow">Google Reviews</div>
+        <h2>O que nossos clientes dizem</h2>
+        <p>Confira nossas avaliações e deixe também a sua opinião.</p>
+      </div>
+      <div class="rating">
+        <strong id="rating">5,0</strong>
+        <div class="stars">★★★★★</div>
+        <small id="reviewCount">18 avaliações</small>
       </div>
     </div>
-  </section>
 
-  <!-- SEÇÃO DE MARCAS PARCEIRAS - CORRIGIDA -->
-  <section id="marcas" class="py-16 bg-gray-100 border-y border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h3 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-8">Marcas Líderes que Você Encontra Aqui</h3>
-      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-6 items-center justify-center">
-        
-        <!-- Knauf -->
-        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 h-24 flex items-center justify-center hover:scale-105 transition-transform">
-          <img src="imagens/logoknauf.png" alt="Logo Knauf" class="max-h-12 max-w-full object-contain">
-        </div>
+    <div class="reviews">
+      <article class="review">
+        <div class="review-top"><strong>Cliente Gesso Natureza</strong><span class="stars">★★★★★</span></div>
+        <p>Excelente atendimento, material de qualidade e serviço muito bem feito.</p>
+        <small>Google Reviews</small>
+      </article>
+      <article class="review">
+        <div class="review-top"><strong>Cliente Gesso Natureza</strong><span class="stars">★★★★★</span></div>
+        <p>Atendimento rápido, equipe profissional e ótimo custo-benefício.</p>
+        <small>Google Reviews</small>
+      </article>
+      <article class="review">
+        <div class="review-top"><strong>Cliente Gesso Natureza</strong><span class="stars">★★★★★</span></div>
+        <p>Recomendo para quem procura gesso e drywall em Arujá.</p>
+        <small>Google Reviews</small>
+      </article>
+    </div>
 
-        <!-- Stanley -->
-        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 h-24 flex items-center justify-center hover:scale-105 transition-transform">
-          <img src="imagens/logostanley.png" alt="Logo Stanley" class="max-h-10 max-w-full object-contain">
-        </div>
+    <div class="review-buttons">
+      <a class="btn btn-outline" href="https://www.google.com/search?q=Gesso+Natureza+Arujá" target="_blank">Ver avaliações no Google</a>
+      <a class="btn btn-green" href="https://www.google.com/search?q=Gesso+Natureza+Arujá" target="_blank">Avaliar no Google</a>
+    </div>
+  </div>
+</section>
 
-        <!-- DeWalt -->
-        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 h-24 flex items-center justify-center hover:scale-105 transition-transform">
-          <img src="imagens/logodewalt.png" alt="Logo DeWalt" class="max-h-10 max-w-full object-contain">
-        </div>
-
-        <!-- Âncora -->
-        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 h-24 flex items-center justify-center hover:scale-105 transition-transform">
-          <img src="imagens/logoancora.png" alt="Logo Âncora Fixação" class="max-h-12 max-w-full object-contain">
-        </div>
-
-        <!-- Walsywa -->
-        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 h-24 flex items-center justify-center hover:scale-105 transition-transform">
-          <img src="imagens/logowalsywa.png" alt="Logo Walsywa" class="max-h-12 max-w-full object-contain">
-        </div>
-
-        <!-- Lotus -->
-        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 h-24 flex items-center justify-center hover:scale-105 transition-transform">
-          <img src="imagens/logolotus.png" alt="Logo Lotus Ferramentas" class="max-h-12 max-w-full object-contain">
-        </div>
-
-        <!-- Compel -->
-        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 h-24 flex items-center justify-center hover:scale-105 transition-transform">
-          <img src="imagens/logocompel.png" alt="Logo Compel" class="max-h-12 max-w-full object-contain">
-        </div>
-
+<!-- CONTATO -->
+<section class="section contact" id="contato">
+  <div class="container contact-grid">
+    <div>
+      <div class="eyebrow">Solicite seu orçamento</div>
+      <h2>Conte o que você precisa.</h2>
+      <p>Preencha o formulário e nossa equipe entrará em contato pelo WhatsApp.</p>
+      <div class="contact-info">
+        <a href="tel:+551128875777">☎ (11) 2887-5777</a>
+        <a href="https://wa.me/5511998483800" target="_blank">☏ (11) 99848-3800</a>
+        <a href="https://wa.me/5511999059409" target="_blank">Instalação: (11) 99905-9409</a>
+        <a href="mailto:gessonatureza@hotmail.com">✉ gessonatureza@hotmail.com</a>
+        <a href="https://www.instagram.com/gessonatureza/" target="_blank">◎ @gessonatureza</a>
       </div>
     </div>
-  </section>
 
-  <!-- CONTATO & MAPA -->
-  <section id="contato" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-6">Fale Conosco</h2>
-        <p class="text-gray-600 mb-8 leading-relaxed">Atendimento rápido pelo WhatsApp para orçamentos e dúvidas, ou visite nossa loja física em Arujá.</p>
-        
-        <div class="space-y-6">
-          <div class="flex items-center gap-4">
-            <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center"><i data-lucide="phone" class="w-5 h-5"></i></div>
-            <div>
-              <h4 class="font-bold text-gray-900">WhatsApp</h4>
-              <a href="https://wa.me/5511998483800" target="_blank" class="text-emerald-700 font-bold hover:underline">(11) 99848-3800</a>
-            </div>
-          </div>
-          <div class="flex items-center gap-4">
-            <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center"><i data-lucide="map-pin" class="w-5 h-5"></i></div>
-            <div>
-              <h4 class="font-bold text-gray-900">Endereço</h4>
-              <p class="text-gray-600 text-sm">Av. Dr. Armando Colângelo, 660 - Arujá - SP</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="bg-gray-100 p-4 rounded-2xl border border-gray-300">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3660.8447833076166!2d-46.3340578!3d-23.4119332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce7d5704a29a47%3A0x6b976f9cbe87df0!2sAv.%20Dr.%20Armando%20Col%C3%A2ngelo%2C%20660%20-%20Center%20Ville%2C%20Aruj%C3%A1%20-%20SP%2C%2007401-075!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-xl"></iframe>
-      </div>
+    <form class="form" id="quoteForm">
+      <div class="form-head">Ficha de orçamento</div>
+      <label>Nome
+        <input type="text" name="nome" placeholder="Seu nome" required>
+      </label>
+      <label>WhatsApp
+        <input type="tel" name="whatsapp" placeholder="(11) 99999-9999" required>
+      </label>
+      <label>O que você precisa?
+        <select name="interesse">
+          <option>Orçamento de material</option>
+          <option>Instalação de drywall</option>
+          <option>Forro de gesso</option>
+          <option>Gesso liso</option>
+          <option>Divisória</option>
+          <option>Molduras</option>
+          <option>Decoração 3D</option>
+          <option>Ferramentas</option>
+          <option>Luminárias LED</option>
+          <option>Outro</option>
+        </select>
+      </label>
+      <label>Detalhes do projeto
+        <textarea name="detalhes" rows="5" placeholder="Conte o que você precisa: medidas, material, bairro, prazo, etc."></textarea>
+      </label>
+      <button type="submit" class="btn btn-green">☏ Enviar orçamento pelo WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<div class="regua" role="presentation"></div>
+
+<!-- MAPA -->
+<section class="map-section">
+  <div class="container">
+    <div class="section-title">
+      <div class="eyebrow">Visite a loja</div>
+      <h2>Onde estamos</h2>
+      <p>Avenida Dr. Armando Colângelo, 660 — Pq. Rodrigo Barreto, Arujá - SP. CEP 07401-075.</p>
     </div>
-  </section>
 
-  <!-- RODAPÉ -->
-  <footer class="bg-slate-950 text-gray-400 py-10">
-    <div class="max-w-7xl mx-auto px-4 text-center text-sm space-y-2">
-      <p class="font-bold text-white text-lg">GESSO NATUREZA</p>
-      <p>Av. Dr. Armando Colângelo, 660 - Arujá / SP</p>
-      <p>CNPJ: 42.553.501/0001-45</p>
-      <p class="text-xs text-gray-600 pt-4">&copy; 2026 Gesso Natureza. Todos os direitos reservados.</p>
+    <div class="map">
+      <iframe src="https://www.google.com/maps?q=Gesso%20Natureza%20Arujá%20Avenida%20Dr.%20Armando%20Colângelo%20660&output=embed" loading="lazy" title="Mapa Gesso Natureza Arujá"></iframe>
     </div>
-  </footer>
 
-  <!-- BOTÃO WHATSAPP FLUTUANTE PULSANTE -->
-  <a href="https://wa.me/5511998483800?text=Ol%C3%A1! Vem pelo site da Gesso Natureza." target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl flex items-center justify-center btn-whatsapp-pulse transition-transform hover:scale-110">
-    <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.972.531 1.776.818 2.796.818 3.182 0 5.768-2.587 5.768-5.767.001-3.18-2.585-5.766-5.768-5.766zm9.969 5.766c0 5.485-4.464 9.95-9.97 9.95-1.745 0-3.376-.452-4.808-1.246l-5.222 1.358 1.383-5.075c-.933-1.488-1.473-3.237-1.473-5.087 0-5.485 4.464-9.95 9.97-9.95 5.506 0 9.97 4.465 9.97 9.95z"/></svg>
-  </a>
+    <div class="hours">
+      <div class="hour"><strong>Segunda a quarta</strong><span>07:30 às 17:30</span></div>
+      <div class="hour"><strong>Quinta e sexta</strong><span>07:30 às 17:00</span></div>
+      <div class="hour"><strong>Sábado</strong><span>08:00 às 13:00</span></div>
+      <div class="hour closed"><strong>Domingo</strong><span>Fechado</span></div>
+    </div>
+  </div>
+</section>
 
-  <!-- Inicialização dos Ícones -->
-  <script>lucide.createIcons();</script>
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-grid">
+    <img src="assets/logo-gesso-natureza.png" class="footer-logo" alt="Gesso Natureza">
+    <div class="footer-text">
+      <strong>Gesso Natureza Decorações</strong>
+      <span>Gesso • Drywall • Ferramentas • Instalação</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/gessonatureza/" target="_blank">Instagram</a>
+      <a href="mailto:gessonatureza@hotmail.com">E-mail</a>
+      <a href="tel:+551128875777">Telefone</a>
+    </div>
+  </div>
+  <div class="container copyright">© <span id="year"></span> Gesso Natureza. Todos os direitos reservados.</div>
+</footer>
+
+<!-- WHATSAPP FLUTUANTE (só ícone, pulsando) -->
+<a class="whatsapp" href="https://wa.me/5511998483800?text=Olá%20Gesso%20Natureza!%20Quero%20um%20orçamento." target="_blank" aria-label="Falar com a Gesso Natureza pelo WhatsApp">
+  <svg viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16.004 3C9.376 3 4 8.373 4 15c0 2.34.678 4.523 1.85 6.36L4 29l7.84-1.812A11.94 11.94 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3Zm0 21.818a9.77 9.77 0 0 1-4.983-1.366l-.357-.212-4.652 1.075 1.11-4.53-.234-.372A9.77 9.77 0 0 1 5.2 15c0-5.966 4.847-10.818 10.804-10.818S26.808 9.034 26.808 15 21.961 24.818 16.004 24.818Zm5.94-8.146c-.325-.163-1.926-.951-2.225-1.06-.298-.109-.515-.163-.732.163-.216.326-.84 1.06-1.03 1.278-.19.217-.379.244-.703.081-.325-.163-1.372-.505-2.614-1.612-.966-.86-1.618-1.921-1.808-2.246-.19-.326-.02-.502.143-.664.146-.146.325-.38.488-.57.163-.19.217-.326.325-.543.108-.217.054-.407-.027-.57-.081-.163-.732-1.766-1.003-2.418-.264-.634-.532-.548-.732-.558l-.623-.011c-.217 0-.57.081-.868.407-.298.326-1.138 1.113-1.138 2.716s1.165 3.15 1.327 3.368c.163.217 2.293 3.5 5.556 4.907.776.334 1.382.534 1.854.684.779.248 1.489.213 2.05.129.626-.093 1.926-.787 2.198-1.548.271-.76.271-1.412.19-1.548-.081-.135-.298-.217-.623-.38Z"/>
+  </svg>
+</a>
+
+<script>
+  /* MENU MOBILE */
+  const mobileButton = document.getElementById("mobileButton");
+  const menu = document.getElementById("menu");
+  mobileButton.addEventListener("click", () => {
+    if (menu.style.display === "flex") {
+      menu.style.display = "";
+    } else {
+      menu.style.display = "flex";
+      menu.style.position = "absolute";
+      menu.style.top = "80px";
+      menu.style.left = "0";
+      menu.style.right = "0";
+      menu.style.background = "#FFFFFF";
+      menu.style.padding = "20px";
+      menu.style.flexDirection = "column";
+      menu.style.alignItems = "flex-start";
+      menu.style.borderBottom = "1px solid #D6E3DA";
+      menu.style.boxShadow = "0 20px 40px rgba(0,0,0,.08)";
+    }
+  });
+
+  /* ANO */
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* ANTES E DEPOIS */
+  const range = document.getElementById("comparisonRange");
+  const before = document.getElementById("beforeContainer");
+  const line = document.getElementById("comparisonLine");
+  function updateComparison(){
+    const value = range.value;
+    before.style.width = value + "%";
+    line.style.left = value + "%";
+  }
+  range.addEventListener("input", updateComparison);
+  updateComparison();
+
+  /* FORMULÁRIO → WHATSAPP */
+  document.getElementById("quoteForm").addEventListener("submit", function(event){
+    event.preventDefault();
+    const formData = new FormData(this);
+    const nome = formData.get("nome");
+    const whatsapp = formData.get("whatsapp");
+    const interesse = formData.get("interesse");
+    const detalhes = formData.get("detalhes");
+    const mensagem =
+      "Olá, Gesso Natureza! Quero solicitar um orçamento.%0A%0A" +
+      "Nome: " + encodeURIComponent(nome) +
+      "%0AWhatsApp: " + encodeURIComponent(whatsapp) +
+      "%0AInteresse: " + encodeURIComponent(interesse) +
+      "%0ADetalhes: " + encodeURIComponent(detalhes || "Não informado");
+    window.open("https://wa.me/5511998483800?text=" + mensagem, "_blank");
+  });
+
+  /* PRODUTOS → FORMULÁRIO */
+  document.querySelectorAll(".product a").forEach(link => {
+    link.addEventListener("click", function(){
+      const product = this.closest(".product").querySelector("h3").innerText;
+      setTimeout(() => {
+        const textarea = document.querySelector('textarea[name="detalhes"]');
+        if (textarea) textarea.value = "Tenho interesse em: " + product;
+      }, 300);
+    });
+  });
+
+  /* MARCAS — fallback em texto até os logos oficiais serem enviados
+     Para usar o logo real, salve em assets/marcas/nome.png (minúsculas, sem acento) */
+  const marcas = ["LOTUS","DEWALT","STANLEY","COMPEL","KNAUF","ÂNCORA","WALSYWA"];
+  const brandsTrack = document.getElementById("brandsTrack");
+  function renderBrands(){
+    brandsTrack.innerHTML = "";
+    [...marcas, ...marcas].forEach(nome => {
+      const div = document.createElement("div");
+      div.className = "brand";
+      const img = document.createElement("img");
+      img.src = "assets/marcas/" + nome.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"") + ".png";
+      img.alt = nome;
+      img.loading = "lazy";
+      const fallback = document.createElement("span");
+      fallback.className = "brand-fallback";
+      fallback.textContent = nome;
+      fallback.style.display = "none";
+      img.onerror = () => { img.style.display = "none"; fallback.style.display = "block"; };
+      div.appendChild(img);
+      div.appendChild(fallback);
+      brandsTrack.appendChild(div);
+    });
+  }
+  renderBrands();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Gesso Natureza",
+  "image": "assets/logo-gesso-natureza.png",
+  "telephone": "+55 11 99848-3800",
+  "email": "gessonatureza@hotmail.com",
+  "url": "https://SEU-DOMINIO.com.br",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Avenida Dr. Armando Colângelo, 660",
+    "addressLocality": "Arujá",
+    "addressRegion": "SP",
+    "postalCode": "07401-075",
+    "addressCountry": "BR"
+  },
+  "sameAs": ["https://www.instagram.com/gessonatureza/"],
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday"], "opens": "07:30", "closes": "17:30" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Thursday","Friday"], "opens": "07:30", "closes": "17:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "13:00" }
+  ]
+}
+</script>
+
 </body>
 </html>
