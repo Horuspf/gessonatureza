@@ -88,7 +88,7 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
   border-bottom:1px solid transparent;
 }
 .nav{ height:80px; display:flex; align-items:center; gap:25px; }
-.logo{ height:52px; width:auto; object-fit:contain; display:block; }
+.logo{ height:52px; width:auto; object-fit:contain; display:block; background:transparent; }
 .menu{ margin-left:auto; display:flex; align-items:center; gap:26px; }
 .menu a{ font-size:13px; font-weight:700; color:var(--tinta); }
 .menu a:hover{ color:var(--verde); }
@@ -305,13 +305,13 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
 }
 @media(prefers-reduced-motion:reduce){ .brands-track{ animation:none; overflow-x:auto; } }
 .brand{
-  min-width:320px; height:180px;
+  min-width:260px; height:140px;
   border:1px solid var(--pedra); border-radius:var(--raio-sm);
   display:flex; justify-content:center; align-items:center;
-  padding:24px 36px; background:var(--gesso); flex-shrink:0;
+  padding:12px 20px; background:var(--gesso); flex-shrink:0;
 }
 .brand img{
-  max-height:140px; max-width:260px; object-fit:contain;
+  max-height:110px; max-width:220px; object-fit:contain;
   display:block;
 }
 .brand.no-img{ display:none; }
@@ -506,7 +506,7 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
    ========================================================= */
 footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 .footer-grid{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
-.footer-logo{ height:52px; width:auto; object-fit:contain; background:#fff; border-radius:10px; padding:6px; }
+.footer-logo{ height:52px; width:auto; object-fit:contain; background:transparent; }
 .footer-text{ display:flex; flex-direction:column; }
 .footer-text span{ color:#9FC0AA; font-size:13px; }
 .footer-links{ margin-left:auto; display:flex; gap:20px; font-weight:700; font-size:13.5px; }
@@ -1168,7 +1168,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
     setTimeout(function(){
       const totalW = track.scrollWidth / 2; // metade = 1 conjunto
       let pos = 0;
-      const speed = 0.5; // px por frame
+      const speed = 1.4; // px por frame
       let paused = false;
 
       track.parentElement.addEventListener("mouseenter", () => paused = true);
