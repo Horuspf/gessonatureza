@@ -8,6 +8,10 @@
 <meta name="keywords" content="gesso em Arujá, drywall em Arujá, loja de gesso Arujá, chapa drywall Arujá, placa cimentícia Arujá, gesso liso Arujá, forro drywall Arujá, divisória drywall Arujá, moldura de gesso Arujá, reforma residencial Arujá">
 <meta name="theme-color" content="#0b5d2e">
 <link rel="icon" href="assets/logogessonatureza.png">
+<link rel="apple-touch-icon" href="assets/logogessonatureza.png">
+<meta property="og:image" content="assets/logogessonatureza.png">
+<meta property="og:title" content="Gesso Natureza | Gesso e Drywall em Arujá - SP">
+<meta property="og:description" content="Venda e instalação de drywall, gesso e ferramentas em Arujá e região.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -183,7 +187,7 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
 .hero-badge svg{ width:16px; height:16px; color: #7BD494; flex-shrink:0; }
 
 /* lado direito — visual card */
-.hero-right{ position:relative; padding:24px 28px 28px 0; }
+.hero-right{ position:relative; padding:32px 32px 32px 0; }
 
 .hero-visual{
   border-radius: 20px;
@@ -194,6 +198,9 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
   border: 1px solid rgba(255,255,255,.1);
   display: flex; align-items: center; justify-content: center;
 }
+/* chips dentro do visual */
+.hero-review-chip{ z-index:10; }
+.hero-entrega-chip{ z-index:10; }
 
 /* placeholder até a foto real ser enviada */
 .hero-visual-placeholder{
@@ -218,8 +225,8 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
 /* card flutuante de avaliação */
 .hero-review-chip{
   position: absolute;
-  bottom: 4px; left: 4px;
-  background: #fff;
+  bottom: 12px; left: 12px;
+  background: #fff; z-index:10;
   color: var(--tinta);
   border-radius: 14px;
   padding: 14px 18px;
@@ -234,8 +241,8 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
 /* card flutuante de entrega */
 .hero-entrega-chip{
   position: absolute;
-  top: 0px; right: 4px;
-  background: var(--verde);
+  top: 12px; right: 12px;
+  background: var(--verde); z-index:10;
   color: #fff;
   border-radius: 14px;
   padding: 12px 16px;
@@ -283,13 +290,13 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
 }
 @media(prefers-reduced-motion:reduce){ .brands-track{ animation:none; overflow-x:auto; } }
 .brand{
-  min-width:200px; height:100px;
+  min-width:240px; height:120px;
   border:1px solid var(--pedra); border-radius:var(--raio-sm);
   display:flex; justify-content:center; align-items:center;
-  padding:14px 24px; background:var(--gesso); flex-shrink:0;
+  padding:16px 28px; background:var(--gesso); flex-shrink:0;
 }
 .brand img{
-  max-height:64px; max-width:160px; object-fit:contain;
+  max-height:80px; max-width:190px; object-fit:contain;
   display:block;
 }
 .brand.no-img{ display:none; }
@@ -597,25 +604,23 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
     </div>
 
     <div class="hero-right">
-      <!-- Chip de avaliação -->
-      <div class="hero-review-chip">
-        <div>
-          <div class="stars">★★★★★</div>
-        </div>
-        <div class="hero-review-chip-text">
-          <strong>5,0 no Google</strong>
-          <small>+18 avaliações reais</small>
-        </div>
-      </div>
-
-      <!-- Chip de entrega -->
-      <div class="hero-entrega-chip">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="8" width="13" height="8"/><path d="M14 11h4l4 3.5V16h-8z"/><circle cx="6" cy="18.5" r="1.6"/><circle cx="17.5" cy="18.5" r="1.6"/></svg>
-        Entrega rápida
-      </div>
-
-      <!-- Visual: substitua por assets/hero-ambiente.jpg quando disponível -->
+      <!-- Visual com chips dentro -->
       <div class="hero-visual">
+        <!-- Chip de avaliação -->
+        <div class="hero-review-chip">
+          <div>
+            <div class="stars">★★★★★</div>
+          </div>
+          <div class="hero-review-chip-text">
+            <strong>5,0 no Google</strong>
+            <small>+18 avaliações reais</small>
+          </div>
+        </div>
+        <!-- Chip de entrega -->
+        <div class="hero-entrega-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="8" width="13" height="8"/><path d="M14 11h4l4 3.5V16h-8z"/><circle cx="6" cy="18.5" r="1.6"/><circle cx="17.5" cy="18.5" r="1.6"/></svg>
+          Entrega rápida
+        </div>
         <img src="assets/hero-ambiente.jpg" alt="Ambiente com forro de drywall instalado pela Gesso Natureza" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
         <div class="hero-visual-placeholder">
           <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -747,7 +752,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       </article>
 
       <article class="product">
-        <div class="product-image cimenticia"><img class="product-photo" src="assets/cimenticia.jpg" alt="Chapa Cimentícia" loading="lazy"><svg class="product-icon" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="13" width="46" height="38" rx="2"/><line x1="9" y1="26" x2="55" y2="26"/><line x1="9" y1="38" x2="55" y2="38"/></svg><span class="product-tag">6 · 8 · 10mm</span></div>
+        <div class="product-image cimenticia"><img class="product-photo" src="assets/cimenticia.webp" alt="Chapa Cimentícia" loading="lazy"><svg class="product-icon" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="13" width="46" height="38" rx="2"/><line x1="9" y1="26" x2="55" y2="26"/><line x1="9" y1="38" x2="55" y2="38"/></svg><span class="product-tag">6 · 8 · 10mm</span></div>
         <div class="product-body">
           <h3>Chapa Cimentícia</h3>
           <p>Disponível em 6mm, 8mm e 10mm. Consulte disponibilidade e aplicação.</p>
@@ -765,7 +770,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       </article>
 
       <article class="product">
-        <div class="product-image gesso-m"><img class="product-photo" src="assets/gesso-po.jpg" alt="Gesso em pó" loading="lazy"><svg class="product-icon" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 22h20l4 28a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4l4-28z"/><path d="M25 22v-3a7 7 0 0 1 14 0v3"/></svg><span class="product-tag">Saco 20kg</span></div>
+        <div class="product-image gesso-m"><img class="product-photo" src="assets/gesso-po.png" alt="Gesso em pó" loading="lazy"><svg class="product-icon" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 22h20l4 28a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4l4-28z"/><path d="M25 22v-3a7 7 0 0 1 14 0v3"/></svg><span class="product-tag">Saco 20kg</span></div>
         <div class="product-body">
           <h3>Gesso em pó</h3>
           <p>Gesso e materiais complementares para acabamento.</p>
@@ -792,7 +797,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       </article>
 
       <article class="product">
-        <div class="product-image normal"><img class="product-photo" src="assets/perfis-acessorios.jpg" alt="Perfis e acessórios" loading="lazy"><svg class="product-icon" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="32" cy="32" r="19"/><line x1="32" y1="17" x2="32" y2="47"/><line x1="17" y1="32" x2="47" y2="32"/></svg><span class="product-tag">Kit completo</span></div>
+        <div class="product-image normal"><img class="product-photo" src="assets/perfis-acessorios.png" alt="Perfis e acessórios" loading="lazy"><svg class="product-icon" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="32" cy="32" r="19"/><line x1="32" y1="17" x2="32" y2="47"/><line x1="17" y1="32" x2="47" y2="32"/></svg><span class="product-tag">Kit completo</span></div>
         <div class="product-body">
           <h3>Perfis e acessórios</h3>
           <p>Perfis, parafusos, fitas, massas e acessórios.</p>
@@ -810,7 +815,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       </article>
 
       <article class="product">
-        <div class="product-image led"><img class="product-photo" src="assets/luminarias-led.jpg" alt="Luminárias LED" loading="lazy"><svg class="product-icon" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="32" cy="26" r="15"/><path d="M25 47h14M27 53h10"/><path d="M32 11v4"/></svg><span class="product-tag">Só venda</span></div>
+        <div class="product-image led"><img class="product-photo" src="assets/luminarias-led.png" alt="Luminárias LED" loading="lazy"><svg class="product-icon" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="32" cy="26" r="15"/><path d="M25 47h14M27 53h10"/><path d="M32 11v4"/></svg><span class="product-tag">Só venda</span></div>
         <div class="product-body">
           <h3>Luminárias LED</h3>
           <p>Vendemos luminárias de LED para complementar seu projeto. Não realizamos instalação.</p>
