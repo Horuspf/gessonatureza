@@ -3,111 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gesso Natureza | Drywall, Ferramentas e Materiais de Construção em Arujá</title>
-  <meta name="description" content="Gesso Natureza em Arujá - SP. Especialistas em Drywall, Placas 3D, Forros, Ferramentas e venda de iluminação LED.">
+  <title>Gesso Natureza | Drywall, Molduras e Materiais para Construção a Seco</title>
+  <meta name="description" content="Gesso Natureza em Arujá - SP. Especialistas em Drywall, Placas 3D, Forros, Sancas, Molduras e venda de artigos de iluminação LED.">
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    /* Definição das Variáveis CSS Necessárias */
-    :root {
-      --branco: #ffffff;
-      --pedra: #e2e8f0; /* Um cinza claro para bordas */
-      --grafite: #4b5563; /* Um cinza escuro para texto */
-      --gesso: #f8fafc; /* Um branco gelo para o fundo dos cards */
-      --tinta: #166534; /* O verde esmeralda para texto do fallback */
-      --raio-sm: 0.5rem; /* Arredondamento dos cards */
-    }
-
     /* Animação pulsante para o botão do WhatsApp */
     @keyframes pulse-whatsapp {
-      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-      70% { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 18px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
     }
     .btn-whatsapp-pulse {
       animation: pulse-whatsapp 1.8s infinite;
-    }
-
-    /* --- CÓDIGO CSS DO CARROSSEL DE MARCAS FORNECIDO --- */
-    .brands {
-      overflow: hidden;
-      padding: 20px 0;
-      background: var(--branco);
-      border-top: 1px solid var(--pedra);
-      border-bottom: 1px solid var(--pedra);
-    }
-
-    .brands-label {
-      text-align: center;
-      font-size: 11px;
-      letter-spacing: .16em;
-      color: var(--grafite);
-      font-weight: 700;
-      margin-bottom: 14px;
-      text-transform: uppercase;
-    }
-
-    .brands-track {
-      display: flex;
-      width: max-content;
-      gap: 14px;
-      animation: marcas 30s linear infinite;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .brands-track {
-        animation: none;
-        overflow-x: auto;
-      }
-    }
-
-    .brand {
-      min-width: 150px;
-      height: 54px;
-      border: 1px solid var(--pedra);
-      border-radius: var(--raio-sm);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 6px 12px;
-      background: var(--gesso);
-      overflow: hidden;
-    }
-
-    .brand img {
-      max-height: 100%;
-      max-width: 100%;
-      object-fit: contain;
-    }
-
-    @keyframes marcas {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); } /* A animação move metade da largura total */
     }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans antialiased">
 
-  <!-- CABEÇALHO -->
+  <!-- TOPO / CABEÇALHO -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       <a href="#inicio" class="flex items-center gap-2">
         <span class="text-2xl font-black tracking-tight text-emerald-800">GESSO <span class="text-amber-600">NATUREZA</span></span>
       </a>
 
-      <!-- Menu -->
-      <nav class="hidden md:flex items-center gap-6 font-medium text-gray-600">
+      <!-- Menu de Navegação -->
+      <nav class="hidden md:flex items-center gap-8 font-medium text-gray-600">
         <a href="#inicio" class="hover:text-emerald-700 transition-colors">Início</a>
-        <a href="#materiais" class="hover:text-emerald-700 transition-colors">Produtos</a>
+        <a href="#materiais" class="hover:text-emerald-700 transition-colors">Produtos e Materiais</a>
         <a href="#marcas" class="hover:text-emerald-700 transition-colors">Marcas</a>
         <a href="#horarios" class="hover:text-emerald-700 transition-colors">Horários</a>
         <a href="#contato" class="hover:text-emerald-700 transition-colors">Contato</a>
       </nav>
 
       <!-- Botão Orçamento Topo -->
-      <a href="https://wa.me/5511998483800?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20or%C3%A7amento." 
+      <a href="https://wa.me/5511998483800?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20de%20materiais%20de%20gesso" 
          target="_blank" 
          class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-full font-semibold shadow-md transition-all">
         <i data-lucide="phone-call" class="w-4 h-4"></i>
@@ -116,38 +55,38 @@
     </div>
   </header>
 
-  <!-- BANNER PRINCIPAL (HERO) -->
-  <section id="inicio" class="relative bg-gradient-to-br from-emerald-900 via-emerald-800 to-slate-900 text-white py-20 overflow-hidden">
+  <!-- HERO / BANNER PRINCIPAL -->
+  <section id="inicio" class="relative bg-gradient-to-br from-emerald-900 via-emerald-800 to-slate-900 text-white py-20 lg:py-28 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid md:grid-cols-2 gap-12 items-center">
       <div>
         <span class="inline-block bg-emerald-500/20 text-emerald-300 text-xs uppercase tracking-wider font-bold px-3.5 py-1.5 rounded-full border border-emerald-400/30 mb-4">
-          Drywall, Gesso e Ferramentas em Arujá
+          Loja Especializada em Drywall e Gesso em Arujá
         </span>
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
-          Sua obra em <span class="text-amber-400">Gesso & Drywall</span> com os melhores materiais.
+          Tudo para sua obra em <span class="text-amber-400">Gesso & Drywall</span> com a melhor qualidade.
         </h1>
         <p class="text-lg text-emerald-100 mb-8 max-w-xl">
-          Linha completa de placas, perfis, forros, molduras 3D e ferramentas profissionais para construção a seco a pronta entrega.
+          Placas de gesso acartonado, perfis estruturais, forros, sancas, molduras 3D e artigos de iluminação LED a pronta entrega.
         </p>
         <div class="flex flex-wrap gap-4">
-          <a href="https://wa.me/5511998483800?text=Ol%C3%A1!%20Gostaria de um orçamento." 
+          <a href="https://wa.me/5511998483800?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." 
              target="_blank" 
              class="bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold px-7 py-3.5 rounded-xl shadow-lg transition-transform hover:-translate-y-0.5 flex items-center gap-2">
             <i data-lucide="message-circle" class="w-5 h-5"></i>
-            WhatsApp
+            Chamar no WhatsApp
           </a>
           <a href="#materiais" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-7 py-3.5 rounded-xl border border-white/20 transition-colors">
-            Ver Produtos
+            Ver Catálogo de Materiais
           </a>
         </div>
       </div>
 
-      <!-- Card Informativo de Horários -->
+      <!-- Card Informativo com Horário Atualizado -->
       <div id="horarios" class="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/20 shadow-2xl">
         <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-amber-300">
           <i data-lucide="clock" class="w-5 h-5"></i> Horário de Atendimento
         </h3>
-        <div class="space-y-3 text-sm border-t border-white/10 pt-4">
+        <div class="space-y-3 text-sm sm:text-base border-t border-white/10 pt-4">
           <div class="flex justify-between py-1 border-b border-white/5">
             <span class="text-gray-300">Segunda a Quarta:</span>
             <span class="font-bold text-white">07:30 às 17:30</span>
@@ -169,173 +108,224 @@
     </div>
   </section>
 
-  <!-- SEÇÃO DE MATERIAIS -->
+  <!-- SEÇÃO DE PRODUTOS E MATERIAIS COM CARDS RICOS E IMAGENS -->
   <section id="materiais" class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Categorias de Produtos</h2>
-        <p class="text-gray-600 text-lg">Tudo o que você precisa, da estrutura ao acabamento final.</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Nossos Materiais & Produtos</h2>
+        <p class="text-gray-600 text-lg">Trabalhamos com linhas completas para gesseiros, construtores, arquitetos e clientes finais.</p>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <!-- Card 1 -->
-        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200 flex flex-col justify-between hover:border-emerald-300 transition-all">
-          <div>
-            <div class="w-12 h-12 bg-emerald-100 text-emerald-800 rounded-xl flex items-center justify-center mb-4">
-              <i data-lucide="layers" class="w-6 h-6"></i>
+        <!-- Card 1 com Imagem Gerada -->
+        <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow flex flex-col justify-between">
+          <img src="watermarked_img_17827766175167849308.jpg" alt="Drywall e Perfis" class="w-full h-48 object-cover">
+          <div class="p-6 flex flex-col flex-grow justify-between">
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Placas & Drywall</h3>
+              <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                Placas Standard (ST), Resistentes à Umidade (RU), Resistentes ao Fogo (RF) e perfis estruturais de aço galvanizado.
+              </p>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Placas & Drywall</h3>
-            <p class="text-gray-600 text-sm mb-4 leading-relaxed">Placas Standard, Resistentes à Umidade e Fogo, e perfis estruturais de aço galvanizado.</p>
+            <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 py-1.5 px-3 rounded-lg border border-emerald-200 self-start">Pronta Entrega</span>
           </div>
-          <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 py-1.5 px-3 rounded-lg border border-emerald-200 self-start">Estrutura</span>
         </div>
 
-        <!-- Card 2 -->
-        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200 flex flex-col justify-between hover:border-emerald-300 transition-all">
-          <div>
-            <div class="w-12 h-12 bg-emerald-100 text-emerald-800 rounded-xl flex items-center justify-center mb-4">
-              <i data-lucide="grid-3x3" class="w-6 h-6"></i>
+        <!-- Card 2 com Imagem Gerada -->
+        <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow flex flex-col justify-between">
+          <img src="watermarked_img_14969715398354940900.jpg" alt="Molduras e Placas 3D" class="w-full h-48 object-cover">
+          <div class="p-6 flex flex-col flex-grow justify-between">
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Molduras & Placas 3D</h3>
+              <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                Molduras decorativas variadas, sancas abertas/fechadas e painéis de gesso 3D com acabamento refinado.
+              </p>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Molduras & Placas 3D</h3>
-            <p class="text-gray-600 text-sm mb-4 leading-relaxed">Vários modelos de molduras, sancas e placas de gesso 3D para decoração.</p>
+            <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 py-1.5 px-3 rounded-lg border border-emerald-200 self-start">Decoração & Acabamento</span>
           </div>
-          <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 py-1.5 px-3 rounded-lg border border-emerald-200 self-start">Acabamento</span>
         </div>
 
-        <!-- Card 3 -->
-        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200 flex flex-col justify-between hover:border-emerald-300 transition-all">
-          <div>
-            <div class="w-12 h-12 bg-amber-100 text-amber-800 rounded-xl flex items-center justify-center mb-4">
-              <i data-lucide="wrench" class="w-6 h-6"></i>
+        <!-- Card 3 com Imagem Gerada -->
+        <div class="bg-amber-50/50 rounded-2xl overflow-hidden border border-amber-200 hover:shadow-xl transition-shadow flex flex-col justify-between">
+          <img src="watermarked_img_5297812760773487232.jpg" alt="Iluminação LED para Gesso" class="w-full h-48 object-cover">
+          <div class="p-6 flex flex-col flex-grow justify-between">
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Iluminação LED</h3>
+              <p class="text-gray-600 text-sm mb-3 leading-relaxed">
+                Lâmpadas LED, spots de embutir e sobrepor, plafons e fitas de LED para sancas e cortineiros.
+              </p>
+              <div class="bg-amber-100 border-l-4 border-amber-500 p-2.5 rounded text-xs text-amber-900 font-medium mb-4">
+                <strong>Aviso:</strong> Apenas <u>venda de materiais</u> de iluminação no balcão (não realizamos a instalação de LED).
+              </div>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Ferramentas & Fixação</h3>
-            <p class="text-gray-600 text-sm mb-4 leading-relaxed">Parafusos, buchas, fitas, e ferramentas profissionais das marcas Stanley, DeWalt e Lotus.</p>
+            <span class="text-xs font-semibold text-amber-800 bg-amber-100 py-1.5 px-3 rounded-lg border border-amber-300 self-start">Apenas Venda</span>
           </div>
-          <span class="text-xs font-semibold text-amber-700 bg-amber-50 py-1.5 px-3 rounded-lg border border-amber-200 self-start">Profissional</span>
         </div>
 
-        <!-- Card 4 -->
-        <div class="bg-amber-50/50 rounded-2xl p-6 border border-gray-200 flex flex-col justify-between hover:border-amber-300 transition-all">
-          <div>
-            <div class="w-12 h-12 bg-amber-100 text-amber-800 rounded-xl flex items-center justify-center mb-4">
-              <i data-lucide="lightbulb" class="w-6 h-6"></i>
+        <!-- Card 4 com Imagem Gerada -->
+        <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow flex flex-col justify-between">
+          <img src="watermarked_img_5784571147993421143.jpg" alt="Gesso em Pó e Ferramentas" class="w-full h-48 object-cover">
+          <div class="p-6 flex flex-col flex-grow justify-between">
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Gesso em Pó & Ferramentas</h3>
+              <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                Gesso rápido e lento, massa corrida para drywall, fitas teladas/papel, parafusos, buchas e ferramentas da Compel.
+              </p>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Iluminação LED</h3>
-            <p class="text-gray-600 text-sm mb-3 leading-relaxed">Spots, painéis, plafons e fitas de LED para sanca e cortineiros.</p>
-            <div class="bg-amber-100 border-l-4 border-amber-500 p-2 text-xs text-amber-900 mb-4"><strong>Aviso:</strong> Apenas <u>venda de materiais</u> (não instalamos).</div>
+            <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 py-1.5 px-3 rounded-lg border border-emerald-200 self-start">Linha Completa</span>
           </div>
-          <span class="text-xs font-semibold text-amber-800 bg-amber-100 py-1.5 px-3 rounded-lg border border-amber-300 self-start">Apenas Venda</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- --- SEÇÃO DE MARCAS PARCEIRAS (COMPEL REMOVIDA) --- -->
-  <section id="marcas" class="brands">
-    <div class="brands-label">Marcas Líderes que Você Encontra Aqui</div>
-    <div class="brands-track">
-      
-      <!-- LISTA ORIGINAL DAS 6 MARCAS -->
-      <!-- Knauf -->
-      <div class="brand">
-        <img src="imagens/logoknauf.png" alt="Logo Knauf">
-      </div>
-      <!-- Stanley -->
-      <div class="brand">
-        <img src="imagens/logostanley.png" alt="Logo Stanley">
-      </div>
-      <!-- DeWalt -->
-      <div class="brand">
-        <img src="imagens/logodewalt.png" alt="Logo DeWalt">
-      </div>
-      <!-- Âncora -->
-      <div class="brand">
-        <img src="imagens/logoancora.png" alt="Logo Âncora Fixação">
-      </div>
-      <!-- Walsywa -->
-      <div class="brand">
-        <img src="imagens/logowalsywa.png" alt="Logo Walsywa">
-      </div>
-      <!-- Lotus -->
-      <div class="brand">
-        <img src="imagens/logolotus.png" alt="Logo Lotus Ferramentas">
-      </div>
-
-      <!-- DUPLICAÇÃO DA LISTA (Necessária para o efeito de loop infinito) -->
-      <!-- Knauf -->
-      <div class="brand">
-        <img src="imagens/logoknauf.png" alt="Logo Knauf">
-      </div>
-      <!-- Stanley -->
-      <div class="brand">
-        <img src="imagens/logostanley.png" alt="Logo Stanley">
-      </div>
-      <!-- DeWalt -->
-      <div class="brand">
-        <img src="imagens/logodewalt.png" alt="Logo DeWalt">
-      </div>
-      <!-- Âncora -->
-      <div class="brand">
-        <img src="imagens/logoancora.png" alt="Logo Âncora Fixação">
-      </div>
-      <!-- Walsywa -->
-      <div class="brand">
-        <img src="imagens/logowalsywa.png" alt="Logo Walsywa">
-      </div>
-      <!-- Lotus -->
-      <div class="brand">
-        <img src="imagens/logolotus.png" alt="Logo Lotus Ferramentas">
-      </div>
-      
-    </div>
-  </section>
-
-  <!-- CONTATO & MAPA -->
-  <section id="contato" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-6">Fale Conosco</h2>
-        <p class="text-gray-600 mb-8 leading-relaxed">Atendimento rápido pelo WhatsApp para orçamentos e dúvidas, ou visite nossa loja física em Arujá.</p>
+  <!-- SEÇÃO DE MARCAS PARCEIRAS (7 MARCAS EXATAS COM LOGOS) -->
+  <section id="marcas" class="py-16 bg-gray-100 border-y border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h3 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-8">Trabalhamos com as Principais Marcas do Mercado</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-6 items-center justify-center">
         
-        <div class="space-y-6">
-          <div class="flex items-center gap-4">
-            <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center"><i data-lucide="phone" class="w-5 h-5"></i></div>
-            <div>
-              <h4 class="font-bold text-gray-900">WhatsApp</h4>
-              <a href="https://wa.me/5511998483800" target="_blank" class="text-emerald-700 font-bold hover:underline">(11) 99848-3800</a>
+        <!-- Knauf -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 h-24 hover:scale-105 transition-transform">
+          <img src="watermarked_img_5852190691030315851.jpg" alt="Marca Knauf" class="max-h-14 max-w-full object-contain">
+        </div>
+
+        <!-- Stanley -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 h-24 hover:scale-105 transition-transform">
+          <img src="watermarked_img_11.png" alt="Marca Stanley" class="max-h-12 max-w-full object-contain">
+        </div>
+
+        <!-- DeWalt -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 h-24 hover:scale-105 transition-transform">
+          <img src="watermarked_img_13.png" alt="Marca DeWalt" class="max-h-12 max-w-full object-contain">
+        </div>
+
+        <!-- Âncora -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 h-24 hover:scale-105 transition-transform">
+          <img src="watermarked_img_15.png" alt="Marca Âncora" class="max-h-14 max-w-full object-contain">
+        </div>
+
+        <!-- Walsywa -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 h-24 hover:scale-105 transition-transform">
+          <img src="watermarked_img_17.png" alt="Marca Walsywa" class="max-h-14 max-w-full object-contain">
+        </div>
+
+        <!-- Lotus -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 h-24 hover:scale-105 transition-transform">
+          <img src="watermarked_img_19.png" alt="Marca Lotus" class="max-h-14 max-w-full object-contain">
+        </div>
+
+        <!-- Compel -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 h-24 hover:scale-105 transition-transform">
+          <img src="watermarked_img_21.png" alt="Marca Compel" class="max-h-14 max-w-full object-contain">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO & LOCALIZAÇÃO -->
+  <section id="contato" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-6">Fale Conosco ou Venha nos Visitar</h2>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Nossa equipe está pronta para calcular o quantitativo exato da sua obra e garantir a entrega rápida dos seus materiais.
+          </p>
+
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-900">Endereço</h4>
+                <p class="text-gray-600 text-sm">Av. Dr. Armando Colângelo, 660 - Center Ville, Arujá - SP, 07401-075</p>
+              </div>
             </div>
-          </div>
-          <div class="flex items-center gap-4">
-            <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center"><i data-lucide="map-pin" class="w-5 h-5"></i></div>
-            <div>
-              <h4 class="font-bold text-gray-900">Endereço</h4>
-              <p class="text-gray-600 text-sm">Av. Dr. Armando Colângelo, 660 - Arujá - SP</p>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                <i data-lucide="phone" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-900">Telefones</h4>
+                <p class="text-gray-600 text-sm">(11) 99848-3800 / (11) 2887-5777</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                <i data-lucide="calendar" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-900">Horário Semanal</h4>
+                <p class="text-gray-600 text-sm">Seg a Qua: 07:30 às 17:30 | Qui e Sex: 07:00 às 17:00 | Sáb: 08:00 às 13:00</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="bg-gray-100 p-4 rounded-2xl border border-gray-300">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3660.8447833076166!2d-46.3340578!3d-23.4119332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce7d5704a29a47%3A0x6b976f9cbe87df0!2sAv.%20Dr.%20Armando%20Col%C3%A2ngelo%2C%20660%20-%20Center%20Ville%2C%20Aruj%C3%A1%20-%20SP%2C%2007401-075!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-xl"></iframe>
+
+        <div class="bg-gray-100 rounded-2xl p-4 border border-gray-300">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3660.8447833076166!2d-46.3340578!3d-23.4119332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce7d5704a29a47%3A0x6b976f9cbe87df0!2sAv.%20Dr.%20Armando%20Col%C3%A2ngelo%2C%20660%20-%20Center%20Ville%2C%20Aruj%C3%A1%20-%20SP%2C%2007401-075!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr" 
+            width="100%" 
+            height="350" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            class="rounded-xl shadow-inner">
+          </iframe>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- RODAPÉ -->
-  <footer class="bg-slate-950 text-gray-400 py-10">
-    <div class="max-w-7xl mx-auto px-4 text-center text-sm space-y-2">
-      <p class="font-bold text-white text-lg">GESSO NATUREZA</p>
-      <p>Av. Dr. Armando Colângelo, 660 - Arujá / SP</p>
-      <p>CNPJ: 42.553.501/0001-45</p>
-      <p class="text-xs text-gray-600 pt-4">&copy; 2026 Gesso Natureza. Todos os direitos reservados.</p>
+  <footer class="bg-slate-950 text-gray-400 py-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8">
+      <div>
+        <span class="text-xl font-black text-white">GESSO <span class="text-amber-600">NATUREZA</span></span>
+        <p class="text-sm mt-3 text-gray-400">
+          Comércio de materiais de construção a seco, drywall, forros, placas 3D, ferramentas e iluminação LED em Arujá e Região.
+        </p>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-3">Links Rápidos</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#inicio" class="hover:text-white transition-colors">Início</a></li>
+          <li><a href="#materiais" class="hover:text-white transition-colors">Materiais & Produtos</a></li>
+          <li><a href="#marcas" class="hover:text-white transition-colors">Marcas Parceiras</a></li>
+          <li><a href="#horarios" class="hover:text-white transition-colors">Horários de Atendimento</a></li>
+          <li><a href="#contato" class="hover:text-white transition-colors">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-3">Gesso Natureza LTDA</h4>
+        <p class="text-sm">CNPJ: 42.553.501/0001-45</p>
+        <p class="text-sm mt-1">Av. Dr. Armando Colângelo, 660 - Arujá / SP</p>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-6 border-t border-slate-800 text-center text-xs text-gray-500">
+      &copy; 2026 Gesso Natureza. Todos os direitos reservados.
     </div>
   </footer>
 
-  <!-- BOTÃO WHATSAPP FLUTUANTE PULSANTE -->
-  <a href="https://wa.me/5511998483800?text=Ol%C3%A1! Vem pelo site da Gesso Natureza." target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl flex items-center justify-center btn-whatsapp-pulse transition-transform hover:scale-110">
-    <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.972.531 1.776.818 2.796.818 3.182 0 5.768-2.587 5.768-5.767.001-3.18-2.585-5.766-5.768-5.766zm9.969 5.766c0 5.485-4.464 9.95-9.97 9.95-1.745 0-3.376-.452-4.808-1.246l-5.222 1.358 1.383-5.075c-.933-1.488-1.473-3.237-1.473-5.087 0-5.485 4.464-9.95 9.97-9.95 5.506 0 9.97 4.465 9.97 9.95z"/></svg>
+  <!-- BOTÃO FLUTUANTE DO WHATSAPP PULSANTE -->
+  <a href="https://wa.me/5511998483800?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Gesso%20Natureza%20e%20gostaria%20de%20um%20or%C3%A7amento." 
+     target="_blank" 
+     rel="noopener noreferrer"
+     aria-label="Fale conosco pelo WhatsApp" 
+     class="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20ba59] text-white p-4 rounded-full shadow-2xl flex items-center justify-center btn-whatsapp-pulse transition-transform hover:scale-110">
+    <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24">
+      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.972.531 1.776.818 2.796.818 3.182 0 5.768-2.587 5.768-5.767.001-3.18-2.585-5.766-5.768-5.766zm9.969 5.766c0 5.485-4.464 9.95-9.97 9.95-1.745 0-3.376-.452-4.808-1.246l-5.222 1.358 1.383-5.075c-.933-1.488-1.473-3.237-1.473-5.087 0-5.485 4.464-9.95 9.97-9.95 5.506 0 9.97 4.465 9.97 9.95z"/>
+    </svg>
   </a>
 
-  <!-- Inicialização dos Ícones -->
-  <script>lucide.createIcons();</script>
+  <!-- Inicialização dos Ícones Lucide -->
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 </html>
