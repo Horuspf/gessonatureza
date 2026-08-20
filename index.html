@@ -80,7 +80,7 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
   background:rgba(255,255,255,.96);
   backdrop-filter:blur(16px);
   border-bottom:1px solid var(--pedra);
-  transition: background .5s ease, backdrop-filter .5s ease, border-color .5s ease;
+  transition: background .4s ease, backdrop-filter .4s ease, border-color .4s ease;
 }
 .header.scrolled{
   background:rgba(255,255,255,.0);
@@ -88,17 +88,13 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
   border-bottom:1px solid transparent;
 }
 .header.scrolled .logo{
-  filter: brightness(0) invert(1);
+  filter: brightness(10) saturate(0);
 }
-.header.scrolled .menu a{
-  color:#fff;
-}
-.header.scrolled .mobile-button{
-  color:#fff;
-}
+.header.scrolled .menu a{ color:#fff; }
+.header.scrolled .mobile-button{ color:#fff; }
 .header.scrolled .btn-green{
-  background:rgba(255,255,255,.2);
-  border:1px solid rgba(255,255,255,.5);
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.4);
   color:#fff;
 }
 .nav{ height:80px; display:flex; align-items:center; gap:25px; }
@@ -1072,19 +1068,15 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 </a>
 
 <script>
-  /* HEADER SCROLL — aparece ao rolar */
+  /* HEADER SCROLL */
   (function(){
     const header = document.querySelector(".header");
     if (!header) return;
-    function onScroll(){
-      if (window.scrollY > 60){
-        header.classList.add("scrolled");
-      } else {
-        header.classList.remove("scrolled");
-      }
+    function check(){
+      header.classList.toggle("scrolled", window.scrollY > 80);
     }
-    window.addEventListener("scroll", onScroll, { passive:true });
-    onScroll(); // estado inicial
+    window.addEventListener("scroll", check, { passive:true });
+    check();
   })();
 
   /* MENU MOBILE */
