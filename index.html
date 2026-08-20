@@ -69,7 +69,7 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
   border-bottom:1px solid var(--pedra);
 }
 .nav{ height:80px; display:flex; align-items:center; gap:25px; }
-.logo{ width:180px; }
+.logo{ height:52px; width:auto; object-fit:contain; display:block; }
 .menu{ margin-left:auto; display:flex; align-items:center; gap:26px; }
 .menu a{ font-size:13px; font-weight:700; color:var(--tinta); }
 .menu a:hover{ color:var(--verde); }
@@ -267,43 +267,33 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
    CARROSSEL DE MARCAS
    ========================================================= */
 .brands{
-  overflow:hidden; padding:24px 0;
+  overflow:hidden; padding:28px 0;
   background:var(--branco);
   border-top:1px solid var(--pedra);
   border-bottom:1px solid var(--pedra);
 }
 .brands-label{
   text-align:center; font-size:11px; letter-spacing:.16em;
-  color:var(--grafite); font-weight:700; margin-bottom:16px;
+  color:var(--grafite); font-weight:700; margin-bottom:18px;
   text-transform:uppercase;
 }
 .brands-track{
-  display:flex; width:max-content; gap:12px;
+  display:flex; width:max-content; gap:16px;
   animation:marcas 28s linear infinite;
 }
 .brands-track:hover{ animation-play-state:paused; }
 @media(prefers-reduced-motion:reduce){ .brands-track{ animation:none; overflow-x:auto; } }
 .brand{
-  min-width:160px; height:72px;
+  min-width:180px; height:80px;
   border:1px solid var(--pedra); border-radius:var(--raio-sm);
-  display:flex; flex-direction:column;
-  justify-content:center; align-items:center; gap:6px;
-  padding:8px 14px; background:var(--gesso); flex-shrink:0;
+  display:flex; justify-content:center; align-items:center;
+  padding:12px 20px; background:var(--gesso); flex-shrink:0;
 }
-.brand-img-wrap{
-  height:36px; display:flex; align-items:center; justify-content:center;
-}
-.brand-img-wrap img{
-  max-height:36px; max-width:110px; object-fit:contain;
+.brand img{
+  max-height:52px; max-width:140px; object-fit:contain;
   display:block;
 }
-/* quando a logo não carrega, a div da imagem some mas o nome fica */
-.brand-img-wrap.hidden{ display:none; }
-.brand-name{
-  font-family:"JetBrains Mono",monospace; font-size:11.5px;
-  font-weight:700; letter-spacing:.06em; color:var(--tinta);
-  text-align:center; white-space:nowrap;
-}
+.brand.no-img{ display:none; }
 @keyframes marcas{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
 
 /* =========================================================
@@ -503,7 +493,7 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
    ========================================================= */
 footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 .footer-grid{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
-.footer-logo{ width:110px; background:#fff; border-radius:10px; padding:6px; }
+.footer-logo{ height:52px; width:auto; object-fit:contain; background:#fff; border-radius:10px; padding:6px; }
 .footer-text{ display:flex; flex-direction:column; }
 .footer-text span{ color:#9FC0AA; font-size:13px; }
 .footer-links{ margin-left:auto; display:flex; gap:20px; font-weight:700; font-size:13.5px; }
@@ -524,7 +514,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 }
 @media(max-width:600px){
   .topbar-right{ display:none; }
-  .logo{ width:150px; }
+  .logo{ height:44px; }
   .hero{ min-height:auto; }
   .hero-inner{ padding:50px 0; }
   .section{ padding:64px 0; }
@@ -1114,7 +1104,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
     });
   });
 
-  /* MARCAS — carrossel infinito com logo + nome */
+  /* MARCAS — carrossel infinito só com logo */
   const marcas = [
     { nome: "Âncora",  arquivo: "ancora"  },
     { nome: "Walsywa", arquivo: "walsywa" },
@@ -1127,28 +1117,17 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
   (function renderBrands(){
     const track = document.getElementById("brandsTrack");
     if (!track) return;
-    // duplica para o loop contínuo funcionar (-50% na animação)
     [...marcas, ...marcas].forEach(({ nome, arquivo }) => {
       const card = document.createElement("div");
       card.className = "brand";
-
-      const wrap = document.createElement("div");
-      wrap.className = "brand-img-wrap";
 
       const img = document.createElement("img");
       img.src = "assets/" + arquivo + ".png";
       img.alt = nome;
       img.loading = "lazy";
-      img.onerror = () => { wrap.classList.add("hidden"); };
+      img.onerror = () => { card.classList.add("no-img"); };
 
-      wrap.appendChild(img);
-
-      const label = document.createElement("span");
-      label.className = "brand-name";
-      label.textContent = nome;
-
-      card.appendChild(wrap);
-      card.appendChild(label);
+      card.appendChild(img);
       track.appendChild(card);
     });
   })();
