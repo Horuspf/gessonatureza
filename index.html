@@ -77,15 +77,15 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
 /* HEADER */
 .header{
   position:sticky; top:0; z-index:100;
-  background:rgba(255,255,255,.0);
-  backdrop-filter:blur(0px);
-  border-bottom:1px solid transparent;
-  transition: background .4s ease, backdrop-filter .4s ease, border-color .4s ease;
-}
-.header.scrolled{
   background:rgba(255,255,255,.96);
   backdrop-filter:blur(16px);
   border-bottom:1px solid var(--pedra);
+  transition: background .5s ease, backdrop-filter .5s ease, border-color .5s ease;
+}
+.header.scrolled{
+  background:rgba(255,255,255,.0);
+  backdrop-filter:blur(0px);
+  border-bottom:1px solid transparent;
 }
 .nav{ height:80px; display:flex; align-items:center; gap:25px; }
 .logo{ height:52px; width:auto; object-fit:contain; display:block; }
@@ -1063,7 +1063,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
     const header = document.querySelector(".header");
     if (!header) return;
     function onScroll(){
-      if (window.scrollY > 20){
+      if (window.scrollY > 60){
         header.classList.add("scrolled");
       } else {
         header.classList.remove("scrolled");
