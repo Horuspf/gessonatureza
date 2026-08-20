@@ -183,7 +183,7 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
 .hero-badge svg{ width:16px; height:16px; color: #7BD494; flex-shrink:0; }
 
 /* lado direito — visual card */
-.hero-right{ position:relative; }
+.hero-right{ position:relative; padding:24px 28px 28px 0; }
 
 .hero-visual{
   border-radius: 20px;
@@ -218,7 +218,7 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
 /* card flutuante de avaliação */
 .hero-review-chip{
   position: absolute;
-  bottom: -18px; left: -20px;
+  bottom: 4px; left: 4px;
   background: #fff;
   color: var(--tinta);
   border-radius: 14px;
@@ -234,7 +234,7 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
 /* card flutuante de entrega */
 .hero-entrega-chip{
   position: absolute;
-  top: -16px; right: -16px;
+  top: 0px; right: 4px;
   background: var(--verde);
   color: #fff;
   border-radius: 14px;
@@ -278,10 +278,9 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
   text-transform:uppercase;
 }
 .brands-track{
-  display:flex; width:max-content; gap:16px;
-  animation:marcas 28s linear infinite;
+  display:flex; gap:16px;
+  will-change:transform;
 }
-.brands-track:hover{ animation-play-state:paused; }
 @media(prefers-reduced-motion:reduce){ .brands-track{ animation:none; overflow-x:auto; } }
 .brand{
   min-width:200px; height:100px;
@@ -294,7 +293,7 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
   display:block;
 }
 .brand.no-img{ display:none; }
-@keyframes marcas{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
 
 /* =========================================================
    POR QUE ESCOLHER
@@ -483,14 +482,17 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
   position:fixed; right:22px; bottom:22px; z-index:999;
   background:#1DCC55; color:#fff; width:60px; height:60px; border-radius:999px;
   display:flex; align-items:center; justify-content:center;
-  box-shadow:0 15px 35px rgba(0,0,0,.24); animation:pulsar 1.8s infinite;
+  box-shadow:0 15px 35px rgba(0,0,0,.24);
+  animation:pulsar 1.8s ease-in-out infinite;
+  will-change:transform;
 }
 .whatsapp svg{ width:30px; height:30px; }
 @keyframes pulsar{
-  0%,100%{ transform:scale(1); box-shadow:0 0 0 0 rgba(29,204,85,.55),0 15px 35px rgba(0,0,0,.24); }
-  50%{ transform:scale(1.07); box-shadow:0 0 0 14px rgba(29,204,85,0),0 15px 35px rgba(0,0,0,.24); }
+  0%{ transform:scale(1); box-shadow:0 0 0 0 rgba(29,204,85,.6),0 15px 35px rgba(0,0,0,.24); }
+  50%{ transform:scale(1.1); box-shadow:0 0 0 16px rgba(29,204,85,0),0 15px 35px rgba(0,0,0,.24); }
+  100%{ transform:scale(1); box-shadow:0 0 0 0 rgba(29,204,85,0),0 15px 35px rgba(0,0,0,.24); }
 }
-@media (prefers-reduced-motion: reduce){ .whatsapp{ animation:none; } }
+
 
 /* =========================================================
    FOOTER
@@ -736,7 +738,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       </article>
 
       <article class="product">
-        <div class="product-image normal"><img class="product-photo" src="assets/porta-drywall.jpg" alt="Porta Drywall" loading="lazy"><svg class="product-icon" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="8" width="32" height="48" rx="1.5"/><circle cx="39" cy="32" r="1.8" fill="white" stroke="none"/></svg><span class="product-tag">Kit completo</span></div>
+        <div class="product-image normal"><img class="product-photo" src="assets/porta-drywall.jpg" alt="Portas de Drywall" loading="lazy"><svg class="product-icon" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="8" width="32" height="48" rx="1.5"/><circle cx="39" cy="32" r="1.8" fill="white" stroke="none"/></svg><span class="product-tag">Kit completo</span></div>
         <div class="product-body">
           <h3>Portas de Drywall</h3>
           <p>Kit com porta, marco e ferragens, prontos para instalação no seu sistema drywall.</p>
@@ -754,7 +756,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       </article>
 
       <article class="product">
-        <div class="product-image glassroc"><img class="product-photo" src="assets/glassroc.jpg" alt="Glassroc" loading="lazy"><svg class="product-icon" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="13" width="46" height="38" rx="2"/><line x1="9" y1="26" x2="55" y2="26"/><line x1="9" y1="38" x2="55" y2="38"/></svg><span class="product-tag">Glassroc+</span></div>
+        <div class="product-image glassroc"><img class="product-photo" src="assets/glassroc.jpg" alt="Chapas Glassroc" loading="lazy"><svg class="product-icon" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="13" width="46" height="38" rx="2"/><line x1="9" y1="26" x2="55" y2="26"/><line x1="9" y1="38" x2="55" y2="38"/></svg><span class="product-tag">Glassroc+</span></div>
         <div class="product-body">
           <h3>Chapas Glassroc</h3>
           <p>Soluções especiais para construção a seco.</p>
@@ -772,7 +774,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       </article>
 
       <article class="product">
-        <div class="product-image decoracao"><img class="product-photo" src="assets/plaquinhas-3d.jpg" alt="Plaquinhas 3D" loading="lazy"><svg class="product-icon" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2" stroke-linejoin="round"><rect x="9" y="9" width="18" height="18" rx="1.5"/><rect x="37" y="9" width="18" height="18" rx="1.5"/><rect x="9" y="37" width="18" height="18" rx="1.5"/><rect x="37" y="37" width="18" height="18" rx="1.5"/></svg><span class="product-tag">60×60cm</span></div>
+        <div class="product-image decoracao"><img class="product-photo" src="assets/plaquinhas-3d.jpg" alt="Plaquinhas 60x60" loading="lazy"><svg class="product-icon" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2" stroke-linejoin="round"><rect x="9" y="9" width="18" height="18" rx="1.5"/><rect x="37" y="9" width="18" height="18" rx="1.5"/><rect x="9" y="37" width="18" height="18" rx="1.5"/><rect x="37" y="37" width="18" height="18" rx="1.5"/></svg><span class="product-tag">60×60cm</span></div>
         <div class="product-body">
           <h3>Plaquinhas 60x60</h3>
           <p>Plaquinhas e soluções decorativas para forro.</p>
@@ -781,7 +783,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       </article>
 
       <article class="product">
-        <div class="product-image decoracao"><img class="product-photo" src="assets/molduras.jpg" alt="Molduras" loading="lazy"><svg class="product-icon" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M14 52V14h38"/><path d="M14 14l16 16"/><path d="M20 30a12 12 0 0 1 12 12" stroke-dasharray="2 5"/></svg><span class="product-tag">Sob medida</span></div>
+        <div class="product-image decoracao"><img class="product-photo" src="assets/molduras.jpg" alt="Molduras de Gesso" loading="lazy"><svg class="product-icon" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M14 52V14h38"/><path d="M14 14l16 16"/><path d="M20 30a12 12 0 0 1 12 12" stroke-dasharray="2 5"/></svg><span class="product-tag">Sob medida</span></div>
         <div class="product-body">
           <h3>Molduras de Gesso</h3>
           <p>Molduras e detalhes para teto e paredes.</p>
@@ -1118,85 +1120,94 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
     { nome: "Stanley", arquivo: "stanley" },
   ];
 
-  (function renderBrands(){
+  /* CARROSSEL DE MARCAS — JS puro, sem depender de CSS animation */
+  (function(){
     const track = document.getElementById("brandsTrack");
     if (!track) return;
+
+    // Renderiza os cards
     [...marcas, ...marcas].forEach(({ nome, arquivo }) => {
       const card = document.createElement("div");
       card.className = "brand";
-
       const img = document.createElement("img");
       img.src = "assets/" + arquivo + ".png";
       img.alt = nome;
-      img.loading = "lazy";
-      img.onerror = () => { card.classList.add("no-img"); };
-
+      img.onerror = () => { card.style.display = "none"; };
       card.appendChild(img);
       track.appendChild(card);
     });
+
+    // Aguarda imagens carregarem para calcular largura real
+    setTimeout(function(){
+      const totalW = track.scrollWidth / 2; // metade = 1 conjunto
+      let pos = 0;
+      const speed = 0.5; // px por frame
+      let paused = false;
+
+      track.parentElement.addEventListener("mouseenter", () => paused = true);
+      track.parentElement.addEventListener("mouseleave", () => paused = false);
+
+      function tick(){
+        if (!paused){
+          pos += speed;
+          if (pos >= totalW) pos = 0;
+          track.style.transform = "translateX(-" + pos + "px)";
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }, 500);
   })();
 
-  /* NÚMEROS — contagem animada ao rolar até a seção */
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* NÚMEROS — contagem ao scroll, com fallback por scroll listener */
+  (function(){
+    const els = document.querySelectorAll(".stat-number");
+    els.forEach(el => { el.textContent = "0"; });
 
-  function runCount(el){
-    if (el.dataset.done) return;
-    el.dataset.done = "1";
-    const target   = parseFloat(el.dataset.count);
-    const suffix   = el.dataset.suffix || "";
-    if (prefersReducedMotion){ el.textContent = target + suffix; return; }
-    const DURATION = 2000;
-    const startTs  = performance.now();
-    function step(now){
-      const elapsed  = now - startTs;
-      const progress = Math.min(elapsed / DURATION, 1);
-      const eased    = 1 - Math.pow(1 - progress, 4); // ease-out quártico
-      el.textContent = Math.round(target * eased) + suffix;
-      if (progress < 1) requestAnimationFrame(step);
-      else el.textContent = target + suffix;
-    }
-    requestAnimationFrame(step);
-  }
-
-  function initCounters(){
-    // Zera todos antes de começar
-    document.querySelectorAll(".stat-number").forEach(el => {
-      el.textContent = "0";
-    });
-
-    const statsSection = document.getElementById("numeros");
-    if (!statsSection) return;
-
-    // Verifica se a seção já está visível no momento do load (ex: tela grande)
-    function checkVisible(){
-      const rect = statsSection.getBoundingClientRect();
-      return rect.top < window.innerHeight && rect.bottom > 0;
+    function runCount(el){
+      if (el.dataset.done) return;
+      el.dataset.done = "1";
+      const target = parseFloat(el.dataset.count);
+      const suffix = el.dataset.suffix || "";
+      const DURATION = 2000;
+      const startTs = performance.now();
+      function step(now){
+        const p = Math.min((now - startTs) / DURATION, 1);
+        const e = 1 - Math.pow(1 - p, 4);
+        el.textContent = Math.round(target * e) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+        else el.textContent = target + suffix;
+      }
+      requestAnimationFrame(step);
     }
 
-    function fireAll(){
-      document.querySelectorAll(".stat-number").forEach(el => runCount(el));
+    function fireAll(){ els.forEach(el => runCount(el)); }
+
+    const section = document.getElementById("numeros");
+    if (!section){ setTimeout(fireAll, 800); return; }
+
+    function isVisible(){
+      const r = section.getBoundingClientRect();
+      return r.top < window.innerHeight - 50 && r.bottom > 0;
     }
 
-    if (checkVisible()){
-      // já está na tela: aguarda 300ms e dispara (dá tempo da página renderizar)
-      setTimeout(fireAll, 300);
-    } else {
-      // fora da tela: usa IntersectionObserver
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting){ fireAll(); obs.disconnect(); }
-        });
-      }, { threshold: 0, rootMargin: "0px 0px -60px 0px" });
-      obs.observe(statsSection);
+    // Tenta IntersectionObserver primeiro
+    if ("IntersectionObserver" in window){
+      const obs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting){ fireAll(); obs.disconnect(); }
+      }, { threshold: 0.1 });
+      obs.observe(section);
     }
-  }
 
-  // Garante que roda depois do DOM estar completo
-  if (document.readyState === "loading"){
-    document.addEventListener("DOMContentLoaded", initCounters);
-  } else {
-    initCounters();
-  }
+    // Fallback: scroll listener (garante que funciona no Vercel)
+    function onScroll(){
+      if (isVisible()){ fireAll(); window.removeEventListener("scroll", onScroll); }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    // Se já visível no load
+    if (isVisible()) setTimeout(fireAll, 400);
+  })();
 </script>
 
 <script type="application/ld+json">
