@@ -264,26 +264,32 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; }
 @media(max-width:1000px){ .stats-grid{ grid-template-columns:repeat(2,1fr); row-gap:34px; } }
 
 /* =========================================================
-   MARCAS — com nome embaixo da logo
+   FAIXA DE CATEGORIAS — atalhos visuais pós-hero
    ========================================================= */
-.brands{ overflow:hidden; padding:28px 0; background:var(--branco); border-top:1px solid var(--pedra); border-bottom:1px solid var(--pedra); }
-.brands-label{ text-align:center; font-size:11px; letter-spacing:.16em; color:var(--grafite); font-weight:700; margin-bottom:18px; text-transform:uppercase; }
-.brands-track{ display:flex; width:max-content; gap:14px; animation:marcas 30s linear infinite; }
-@media (prefers-reduced-motion: reduce){ .brands-track{ animation:none; overflow-x:auto; } }
-.brand{
-  min-width:160px; border:1px solid var(--pedra); border-radius:var(--raio-sm);
-  display:flex; flex-direction:column; justify-content:center; align-items:center;
-  padding:12px 14px 10px; gap:6px;
-  background:var(--gesso); overflow:hidden;
+.cats{
+  background:var(--branco);
+  border-top:1px solid var(--pedra);
+  border-bottom:1px solid var(--pedra);
+  padding:22px 0;
 }
-.brand-img-wrap{ height:44px; display:flex; align-items:center; justify-content:center; }
-.brand-img-wrap img{ max-height:100%; max-width:120px; object-fit:contain; }
-.brand-name{
-  font-family:"JetBrains Mono",monospace; font-weight:700;
-  letter-spacing:.05em; color:var(--tinta); font-size:11px;
-  text-align:center; white-space:nowrap;
+.cats-grid{
+  display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
 }
-@keyframes marcas{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+.cat-pill{
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--gesso-alt); border:1px solid var(--pedra);
+  border-radius:999px; padding:9px 16px;
+  font-size:13px; font-weight:600; color:var(--tinta);
+  transition:.18s; cursor:pointer; text-decoration:none;
+}
+.cat-pill:hover{
+  background:var(--verde); color:#fff; border-color:var(--verde);
+}
+.cat-pill svg{ width:16px; height:16px; flex-shrink:0; }
+@media(max-width:600px){
+  .cats-grid{ gap:8px; }
+  .cat-pill{ font-size:12px; padding:8px 13px; }
+}
 
 /* =========================================================
    POR QUE ESCOLHER
@@ -557,8 +563,8 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
   <div class="hero-inner">
     <div class="hero-left">
       <div class="hero-kicker"><span></span>Arujá e Região · Desde 2014</div>
-      <h1>Gesso e drywall<br>com <em>acabamento<br>de verdade.</em></h1>
-      <p class="hero-desc">Material de qualidade, entrega rápida e instalação profissional — do material à obra concluída, com atendimento direto pelo WhatsApp.</p>
+      <h1>O material certo,<br>pelo <em>preço justo,<br>na hora certa.</em></h1>
+      <p class="hero-desc">Chapas, gesso, ferramentas e tudo para drywall — estoque pronto em Arujá. Compre direto na loja ou peça entrega pelo WhatsApp.</p>
       <div class="hero-actions">
         <a class="btn btn-green" href="https://wa.me/5511998483800?text=Olá%20Gesso%20Natureza!%20Quero%20um%20orçamento." target="_blank">☏ Falar no WhatsApp</a>
         <a class="btn btn-outline-light" href="#contato">Solicitar orçamento</a>
@@ -573,7 +579,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
           Atendimento rápido
         </div>
         <div class="hero-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a8 8 0 1 0 18 0"/><path d="M3 12l3-3m-3 3 3 3"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="8" width="13" height="8"/><path d="M14 11h4l4 3.5V16h-8z"/><circle cx="6" cy="18.5" r="1.6"/><circle cx="17.5" cy="18.5" r="1.6"/></svg>
           Entrega em Arujá e região
         </div>
       </div>
@@ -630,19 +636,49 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       <span class="stat-label">nota média no Google</span>
     </div>
     <div class="stat">
-      <span class="stat-number mono" data-count="6" data-suffix="">0</span>
-      <span class="stat-label">marcas parceiras</span>
+      <span class="stat-number mono" data-count="100" data-suffix="%">0</span>
+      <span class="stat-label">atendimento direto, sem robô</span>
     </div>
   </div>
 </section>
 
-<!-- MARCAS -->
-<section class="brands">
-  <div class="container">
-    <div class="brands-label">Trabalhamos com</div>
+<!-- CATEGORIAS DE PRODUTO — atalhos rápidos -->
+<div class="cats">
+  <div class="container cats-grid">
+    <a class="cat-pill" href="#produtos">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
+      Chapas Drywall
+    </a>
+    <a class="cat-pill" href="#produtos">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
+      Chapas Cimentícia
+    </a>
+    <a class="cat-pill" href="#produtos">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 22h20l4 28"/><path d="M8 8h8l2 14H6L8 8z"/></svg>
+      Gesso em Pó
+    </a>
+    <a class="cat-pill" href="#produtos">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><line x1="3" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="21" y2="12"/><line x1="12" y1="3" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="21"/></svg>
+      Perfis e Acessórios
+    </a>
+    <a class="cat-pill" href="#produtos">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="4" width="4" height="16" rx="1"/><rect x="4" y="8" width="4" height="12" rx="1"/><path d="M4 4h8M4 4v4M12 4v8"/></svg>
+      Molduras
+    </a>
+    <a class="cat-pill" href="#produtos">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      Ferramentas
+    </a>
+    <a class="cat-pill" href="#produtos">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="8" width="4" height="12" rx="1"/><rect x="3" y="8" width="4" height="12" rx="1"/><path d="M7 14h10M7 10h10"/></svg>
+      Portas de Drywall
+    </a>
+    <a class="cat-pill" href="#produtos">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="6"/><path d="M9 21h6M10 17v4M14 17v4"/></svg>
+      Luminárias LED
+    </a>
   </div>
-  <div class="brands-track" id="brandsTrack"></div>
-</section>
+</div>
 
 <!-- POR QUE ESCOLHER A GESSO NATUREZA -->
 <section class="why">
@@ -1093,74 +1129,47 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
     });
   });
 
-  /* MARCAS — sem Compel, com nome visível abaixo da logo */
-  const marcas = [
-    { nome: "LOTUS",   arquivo: "lotus" },
-    { nome: "DeWalt",  arquivo: "dewalt" },
-    { nome: "Stanley", arquivo: "stanley" },
-    { nome: "Knauf",   arquivo: "knauf" },
-    { nome: "Âncora",  arquivo: "ancora" },
-    { nome: "Walsywa", arquivo: "walsywa" },
-  ];
-  const brandsTrack = document.getElementById("brandsTrack");
-
-  function renderBrands(){
-    brandsTrack.innerHTML = "";
-    // duplica para o loop contínuo
-    [...marcas, ...marcas].forEach(({ nome, arquivo }) => {
-      const div = document.createElement("div");
-      div.className = "brand";
-
-      const imgWrap = document.createElement("div");
-      imgWrap.className = "brand-img-wrap";
-
-      const img = document.createElement("img");
-      img.src = "assets/marcas/" + arquivo + ".png";
-      img.alt = nome;
-      img.loading = "lazy";
-      // se a imagem não existir, esconde o wrapper de imagem (o nome fica)
-      img.onerror = () => { imgWrap.style.display = "none"; };
-
-      imgWrap.appendChild(img);
-
-      const label = document.createElement("span");
-      label.className = "brand-name";
-      label.textContent = nome;
-
-      div.appendChild(imgWrap);
-      div.appendChild(label);
-      brandsTrack.appendChild(div);
-    });
-  }
-  renderBrands();
-
-  /* NÚMEROS — animação de contagem */
-  const statNumbers = document.querySelectorAll(".stat-number");
+  /* NÚMEROS — contagem animada ao rolar até a seção */
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  function animateCount(el){
-    const target = parseFloat(el.dataset.count);
-    const suffix = el.dataset.suffix || "";
-    if (prefersReducedMotion) { el.textContent = target + suffix; return; }
-    const duration = 1400;
-    const start = performance.now();
-    function tick(now){
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const value = Math.round(target * eased);
-      el.textContent = value + suffix;
-      if (progress < 1) requestAnimationFrame(tick);
+  function runCount(el){
+    if (el.dataset.done) return;
+    el.dataset.done = "1";
+    const target  = parseFloat(el.dataset.count);
+    const suffix  = el.dataset.suffix || "";
+    if (prefersReducedMotion){ el.textContent = target + suffix; return; }
+    const DURATION = 1800; // ms
+    let startTime = null;
+    function step(ts){
+      if (!startTime) startTime = ts;
+      const elapsed  = ts - startTime;
+      const progress = Math.min(elapsed / DURATION, 1);
+      // ease-out quártico — começa rápido, para suavemente
+      const eased = 1 - Math.pow(1 - progress, 4);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target + suffix; // valor final exato
     }
-    requestAnimationFrame(tick);
+    requestAnimationFrame(step);
   }
 
-  const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting){ animateCount(entry.target); statsObserver.unobserve(entry.target); }
-    });
-  }, { threshold: 0.5 });
+  // Força todos a mostrarem "0" antes de qualquer scroll
+  document.querySelectorAll(".stat-number").forEach(el => {
+    el.textContent = "0";
+  });
 
-  statNumbers.forEach(el => statsObserver.observe(el));
+  // Observa a seção inteira — quando 30% dela entrar na tela, dispara todos
+  const statsSection = document.getElementById("numeros");
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        document.querySelectorAll(".stat-number").forEach(el => runCount(el));
+        sectionObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  if (statsSection) sectionObserver.observe(statsSection);
 </script>
 
 <script type="application/ld+json">
