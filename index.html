@@ -458,7 +458,39 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; color:#1a1a1a; }
 /* =========================================================
    MAPA
    ========================================================= */
+.produtos-section .section-title h2{ color:#fff; }
+.produtos-section .section-title p{ color:rgba(255,255,255,.75); }
+.produtos-section .eyebrow{ color:#7BD494; }
+.produtos-section .eyebrow::before{ background:#7BD494; }
+.avaliacoes-section{ background:var(--verde-esc); }
+.avaliacoes-section .section-title h2{ color:#fff; }
+.avaliacoes-section .section-title p{ color:rgba(255,255,255,.75); }
+.avaliacoes-section .eyebrow{ color:#7BD494; }
+.avaliacoes-section .eyebrow::before{ background:#7BD494; }
+.avaliacoes-section .rating strong{ color:#fff; }
+.avaliacoes-section .rating small{ color:rgba(255,255,255,.6); }
+.avaliacoes-section .review{ background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.12); }
+.avaliacoes-section .review::before,.avaliacoes-section .review::after{ background:var(--verde-esc); }
+.avaliacoes-section .review-top strong{ color:#fff; }
+.avaliacoes-section .review p{ color:rgba(255,255,255,.85); }
+.avaliacoes-section .review small{ color:rgba(255,255,255,.5); }
+.avaliacoes-section .btn-outline{ border-color:rgba(255,255,255,.4); color:#fff; }
+.avaliacoes-section .btn-outline:hover{ background:rgba(255,255,255,.15); }
 .map-section{ padding:80px 0 40px; }
+.map-section-dark{ background:var(--verde-esc); }
+.map-section-dark .section-title h2{ color:#fff; }
+.map-section-dark .section-title p{ color:rgba(255,255,255,.75); }
+.map-section-dark .eyebrow{ color:#7BD494; }
+.map-section-dark .eyebrow::before{ background:#7BD494; }
+.map-section-dark .hour{ background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.15); }
+.map-section-dark .hour strong{ color:#fff; }
+.map-section-dark .hour span{ color:rgba(255,255,255,.65); }
+.map-section-dark .hour.closed span{ color:#ff7a7a; }
+.antes-depois-section{ background:var(--verde-esc); }
+.antes-depois-section .section-title h2{ color:#fff; }
+.antes-depois-section .section-title p{ color:rgba(255,255,255,.75); }
+.antes-depois-section .eyebrow{ color:#7BD494; }
+.antes-depois-section .eyebrow::before{ background:#7BD494; }
 .map{ border-radius:var(--raio); overflow:hidden; border:1px solid var(--pedra); box-shadow:var(--sombra-sm); }
 .map iframe{ width:100%; height:420px; border:0; display:block; filter:grayscale(.15); }
 .hours{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:16px; }
@@ -690,7 +722,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 </section>
 
 <!-- PRODUTOS -->
-<section class="section" id="produtos">
+<section class="section produtos-section" id="produtos">
   <div class="container">
     <div class="section-title">
       <div class="eyebrow">Materiais</div>
@@ -879,7 +911,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 </section>
 
 <!-- ANTES E DEPOIS -->
-<section class="section" id="antes-depois">
+<section class="section antes-depois-section" id="antes-depois">
   <div class="container">
     <div class="section-title">
       <div class="eyebrow">Resultados</div>
@@ -899,7 +931,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 </section>
 
 <!-- AVALIAÇÕES -->
-<section class="section alt" id="avaliacoes">
+<section class="section avaliacoes-section" id="avaliacoes">
   <div class="container">
     <div class="reviews-header">
       <div class="section-title" style="margin-bottom:0">
@@ -990,7 +1022,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 </section>
 
 <!-- MAPA -->
-<section class="map-section">
+<section class="map-section map-section-dark">
   <div class="container">
     <div class="section-title">
       <div class="eyebrow">Visite a loja</div>
