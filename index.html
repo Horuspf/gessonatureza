@@ -264,7 +264,7 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; color:#1a1a1a; }
   color:#fff;
   padding:64px 0;
 }
-.stats-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; text-align:center; }
+.stats-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:20px; text-align:center; }
 .stat{ display:flex; flex-direction:column; gap:6px; }
 .stat-number{
   font-family:"Fraunces",serif; font-weight:600;
@@ -272,7 +272,8 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; color:#1a1a1a; }
   letter-spacing:-.02em;
 }
 .stat-label{ font-size:13px; color:#CFE9D6; letter-spacing:.03em; }
-@media(max-width:1000px){ .stats-grid{ grid-template-columns:repeat(2,1fr); row-gap:34px; } }
+@media(max-width:1100px){ .stats-grid{ grid-template-columns:repeat(3,1fr); row-gap:34px; } }
+@media(max-width:600px){ .stats-grid{ grid-template-columns:repeat(2,1fr); row-gap:28px; } }
 
 /* =========================================================
    CARROSSEL DE MARCAS
@@ -819,6 +820,10 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       <span class="stat-number mono" data-count="100" data-suffix="%">0</span>
       <span class="stat-label">atendimento direto, sem robô</span>
     </div>
+    <div class="stat">
+      <span class="stat-number mono" data-count="50" data-suffix="+">0</span>
+      <span class="stat-label">obras realizadas</span>
+    </div>
   </div>
 </section>
 
@@ -998,7 +1003,8 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 
     <div class="calc-card">
       <div class="calc-tabs">
-        <button class="calc-tab active" onclick="calcSetTab('forro', this)">🏠 Forro</button>
+        <button class="calc-tab active" onclick="calcSetTab('forro', this)">🏠 Forro Drywall</button>
+        <button class="calc-tab" onclick="calcSetTab('plaquinha', this)">⬜ Forro Plaquinha</button>
         <button class="calc-tab" onclick="calcSetTab('parede', this)">🧱 Parede</button>
       </div>
 
@@ -1012,6 +1018,23 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
           <strong>✓ Cálculo com 10% de sobra</strong> para cortes e desperdício. Recomendamos comprar um pouco a mais.
           <div style="margin-top:14px">
             <a id="forro-wa-btn" href="#" target="_blank" class="calc-wa-btn">
+              <svg viewBox="0 0 32 32" fill="currentColor" style="width:18px;height:18px;flex-shrink:0"><path d="M16.004 3C9.376 3 4 8.373 4 15c0 2.34.678 4.523 1.85 6.36L4 29l7.84-1.812A11.94 11.94 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3Zm0 21.818a9.77 9.77 0 0 1-4.983-1.366l-.357-.212-4.652 1.075 1.11-4.53-.234-.372A9.77 9.77 0 0 1 5.2 15c0-5.966 4.847-10.818 10.804-10.818S26.808 9.034 26.808 15 21.961 24.818 16.004 24.818Zm5.94-8.146c-.325-.163-1.926-.951-2.225-1.06-.298-.109-.515-.163-.732.163-.216.326-.84 1.06-1.03 1.278-.19.217-.379.244-.703.081-.325-.163-1.372-.505-2.614-1.612-.966-.86-1.618-1.921-1.808-2.246-.19-.326-.02-.502.143-.664.146-.146.325-.38.488-.57.163-.19.217-.326.325-.543.108-.217.054-.407-.027-.57-.081-.163-.732-1.766-1.003-2.418-.264-.634-.532-.548-.732-.558l-.623-.011c-.217 0-.57.081-.868.407-.298.326-1.138 1.113-1.138 2.716s1.165 3.15 1.327 3.368c.163.217 2.293 3.5 5.556 4.907.776.334 1.382.534 1.854.684.779.248 1.489.213 2.05.129.626-.093 1.926-.787 2.198-1.548.271-.76.271-1.412.19-1.548-.081-.135-.298-.217-.623-.38Z"/></svg>
+              Solicitar orçamento gratuito pelo WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORRO PLAQUINHA -->
+      <div id="calc-plaquinha" style="display:none">
+        <div id="plaquinha-lista"></div>
+        <button class="calc-add-btn" onclick="plaquinhaAddItem()">+ Adicionar outro ambiente</button>
+        <button class="calc-btn" onclick="calcPlaquinha()" style="margin-top:8px">Calcular materiais</button>
+        <div class="calc-result" id="plaquinha-result"></div>
+        <div class="calc-obs" id="plaquinha-obs">
+          <strong>✓ Cálculo com 10% de sobra</strong> para cortes e desperdício.
+          <div style="margin-top:14px">
+            <a id="plaquinha-wa-btn" href="#" target="_blank" class="calc-wa-btn">
               <svg viewBox="0 0 32 32" fill="currentColor" style="width:18px;height:18px;flex-shrink:0"><path d="M16.004 3C9.376 3 4 8.373 4 15c0 2.34.678 4.523 1.85 6.36L4 29l7.84-1.812A11.94 11.94 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3Zm0 21.818a9.77 9.77 0 0 1-4.983-1.366l-.357-.212-4.652 1.075 1.11-4.53-.234-.372A9.77 9.77 0 0 1 5.2 15c0-5.966 4.847-10.818 10.804-10.818S26.808 9.034 26.808 15 21.961 24.818 16.004 24.818Zm5.94-8.146c-.325-.163-1.926-.951-2.225-1.06-.298-.109-.515-.163-.732.163-.216.326-.84 1.06-1.03 1.278-.19.217-.379.244-.703.081-.325-.163-1.372-.505-2.614-1.612-.966-.86-1.618-1.921-1.808-2.246-.19-.326-.02-.502.143-.664.146-.146.325-.38.488-.57.163-.19.217-.326.325-.543.108-.217.054-.407-.027-.57-.081-.163-.732-1.766-1.003-2.418-.264-.634-.532-.548-.732-.558l-.623-.011c-.217 0-.57.081-.868.407-.298.326-1.138 1.113-1.138 2.716s1.165 3.15 1.327 3.368c.163.217 2.293 3.5 5.556 4.907.776.334 1.382.534 1.854.684.779.248 1.489.213 2.05.129.626-.093 1.926-.787 2.198-1.548.271-.76.271-1.412.19-1.548-.081-.135-.298-.217-.623-.38Z"/></svg>
               Solicitar orçamento gratuito pelo WhatsApp
             </a>
@@ -1538,8 +1561,8 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
     var resultDiv = document.getElementById('forro-result');
     resultDiv.innerHTML = [
       {val:tot.chapas,             label:'Chapas Drywall',      detail:'1,20 × 1,80 m cada'},
-      {val:tot.perfisU,            label:'Perfil U (borda)',     detail:'barras de 3 m'},
-      {val:tot.perfisT,            label:'Perfil T (interno)',   detail:'barras de 3 m'},
+      {val:tot.perfisU,            label:'Canaleta F530',        detail:'barras de 3 m'},
+      {val:tot.perfisT,            label:'Tabica',               detail:'barras de 3 m'},
       {val:tot.tirantes,           label:'Tirantes',             detail:'unidades'},
       {val:tamTiranteMax+'cm',     label:'Tamanho do tirante',   detail:'comprimento sugerido'},
       {val:tot.reguladores,        label:'Reguladores',          detail:'unidades'},
@@ -1554,6 +1577,11 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
              '<div class="res-label">'+i.label+'</div>'+
              '<div class="res-detail">'+i.detail+'</div></div>';
     }).join('');
+    var massaSugestao = sugereMassa(tot.massa);
+    resultDiv.querySelectorAll('.calc-result-item').forEach(function(el){
+      var lbl = el.querySelector('.res-label');
+      if(lbl && lbl.textContent==='Massa Drywall') el.querySelector('.res-detail').textContent = massaSugestao;
+    });
     resultDiv.classList.add('visible');
     document.getElementById('forro-obs').classList.add('visible');
 
@@ -1566,15 +1594,15 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       "📐 FORRO DRYWALL%0A" + nomes + "%0A" + detalhes + "%0A" +
       "MATERIAIS:%0A" +
       "• Chapas drywall: "+tot.chapas+" unid%0A" +
-      "• Perfil U borda: "+tot.perfisU+" barras%0A" +
-      "• Perfil T interno: "+tot.perfisT+" barras%0A" +
+      "• Canaleta F530: "+tot.perfisU+" barras%0A" +
+      "• Tabica: "+tot.perfisT+" barras%0A" +
       "• Tirantes: "+tot.tirantes+" unid (tamanho: "+tamTiranteMax+"cm)%0A" +
       "• Reguladores: "+tot.reguladores+" unid%0A" +
       "• Buchas c/ parafuso: "+tot.buchas+" unid%0A" +
       "• Parafuso GN 25: "+tot.parafGN25+" unid%0A" +
       "• Parafuso Metal 13: "+tot.parafMetal13+" unid%0A" +
       "• Fita Telada: "+tot.fitaTelada+" rolo(s) 50m%0A" +
-      "• Massa Drywall: "+tot.massa+"kg%0A%0A" +
+      "• Massa Drywall: "+tot.massa+"kg ("+massaSugestao+")%0A%0A" +
       "Pode me passar o orçamento gratuito?";
     document.getElementById('forro-wa-btn').href = "https://wa.me/5511998483800?text=" + encodeURIComponent(msg);
   }
@@ -1689,6 +1717,11 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
              '<div class="res-label">'+i.label+'</div>'+
              '<div class="res-detail">'+i.detail+'</div></div>';
     }).join('');
+    var massaSugestaoP = sugereMassa(tot.massa);
+    resultDiv.querySelectorAll('.calc-result-item').forEach(function(el){
+      var lbl = el.querySelector('.res-label');
+      if(lbl && lbl.textContent==='Massa Drywall') el.querySelector('.res-detail').textContent = massaSugestaoP;
+    });
     resultDiv.classList.add('visible');
     document.getElementById('parede-obs').classList.add('visible');
 
@@ -1707,19 +1740,37 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       "• Parafuso GN 25: "+tot.parafGN25+" unid%0A" +
       "• Parafuso Metal 13: "+tot.parafMetal13+" unid%0A" +
       "• Fita Telada: "+tot.fitaTelada+" rolo(s) 50m%0A" +
-      "• Massa Drywall: "+tot.massa+"kg%0A" +
+      "• Massa Drywall: "+tot.massa+"kg ("+massaSugestaoP+")%0A" +
       "• Cantoneiras: "+tot.cantoneiras+" unid%0A%0A" +
       "Pode me passar o orçamento gratuito?";
     document.getElementById('parede-wa-btn').href = "https://wa.me/5511998483800?text=" + encodeURIComponent(msg);
   }
 
   // ── inicializa com 1 item cada ─────────────────────────────────────────
+  function sugereMassa(kg){
+    // Embalagens disponíveis: 1.5, 5, 6, 14, 15, 25 kg
+    var embs = [1.5, 5, 6, 14, 15, 25];
+    // Tenta combinar para chegar no total com menos sacos
+    var restante = kg;
+    var resultado = [];
+    // Pega o maior possível primeiro
+    var ordem = [25,15,14,6,5,1.5];
+    ordem.forEach(function(e){
+      if(restante <= 0) return;
+      var qtd = Math.floor(restante/e);
+      if(qtd > 0){ resultado.push(qtd+'×'+e+'kg'); restante -= qtd*e; }
+    });
+    if(restante > 0) resultado.push('1×1,5kg'); // resto mínimo
+    return resultado.join(' + ');
+  }
+
   function calcSetTab(tab, btn){
-    document.getElementById('calc-forro').style.display  = tab==='forro'  ? '' : 'none';
-    document.getElementById('calc-parede').style.display = tab==='parede' ? '' : 'none';
+    document.getElementById('calc-forro').style.display      = tab==='forro'      ? '' : 'none';
+    document.getElementById('calc-plaquinha').style.display  = tab==='plaquinha'  ? '' : 'none';
+    document.getElementById('calc-parede').style.display     = tab==='parede'     ? '' : 'none';
     document.querySelectorAll('.calc-tab').forEach(function(b){ b.classList.remove('active'); });
     btn.classList.add('active');
-    ['forro-result','forro-obs','parede-result','parede-obs'].forEach(function(id){
+    ['forro-result','forro-obs','plaquinha-result','plaquinha-obs','parede-result','parede-obs'].forEach(function(id){
       var el = document.getElementById(id);
       if(el) el.classList.remove('visible');
     });
@@ -1733,10 +1784,155 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
     }).join('');
   }
 
+  // ── PLAQUINHA ──────────────────────────────────────────────────────────
+  var plaquinhaItems = [];
+
+  function plaquinhaRender(){
+    var lista = document.getElementById('plaquinha-lista');
+    lista.innerHTML = '';
+    plaquinhaItems.forEach(function(it, idx){
+      var canRemove = plaquinhaItems.length > 1;
+      lista.innerHTML +=
+        '<div class="calc-item">' +
+          (canRemove ? '<button class="calc-remove" onclick="plaquinhaRemove('+idx+')" title="Remover">✕</button>' : '') +
+          '<div class="calc-item-title">Ambiente ' + (idx+1) + '</div>' +
+          '<div class="calc-grid">' +
+            '<div class="calc-field"><label>Comprimento (m)</label>' +
+              '<input type="number" placeholder="Ex: 5.0" min="0.1" step="0.1" value="'+it.comp+'" oninput="plaquinhaItems['+idx+'].comp=this.value"></div>' +
+            '<div class="calc-field"><label>Largura (m)</label>' +
+              '<input type="number" placeholder="Ex: 4.0" min="0.1" step="0.1" value="'+it.larg+'" oninput="plaquinhaItems['+idx+'].larg=this.value"></div>' +
+            '<div class="calc-field" style="grid-column:1/-1"><label>Quanto vai baixar (cm)</label>' +
+              '<input type="number" placeholder="Ex: 20" min="1" step="1" value="'+it.baixar+'" oninput="plaquinhaItems['+idx+'].baixar=this.value"></div>' +
+          '</div>' +
+        '</div>';
+    });
+  }
+
+  function plaquinhaAddItem(){
+    plaquinhaItems.push({comp:'',larg:'',baixar:''});
+    plaquinhaRender();
+    document.getElementById('plaquinha-result').classList.remove('visible');
+    document.getElementById('plaquinha-obs').classList.remove('visible');
+  }
+
+  function plaquinhaRemove(idx){
+    plaquinhaItems.splice(idx,1);
+    plaquinhaRender();
+    document.getElementById('plaquinha-result').classList.remove('visible');
+    document.getElementById('plaquinha-obs').classList.remove('visible');
+  }
+
+  function calcPlaquinha(){
+    var lista = document.getElementById('plaquinha-lista');
+    var inputs = lista.querySelectorAll('.calc-item');
+    var ambientes = [];
+    var ok = true;
+    inputs.forEach(function(item, idx){
+      var nums = item.querySelectorAll('input[type="number"]');
+      var comp   = parseFloat(nums[0].value);
+      var larg   = parseFloat(nums[1].value);
+      var baixar = parseFloat(nums[2].value);
+      if(!comp||!larg||!baixar||comp<=0||larg<=0||baixar<=0){
+        alert('Preencha todos os campos do Ambiente '+(idx+1)+'.'); ok=false; return;
+      }
+      ambientes.push({comp:comp, larg:larg, baixar:baixar});
+    });
+    if(!ok||ambientes.length===0) return;
+
+    var tot = {area:0,plaquinhas:0,baguetes:0,apoios:0,pitoes:0,arame:0,estopa:0,gessoColaSacos:0};
+    var detalhes = '';
+    var tamArameMax = 0;
+
+    ambientes.forEach(function(a, idx){
+      var comp=a.comp, larg=a.larg, baixar=a.baixar;
+      var area       = comp*larg;
+
+      // Plaquinhas 60x60: área / 0.36m² cada (+10%)
+      var plaquinhas = Math.ceil((area/0.36)*1.10);
+
+      // Baguete de borda (perímetro / 3m por barra, +10%)
+      var perimetro  = 2*(comp+larg);
+      var baguetes   = Math.ceil((perimetro/3)*1.10);
+
+      // Apoio de baguete: 1 a cada 0.60m de perímetro (+10%)
+      var apoios     = Math.ceil((perimetro/0.60)*1.10);
+
+      // Pitão com bucha: 1 a cada 0.60m × 0.60m de área (+10%)
+      var pitoes     = Math.ceil((area/(0.60*0.60))*1.10);
+
+      // Arame: 1 por pitão, comprimento = baixar + 15cm folga, em metros
+      var tamArame   = (baixar/100) + 0.15; // metros
+      var arameMetros= Math.ceil(pitoes * tamArame * 1.10);
+      var arame      = arameMetros; // metros lineares
+
+      // Estopa: ~1 rolo por 8m² (rolo ~100m)
+      var estopa     = Math.ceil((area/8)*1.10);
+
+      // Gesso cola: ~5kg por m² de plaquinha aplicada (+10%)
+      var gessoColaKg= Math.ceil(area*5*1.10);
+      var gessoColaSacos = Math.ceil(gessoColaKg/5); // sacos de 5kg
+
+      tot.area          += area;
+      tot.plaquinhas    += plaquinhas;
+      tot.baguetes      += baguetes;
+      tot.apoios        += apoios;
+      tot.pitoes        += pitoes;
+      tot.arame         += arame;
+      tot.estopa        += estopa;
+      tot.gessoColaSacos+= gessoColaSacos;
+      if(tamArame > tamArameMax) tamArameMax = tamArame;
+
+      if(ambientes.length>1){
+        detalhes += "• Ambiente "+(idx+1)+": "+comp+"m × "+larg+"m (baixa "+baixar+"cm)%0A";
+      }
+    });
+
+    var tamArameStr = (tamArameMax*100).toFixed(0)+"cm";
+
+    var resultDiv = document.getElementById('plaquinha-result');
+    resultDiv.innerHTML = [
+      {val:tot.plaquinhas,              label:'Plaquinhas 60×60',    detail:'unidades'},
+      {val:tot.baguetes,                label:'Baguete c/ apoio',    detail:'barras de 3 m'},
+      {val:tot.apoios,                  label:'Apoios de baguete',   detail:'unidades'},
+      {val:tot.pitoes,                  label:'Pitão com bucha',     detail:'unidades'},
+      {val:tot.arame+'m',               label:'Arame',               detail:'metros lineares'},
+      {val:tamArameStr,                 label:'Tamanho do arame',    detail:'por pitão (sugerido)'},
+      {val:tot.estopa,                  label:'Estopa',              detail:'rolos'},
+      {val:tot.gessoColaSacos,          label:'Gesso Cola',          detail:'sacos de 5 kg'},
+      {val:tot.area.toFixed(1)+'m²',    label:'Área total',          detail:'calculada'},
+    ].map(function(i){
+      return '<div class="calc-result-item"><div class="res-num">'+i.val+'</div>'+
+             '<div class="res-label">'+i.label+'</div>'+
+             '<div class="res-detail">'+i.detail+'</div></div>';
+    }).join('');
+    resultDiv.classList.add('visible');
+    document.getElementById('plaquinha-obs').classList.add('visible');
+
+    var nomes = ambientes.length===1
+      ? ambientes[0].comp+"m × "+ambientes[0].larg+"m (baixa "+ambientes[0].baixar+"cm)"
+      : ambientes.length+" ambientes — área total "+tot.area.toFixed(1)+"m²";
+
+    var msg =
+      "Olá Gesso Natureza! Usei a calculadora do site e preciso de orçamento:%0A%0A" +
+      "⬜ FORRO DE PLAQUINHA%0A" + nomes + "%0A" + detalhes + "%0A" +
+      "MATERIAIS:%0A" +
+      "• Plaquinhas 60×60: "+tot.plaquinhas+" unid%0A" +
+      "• Baguete c/ apoio: "+tot.baguetes+" barras%0A" +
+      "• Apoios de baguete: "+tot.apoios+" unid%0A" +
+      "• Pitão com bucha: "+tot.pitoes+" unid%0A" +
+      "• Arame: "+tot.arame+"m ("+tamArameStr+" por pitão)%0A" +
+      "• Estopa: "+tot.estopa+" rolo(s)%0A" +
+      "• Gesso Cola: "+tot.gessoColaSacos+" saco(s) de 40kg%0A%0A" +
+      "Pode me passar o orçamento gratuito?";
+    document.getElementById('plaquinha-wa-btn').href = "https://wa.me/5511998483800?text=" + encodeURIComponent(msg);
+  }
+
   // Inicializa
-  forroItems  = [{comp:'',larg:'',baixar:''}];
+  forroItems      = [{comp:'',larg:'',baixar:''}];
+  plaquinhaItems  = [{comp:'',larg:'',baixar:''}];
   paredeItems = [{comp:'',alt:'',faces:'1'}];
   forroRender();
+  plaquinhaRender();
   paredeRender();
 
 </script>
