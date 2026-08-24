@@ -372,8 +372,8 @@ h1,h2,h3{ font-family:"Fraunces",serif; letter-spacing:-.01em; color:#1a1a1a; }
   }
   .products::-webkit-scrollbar{ display:none; }
   .product{
-    min-width:calc(85vw - 40px); flex-shrink:0;
-    scroll-snap-align:center;
+    min-width:calc(100vw - 80px); flex-shrink:0;
+    scroll-snap-align:start;
   }
   .products-arrow{ display:flex; }
 }
@@ -1323,7 +1323,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
     var el = document.getElementById('productsScroll');
     if(!el) return;
     var card = el.querySelector('.product');
-    var cardW = card ? card.offsetWidth + 14 : 240; // largura do card + gap
+    var cardW = card ? (card.offsetWidth + 14) : 260;
     el.scrollBy({ left: dir * cardW, behavior: 'smooth' });
   }
 
