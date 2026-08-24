@@ -1537,7 +1537,8 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       var juntasH     = ceil(larg/1.80)*comp;
       var juntasV     = ceil(comp/1.20)*larg;
       var metrosFita  = (juntasH+juntasV)*1.05;
-      var fitaTelada  = ceil(metrosFita/50);
+      var metrosFitaTotal = Math.ceil(metrosFita);
+      var fitaTelada  = metrosFitaTotal; // metros lineares
       var massa       = ceil(metrosFita*0.5);
 
       tot.area       += area;
@@ -1569,7 +1570,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       {val:tot.buchas,             label:'Buchas c/ parafuso',   detail:'fixação na laje'},
       {val:tot.parafGN25,          label:'Parafuso GN 25',       detail:'chapa no perfil'},
       {val:tot.parafMetal13,       label:'Parafuso Metal 13',    detail:'perfil no perfil'},
-      {val:tot.fitaTelada,         label:'Fita Telada',          detail:'rolos de 50 m'},
+      {val:tot.fitaTelada+'m',     label:'Fita Telada',          detail:'veja embalagens abaixo'},
       {val:tot.massa+'kg',         label:'Massa Drywall',        detail:'rejunte das juntas'},
       {val:tot.area.toFixed(1)+'m²',label:'Área total',         detail:'calculada'},
     ].map(function(i){
@@ -1578,9 +1579,11 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
              '<div class="res-detail">'+i.detail+'</div></div>';
     }).join('');
     var massaSugestao = sugereMassa(tot.massa);
+    var fitaSugestao  = sugereRoloFita(tot.fitaTelada);
     resultDiv.querySelectorAll('.calc-result-item').forEach(function(el){
       var lbl = el.querySelector('.res-label');
       if(lbl && lbl.textContent==='Massa Drywall') el.querySelector('.res-detail').textContent = massaSugestao;
+      if(lbl && lbl.textContent==='Fita Telada')   el.querySelector('.res-detail').textContent = fitaSugestao;
     });
     resultDiv.classList.add('visible');
     document.getElementById('forro-obs').classList.add('visible');
@@ -1601,7 +1604,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       "• Buchas c/ parafuso: "+tot.buchas+" unid%0A" +
       "• Parafuso GN 25: "+tot.parafGN25+" unid%0A" +
       "• Parafuso Metal 13: "+tot.parafMetal13+" unid%0A" +
-      "• Fita Telada: "+tot.fitaTelada+" rolo(s) 50m%0A" +
+      "• Fita Telada: "+tot.fitaTelada+"m ("+fitaSugestao+")%0A" +
       "• Massa Drywall: "+tot.massa+"kg ("+massaSugestao+")%0A%0A" +
       "Pode me passar o orçamento gratuito?";
     document.getElementById('forro-wa-btn').href = "https://wa.me/5511998483800?text=" + encodeURIComponent(msg);
@@ -1680,7 +1683,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       var juntasH   = ceil(alt/1.80)*comp*faces;
       var juntasV   = ceil(comp/1.20)*alt*faces;
       var metrosFita= (juntasH+juntasV)*1.05;
-      var fitaTelada= ceil(metrosFita/50);
+      var fitaTelada= Math.ceil(metrosFita); // metros lineares
       var massa     = ceil(metrosFita*0.5);
       var cantoneiras = 4;
 
@@ -1708,7 +1711,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       {val:tot.buchas,              label:'Buchas c/ parafuso', detail:'fixação piso/laje'},
       {val:tot.parafGN25,           label:'Parafuso GN 25',     detail:'chapa no montante'},
       {val:tot.parafMetal13,        label:'Parafuso Metal 13',  detail:'guia no montante'},
-      {val:tot.fitaTelada,          label:'Fita Telada',        detail:'rolos de 50 m'},
+      {val:tot.fitaTelada+'m',      label:'Fita Telada',        detail:'veja embalagens abaixo'},
       {val:tot.massa+'kg',          label:'Massa Drywall',      detail:'rejunte das juntas'},
       {val:tot.cantoneiras,         label:'Cantoneiras',        detail:'para quinas e cantos'},
       {val:tot.area.toFixed(1)+'m²',label:'Área total',        detail:'por face'},
@@ -1718,9 +1721,11 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
              '<div class="res-detail">'+i.detail+'</div></div>';
     }).join('');
     var massaSugestaoP = sugereMassa(tot.massa);
+    var fitaSugestaoP  = sugereRoloFita(tot.fitaTelada);
     resultDiv.querySelectorAll('.calc-result-item').forEach(function(el){
       var lbl = el.querySelector('.res-label');
       if(lbl && lbl.textContent==='Massa Drywall') el.querySelector('.res-detail').textContent = massaSugestaoP;
+      if(lbl && lbl.textContent==='Fita Telada')   el.querySelector('.res-detail').textContent = fitaSugestaoP;
     });
     resultDiv.classList.add('visible');
     document.getElementById('parede-obs').classList.add('visible');
@@ -1739,7 +1744,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       "• Buchas c/ parafuso: "+tot.buchas+" unid%0A" +
       "• Parafuso GN 25: "+tot.parafGN25+" unid%0A" +
       "• Parafuso Metal 13: "+tot.parafMetal13+" unid%0A" +
-      "• Fita Telada: "+tot.fitaTelada+" rolo(s) 50m%0A" +
+      "• Fita Telada: "+tot.fitaTelada+"m ("+fitaSugestaoP+")%0A" +
       "• Massa Drywall: "+tot.massa+"kg ("+massaSugestaoP+")%0A" +
       "• Cantoneiras: "+tot.cantoneiras+" unid%0A%0A" +
       "Pode me passar o orçamento gratuito?";
@@ -1747,6 +1752,19 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
   }
 
   // ── inicializa com 1 item cada ─────────────────────────────────────────
+  function sugereRoloFita(metros){
+    // Embalagens: 45m e 90m
+    // Prioriza minimizar sobra
+    var r90 = Math.floor(metros/90);
+    var resto = metros - r90*90;
+    var r45  = Math.ceil(resto/45);
+    if(r90===0 && r45===0) r45=1;
+    var parts = [];
+    if(r90 > 0) parts.push(r90+'×90m');
+    if(r45 > 0) parts.push(r45+'×45m');
+    return parts.join(' + ');
+  }
+
   function sugereMassa(kg){
     // Embalagens disponíveis: 1.5, 5, 6, 14, 15, 25 kg
     var embs = [1.5, 5, 6, 14, 15, 25];
@@ -1866,7 +1884,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       var arame      = arameMetros; // metros lineares
 
       // Estopa: ~1 rolo por 8m² (rolo ~100m)
-      var estopa     = Math.ceil((area/8)*1.10);
+      var estopa     = Math.ceil((area/8)*1.10); // rolos de 1kg
 
       // Gesso cola: ~5kg por m² de plaquinha aplicada (+10%)
       var gessoColaKg= Math.ceil(area*5*1.10);
@@ -1897,7 +1915,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       {val:tot.pitoes,                  label:'Pitão com bucha',     detail:'unidades'},
       {val:tot.arame+'m',               label:'Arame',               detail:'metros lineares'},
       {val:tamArameStr,                 label:'Tamanho do arame',    detail:'por pitão (sugerido)'},
-      {val:tot.estopa,                  label:'Estopa',              detail:'rolos'},
+      {val:tot.estopa,                  label:'Estopa',              detail:'rolos de 1 kg'},
       {val:tot.gessoColaSacos,          label:'Gesso Cola',          detail:'sacos de 5 kg'},
       {val:tot.area.toFixed(1)+'m²',    label:'Área total',          detail:'calculada'},
     ].map(function(i){
@@ -1921,7 +1939,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       "• Apoios de baguete: "+tot.apoios+" unid%0A" +
       "• Pitão com bucha: "+tot.pitoes+" unid%0A" +
       "• Arame: "+tot.arame+"m ("+tamArameStr+" por pitão)%0A" +
-      "• Estopa: "+tot.estopa+" rolo(s)%0A" +
+      "• Estopa: "+tot.estopa+" rolo(s) de 1kg%0A" +
       "• Gesso Cola: "+tot.gessoColaSacos+" saco(s) de 40kg%0A%0A" +
       "Pode me passar o orçamento gratuito?";
     document.getElementById('plaquinha-wa-btn').href = "https://wa.me/5511998483800?text=" + encodeURIComponent(msg);
