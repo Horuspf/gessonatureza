@@ -560,6 +560,121 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
   .footer-links{ width:100%; margin-left:0; }
   .whatsapp{ right:14px; bottom:14px; width:54px; height:54px; }
 }
+
+/* =========================================================
+   CALCULADORA
+   ========================================================= */
+.calc-section{ background:var(--verde-esc); padding:90px 0; }
+.calc-section .eyebrow{ color:#7BD494; }
+.calc-section .eyebrow::before{ background:#7BD494; }
+.calc-section .section-title h2{ color:#fff; }
+.calc-section .section-title p{ color:rgba(255,255,255,.7); }
+
+.calc-card{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--raio);
+  padding:32px;
+}
+
+.calc-tabs{
+  display:flex; gap:8px; margin-bottom:28px;
+}
+.calc-tab{
+  flex:1; padding:12px; border-radius:10px;
+  border:1px solid rgba(255,255,255,.2);
+  background:transparent; color:rgba(255,255,255,.6);
+  font-size:14px; font-weight:700; cursor:pointer;
+  transition:.2s; font-family:"Inter",sans-serif;
+}
+.calc-tab.active{
+  background:var(--verde-vivo); border-color:var(--verde-vivo); color:#fff;
+}
+.calc-tab:hover:not(.active){ border-color:rgba(255,255,255,.5); color:#fff; }
+
+.calc-grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px;
+}
+.calc-field label{
+  display:block; font-size:12px; font-weight:700;
+  color:rgba(255,255,255,.6); letter-spacing:.08em;
+  text-transform:uppercase; margin-bottom:8px;
+}
+.calc-field input{
+  width:100%; padding:14px 16px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:10px; color:#fff;
+  font-size:16px; font-family:"Inter",sans-serif;
+  outline:none; transition:.2s;
+}
+.calc-field input:focus{
+  border-color:#7BD494;
+  background:rgba(255,255,255,.12);
+}
+.calc-field input::placeholder{ color:rgba(255,255,255,.3); }
+
+.calc-btn{
+  width:100%; padding:16px;
+  background:var(--verde-vivo); color:#fff;
+  border:none; border-radius:10px;
+  font-size:15px; font-weight:700;
+  cursor:pointer; transition:.2s;
+  font-family:"Inter",sans-serif;
+}
+.calc-btn:hover{ background:#27a84e; transform:translateY(-1px); }
+
+.calc-result{
+  margin-top:24px;
+  display:none;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.calc-result.visible{ display:grid; }
+@media(max-width:700px){ .calc-result{ grid-template-columns:repeat(2,1fr); } }
+.calc-result-item{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px; padding:18px 16px;
+  text-align:center;
+}
+.calc-result-item .res-num{
+  font-family:"Fraunces",serif;
+  font-size:32px; font-weight:600; color:#fff;
+  line-height:1; margin-bottom:4px;
+}
+.calc-result-item .res-label{
+  font-size:12px; color:rgba(255,255,255,.6);
+  font-weight:600; letter-spacing:.05em;
+}
+.calc-result-item .res-detail{
+  font-size:11px; color:rgba(255,255,255,.4);
+  margin-top:4px;
+}
+.calc-obs{
+  margin-top:16px; padding:14px 16px;
+  background:rgba(123,212,148,.1);
+  border:1px solid rgba(123,212,148,.25);
+  border-radius:10px;
+  font-size:13px; color:rgba(255,255,255,.7);
+  display:none;
+}
+.calc-obs.visible{ display:block; }
+.calc-obs strong{ color:#7BD494; }
+.calc-wa-btn{
+  display:inline-flex; align-items:center; gap:10px;
+  background:#25D366; color:#fff;
+  padding:14px 22px; border-radius:999px;
+  font-size:14px; font-weight:700;
+  text-decoration:none; transition:.2s;
+}
+.calc-wa-btn:hover{ background:#1db954; transform:translateY(-1px); }
+
+@media(max-width:600px){
+  .calc-grid{ grid-template-columns:1fr; }
+  .calc-result{ grid-template-columns:1fr 1fr; }
+}
+
 </style>
 </head>
 <body>
@@ -608,7 +723,9 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       <a href="#inicio">Início</a>
       <a href="#produtos">Produtos</a>
       <a href="#servicos">Serviços</a>
+      <a href="#calculadora">Calculadora</a>
       <a href="#antes-depois">Antes e Depois</a>
+      <a href="#calculadora">Calculadora</a>
       <a href="#avaliacoes">Avaliações</a>
       <a href="#contato">Contato</a>
       <a class="menu-orcamento" href="https://wa.me/5511998483800?text=Olá%20Gesso%20Natureza!%20Quero%20um%20orçamento." target="_blank">Orçamento</a>
@@ -843,6 +960,128 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
         </div>
       </article>
 
+    </div>
+  </div>
+</section>
+
+<!-- CALCULADORA -->
+<section class="calc-section" id="calculadora">
+  <div class="container">
+    <div class="section-title">
+      <div class="eyebrow">Ferramenta gratuita</div>
+      <h2>Calculadora de materiais</h2>
+      <p>Informe as medidas do ambiente e descubra quantas chapas e perfis você vai precisar.</p>
+    </div>
+
+    <div class="calc-card">
+      <div class="calc-tabs">
+        <button class="calc-tab active" onclick="calcSetTab('forro', this)">🏠 Forro</button>
+        <button class="calc-tab" onclick="calcSetTab('parede', this)">🧱 Parede</button>
+      </div>
+
+      <!-- FORRO -->
+      <div id="calc-forro">
+        <div class="calc-grid">
+          <div class="calc-field">
+            <label>Comprimento (m)</label>
+            <input type="number" id="forro-comp" placeholder="Ex: 5.0" min="0.1" step="0.1">
+          </div>
+          <div class="calc-field">
+            <label>Largura (m)</label>
+            <input type="number" id="forro-larg" placeholder="Ex: 4.0" min="0.1" step="0.1">
+          </div>
+          <div class="calc-field" style="grid-column:1/-1">
+            <label>Quanto vai baixar o forro (cm)</label>
+            <input type="number" id="forro-baixar" placeholder="Ex: 15" min="1" step="1">
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calcForro()">Calcular materiais</button>
+        <div class="calc-result" id="forro-result">
+          <div class="calc-result-item">
+            <div class="res-num" id="forro-chapas">0</div>
+            <div class="res-label">Chapas Drywall</div>
+            <div class="res-detail">1,20 × 1,80 m cada</div>
+          </div>
+          <div class="calc-result-item">
+            <div class="res-num" id="forro-perfis-u">0</div>
+            <div class="res-label">Perfil U (guia)</div>
+            <div class="res-detail">barras de 3 m</div>
+          </div>
+          <div class="calc-result-item">
+            <div class="res-num" id="forro-perfis-t">0</div>
+            <div class="res-label">Perfil T (montante)</div>
+            <div class="res-detail">barras de 3 m</div>
+          </div>
+          <div class="calc-result-item">
+            <div class="res-num" id="forro-area">0</div>
+            <div class="res-label">Área total</div>
+            <div class="res-detail">m²</div>
+          </div>
+        </div>
+        <div class="calc-obs" id="forro-obs">
+          <strong>✓ Cálculo com 10% de sobra</strong> para cortes e desperdício. Recomendamos comprar um pouco a mais.
+          <div style="margin-top:14px">
+            <a id="forro-wa-btn" href="#" target="_blank" class="calc-wa-btn">
+              <svg viewBox="0 0 32 32" fill="currentColor" style="width:18px;height:18px;flex-shrink:0"><path d="M16.004 3C9.376 3 4 8.373 4 15c0 2.34.678 4.523 1.85 6.36L4 29l7.84-1.812A11.94 11.94 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3Zm0 21.818a9.77 9.77 0 0 1-4.983-1.366l-.357-.212-4.652 1.075 1.11-4.53-.234-.372A9.77 9.77 0 0 1 5.2 15c0-5.966 4.847-10.818 10.804-10.818S26.808 9.034 26.808 15 21.961 24.818 16.004 24.818Zm5.94-8.146c-.325-.163-1.926-.951-2.225-1.06-.298-.109-.515-.163-.732.163-.216.326-.84 1.06-1.03 1.278-.19.217-.379.244-.703.081-.325-.163-1.372-.505-2.614-1.612-.966-.86-1.618-1.921-1.808-2.246-.19-.326-.02-.502.143-.664.146-.146.325-.38.488-.57.163-.19.217-.326.325-.543.108-.217.054-.407-.027-.57-.081-.163-.732-1.766-1.003-2.418-.264-.634-.532-.548-.732-.558l-.623-.011c-.217 0-.57.081-.868.407-.298.326-1.138 1.113-1.138 2.716s1.165 3.15 1.327 3.368c.163.217 2.293 3.5 5.556 4.907.776.334 1.382.534 1.854.684.779.248 1.489.213 2.05.129.626-.093 1.926-.787 2.198-1.548.271-.76.271-1.412.19-1.548-.081-.135-.298-.217-.623-.38Z"/></svg>
+              Solicitar orçamento gratuito pelo WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAREDE -->
+      <div id="calc-parede" style="display:none">
+        <div class="calc-grid">
+          <div class="calc-field">
+            <label>Comprimento (m)</label>
+            <input type="number" id="parede-comp" placeholder="Ex: 6.0" min="0.1" step="0.1">
+          </div>
+          <div class="calc-field">
+            <label>Altura (m)</label>
+            <input type="number" id="parede-alt" placeholder="Ex: 2.80" min="0.1" step="0.1">
+          </div>
+          <div class="calc-field">
+            <label>Nº de paredes</label>
+            <input type="number" id="parede-qtd" placeholder="Ex: 1" min="1" step="1" value="1">
+          </div>
+          <div class="calc-field">
+            <label>Chapas por face</label>
+            <input type="number" id="parede-faces" placeholder="1 ou 2" min="1" max="2" step="1" value="1">
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calcParede()">Calcular materiais</button>
+        <div class="calc-result" id="parede-result">
+          <div class="calc-result-item">
+            <div class="res-num" id="parede-chapas">0</div>
+            <div class="res-label">Chapas Drywall</div>
+            <div class="res-detail">1,20 × 1,80 m cada</div>
+          </div>
+          <div class="calc-result-item">
+            <div class="res-num" id="parede-guias">0</div>
+            <div class="res-label">Perfil U (guia)</div>
+            <div class="res-detail">barras de 3 m</div>
+          </div>
+          <div class="calc-result-item">
+            <div class="res-num" id="parede-montantes">0</div>
+            <div class="res-label">Perfil montante</div>
+            <div class="res-detail">barras de 3 m</div>
+          </div>
+          <div class="calc-result-item">
+            <div class="res-num" id="parede-area">0</div>
+            <div class="res-label">Área total</div>
+            <div class="res-detail">m²</div>
+          </div>
+        </div>
+        <div class="calc-obs" id="parede-obs">
+          <strong>✓ Cálculo com 10% de sobra</strong> para cortes e desperdício. Montantes espaçados a cada 0,60 m.
+          <div style="margin-top:14px">
+            <a id="parede-wa-btn" href="#" target="_blank" class="calc-wa-btn">
+              <svg viewBox="0 0 32 32" fill="currentColor" style="width:18px;height:18px;flex-shrink:0"><path d="M16.004 3C9.376 3 4 8.373 4 15c0 2.34.678 4.523 1.85 6.36L4 29l7.84-1.812A11.94 11.94 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3Zm0 21.818a9.77 9.77 0 0 1-4.983-1.366l-.357-.212-4.652 1.075 1.11-4.53-.234-.372A9.77 9.77 0 0 1 5.2 15c0-5.966 4.847-10.818 10.804-10.818S26.808 9.034 26.808 15 21.961 24.818 16.004 24.818Zm5.94-8.146c-.325-.163-1.926-.951-2.225-1.06-.298-.109-.515-.163-.732.163-.216.326-.84 1.06-1.03 1.278-.19.217-.379.244-.703.081-.325-.163-1.372-.505-2.614-1.612-.966-.86-1.618-1.921-1.808-2.246-.19-.326-.02-.502.143-.664.146-.146.325-.38.488-.57.163-.19.217-.326.325-.543.108-.217.054-.407-.027-.57-.081-.163-.732-1.766-1.003-2.418-.264-.634-.532-.548-.732-.558l-.623-.011c-.217 0-.57.081-.868.407-.298.326-1.138 1.113-1.138 2.716s1.165 3.15 1.327 3.368c.163.217 2.293 3.5 5.556 4.907.776.334 1.382.534 1.854.684.779.248 1.489.213 2.05.129.626-.093 1.926-.787 2.198-1.548.271-.76.271-1.412.19-1.548-.081-.135-.298-.217-.623-.38Z"/></svg>
+              Solicitar orçamento gratuito pelo WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1233,6 +1472,201 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
     // Se já visível no load
     if (isVisible()) setTimeout(fireAll, 400);
   })();
+
+
+  /* CALCULADORA COMPLETA */
+  function calcSetTab(tab, btn){
+    document.getElementById('calc-forro').style.display  = tab==='forro'  ? '' : 'none';
+    document.getElementById('calc-parede').style.display = tab==='parede' ? '' : 'none';
+    document.querySelectorAll('.calc-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    // Limpar resultados ao trocar aba
+    ['forro-result','forro-obs','parede-result','parede-obs'].forEach(id=>{
+      const el = document.getElementById(id);
+      if(el){ el.classList.remove('visible'); }
+    });
+  }
+
+  function ceil(n){ return Math.ceil(n); }
+
+  function renderItems(items){
+    return items.map(i => `
+      <div class="calc-result-item">
+        <div class="res-num">${i.val}</div>
+        <div class="res-label">${i.label}</div>
+        <div class="res-detail">${i.detail}</div>
+      </div>`).join('');
+  }
+
+  function calcForro(){
+    const comp   = parseFloat(document.getElementById('forro-comp').value);
+    const larg   = parseFloat(document.getElementById('forro-larg').value);
+    const baixar = parseFloat(document.getElementById('forro-baixar').value);
+    if(!comp || !larg || comp<=0 || larg<=0){ alert('Preencha comprimento e largura.'); return; }
+    if(!baixar || baixar<=0){ alert('Informe quantos cm o forro vai baixar.'); return; }
+
+    const area      = comp * larg;
+    const perimetro = 2*(comp+larg);
+    const areaChapa = 1.2*1.8;
+
+    // Chapas (+10%)
+    const chapas = ceil((area/areaChapa)*1.10);
+
+    // Perfil U de borda (perímetro)
+    const perfisU = ceil((perimetro/3)*1.10);
+
+    // Perfil T interno (a cada 0.60m x 1.20m)
+    const linhas  = ceil(larg/0.60)+1;
+    const colunas = ceil(comp/1.20)+1;
+    const mT      = (linhas*comp)+(colunas*larg);
+    const perfisT = ceil((mT/3)*1.10);
+
+    // Tirantes: 1 a cada 0.60 x 1.20m
+    const tirantes = ceil((area/(0.60*1.20))*1.10);
+
+    // Reguladores: mesmo que tirantes
+    const reguladores = tirantes;
+
+    // Tamanho do tirante = distância de baixada + 10cm (5cm na laje + 5cm regulagem)
+    const tamTirante = baixar + 10;
+
+    // Fita telada: juntas (rolos de 50m)
+    const juntasH    = ceil(larg/1.80)*comp;
+    const juntasV    = ceil(comp/1.20)*larg;
+    const metrosFita = (juntasH+juntasV)*1.05;
+    const fitaTelada = ceil(metrosFita/50);
+
+    // Massa drywall: 0.5kg por metro linear de fita
+    const massa = ceil(metrosFita*0.5);
+
+    // Parafuso GN 25 (fixar chapa no perfil): ~10 por chapa
+    const parafGN25 = ceil(chapas*10*1.10);
+
+    // Parafuso metal 13 (fixar perfis entre si): ~4 por montante
+    const numMontantes = (linhas + colunas);
+    const parafMetal13 = ceil(numMontantes*4*1.10);
+
+    // Bucha com parafuso (fixar perfil U na laje): 1 a cada 0.60m de perímetro
+    const buchas = ceil((perimetro/0.60)*1.10);
+
+    const resultDiv = document.getElementById('forro-result');
+    resultDiv.innerHTML = renderItems([
+      { val: chapas,                      label: 'Chapas Drywall',        detail: '1,20 × 1,80 m cada' },
+      { val: perfisU,                     label: 'Perfil U (borda)',       detail: 'barras de 3 m' },
+      { val: perfisT,                     label: 'Perfil T (interno)',     detail: 'barras de 3 m' },
+      { val: tirantes,                    label: 'Tirantes',               detail: 'unidades' },
+      { val: tamTirante+'cm',             label: 'Tamanho do tirante',     detail: 'comprimento sugerido' },
+      { val: reguladores,                 label: 'Reguladores',            detail: 'unidades' },
+      { val: buchas,                      label: 'Buchas c/ parafuso',     detail: 'fixação na laje' },
+      { val: parafGN25,                   label: 'Parafuso GN 25',         detail: 'chapa no perfil' },
+      { val: parafMetal13,                label: 'Parafuso Metal 13',      detail: 'perfil no perfil' },
+      { val: fitaTelada,                  label: 'Fita Telada',            detail: 'rolos de 50 m' },
+      { val: massa+'kg',                  label: 'Massa Drywall',          detail: 'rejunte das juntas' },
+      { val: area.toFixed(1)+'m²',        label: 'Área total',             detail: 'calculada' },
+    ]);
+    resultDiv.classList.add('visible');
+    document.getElementById('forro-obs').classList.add('visible');
+
+    var msgForro =
+      "Olá Gesso Natureza! Usei a calculadora do site e preciso de orçamento:%0A%0A" +
+      "📐 FORRO DRYWALL%0A" +
+      "Área: " + area.toFixed(1) + "m² (" + comp + "m × " + larg + "m)%0A" +
+      "Baixada: " + baixar + "cm%0A%0A" +
+      "MATERIAIS:%0A" +
+      "• Chapas drywall: " + chapas + " unid%0A" +
+      "• Perfil U borda: " + perfisU + " barras%0A" +
+      "• Perfil T interno: " + perfisT + " barras%0A" +
+      "• Tirantes: " + tirantes + " unid (tamanho: " + tamTirante + "cm)%0A" +
+      "• Reguladores: " + reguladores + " unid%0A" +
+      "• Buchas c/ parafuso: " + buchas + " unid%0A" +
+      "• Parafuso GN 25: " + parafGN25 + " unid%0A" +
+      "• Parafuso Metal 13: " + parafMetal13 + " unid%0A" +
+      "• Fita Telada: " + fitaTelada + " rolo(s) 50m%0A" +
+      "• Massa Drywall: " + massa + "kg%0A%0A" +
+      "Pode me passar o orçamento gratuito?";
+    document.getElementById('forro-wa-btn').href = "https://wa.me/5511998483800?text=" + encodeURIComponent(msgForro);
+  }
+
+  function calcParede(){
+    const comp  = parseFloat(document.getElementById('parede-comp').value);
+    const alt   = parseFloat(document.getElementById('parede-alt').value);
+    const qtd   = parseInt(document.getElementById('parede-qtd').value)||1;
+    const faces = parseInt(document.getElementById('parede-faces').value)||1;
+    if(!comp || !alt || comp<=0 || alt<=0){ alert('Preencha comprimento e altura.'); return; }
+
+    const areaChapa  = 1.2*1.8;
+    const areaTotal  = comp*alt*qtd;
+    const areaChapas = areaTotal*faces;
+
+    // Chapas (+10%)
+    const chapas = ceil((areaChapas/areaChapa)*1.10);
+
+    // Guias U: base + topo (perímetro da parede × qtd)
+    const guiaMetros = comp*qtd*2;
+    const guias = ceil((guiaMetros/3)*1.10);
+
+    // Montantes (a cada 0.60m)
+    const montPorParede = ceil(comp/0.60)+1;
+    const montMetros    = montPorParede*alt*qtd;
+    const montantes     = ceil((montMetros/3)*1.10);
+
+    // Parafuso GN 25 (chapa no montante): ~12 por chapa
+    const parafGN25 = ceil(chapas*12*1.10);
+
+    // Parafuso Metal 13 (guia no montante): ~4 por montante
+    const totalMont = montPorParede*qtd;
+    const parafMetal13 = ceil(totalMont*4*1.10);
+
+    // Bucha com parafuso (fixar guia na laje/piso): 1 a cada 0.60m de guia
+    const buchas = ceil((guiaMetros/0.60)*1.10);
+
+    // Fita telada: juntas horizontais + verticais
+    const juntasH    = ceil(alt/1.80)*comp*qtd*faces;
+    const juntasV    = ceil(comp/1.20)*alt*qtd*faces;
+    const metrosFita = (juntasH+juntasV)*1.05;
+    const fitaTelada = ceil(metrosFita/50);
+
+    // Massa drywall
+    const massa = ceil(metrosFita*0.5);
+
+    // Cantoneiras: ~4 cantos por parede
+    const cantoneiras = qtd*4;
+
+    const resultDiv = document.getElementById('parede-result');
+    resultDiv.innerHTML = renderItems([
+      { val: chapas,                      label: 'Chapas Drywall',        detail: '1,20 × 1,80 m cada' },
+      { val: guias,                       label: 'Perfil U (guia)',        detail: 'barras de 3 m' },
+      { val: montantes,                   label: 'Montantes',              detail: 'barras de 3 m' },
+      { val: buchas,                      label: 'Buchas c/ parafuso',     detail: 'fixação piso/laje' },
+      { val: parafGN25,                   label: 'Parafuso GN 25',         detail: 'chapa no montante' },
+      { val: parafMetal13,                label: 'Parafuso Metal 13',      detail: 'guia no montante' },
+      { val: fitaTelada,                  label: 'Fita Telada',            detail: 'rolos de 50 m' },
+      { val: massa+'kg',                  label: 'Massa Drywall',          detail: 'rejunte das juntas' },
+      { val: cantoneiras,                 label: 'Cantoneiras',            detail: 'para quinas e cantos' },
+      { val: areaTotal.toFixed(1)+'m²',   label: 'Área total',             detail: 'por face' },
+    ]);
+    resultDiv.classList.add('visible');
+    document.getElementById('parede-obs').classList.add('visible');
+
+    var msgParede =
+      "Olá Gesso Natureza! Usei a calculadora do site e preciso de orçamento:%0A%0A" +
+      "🧱 PAREDE DRYWALL%0A" +
+      "Área: " + areaTotal.toFixed(1) + "m² (" + comp + "m × " + alt + "m)%0A" +
+      "Paredes: " + qtd + " | Faces: " + faces + "%0A%0A" +
+      "MATERIAIS:%0A" +
+      "• Chapas drywall: " + chapas + " unid%0A" +
+      "• Perfil U guia: " + guias + " barras%0A" +
+      "• Montantes: " + montantes + " barras%0A" +
+      "• Buchas c/ parafuso: " + buchas + " unid%0A" +
+      "• Parafuso GN 25: " + parafGN25 + " unid%0A" +
+      "• Parafuso Metal 13: " + parafMetal13 + " unid%0A" +
+      "• Fita Telada: " + fitaTelada + " rolo(s) 50m%0A" +
+      "• Massa Drywall: " + massa + "kg%0A" +
+      "• Cantoneiras: " + cantoneiras + " unid%0A%0A" +
+      "Pode me passar o orçamento gratuito?";
+    document.getElementById('parede-wa-btn').href = "https://wa.me/5511998483800?text=" + encodeURIComponent(msgParede);
+  }
+
 </script>
 
 <script type="application/ld+json">
@@ -1260,6 +1694,137 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
     { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "13:00" }
   ]
 }
+
+  /* CALCULADORA DE MATERIAIS */
+  (function(){
+    const CHAPA_AREA = 1.20 * 1.80;  // 2.16 m2
+    const BARRA_M    = 3.00;          // metros
+    const FOLGA      = 1.10;          // 10%
+
+    // Tabs
+    document.querySelectorAll(".calc-tab").forEach(btn => {
+      btn.addEventListener("click", function(){
+        document.querySelectorAll(".calc-tab").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".calc-panel").forEach(p => p.classList.remove("active"));
+        this.classList.add("active");
+        document.getElementById("tab-" + this.dataset.tab).classList.add("active");
+        document.getElementById("calcResult").style.display = "none";
+      });
+    });
+
+    function val(id){ return parseFloat(document.getElementById(id)?.value) || 0; }
+
+    function calcForro(){
+      const comp = val("forro-comp"), larg = val("forro-larg"), alt = val("forro-alt");
+      if (!comp || !larg){ alert("Preencha comprimento e largura."); return null; }
+      const area = comp * larg * FOLGA;
+      const chapas = Math.ceil(area / CHAPA_AREA);
+      // Perfis: guias no perímetro + montantes a cada 0.6m
+      const perimetro = 2 * (comp + larg);
+      const guias = Math.ceil(perimetro / BARRA_M) * FOLGA;
+      // Pendurais e tirantes a cada 0.6m
+      const montantes = Math.ceil((comp * larg) / (0.60 * 1.20)) * FOLGA;
+      const barras = Math.ceil(guias + montantes);
+      return {
+        tipo: "Forro",
+        medidas: comp + "m x " + larg + "m | Pé-direito: " + (alt||"--") + "m",
+        area: (comp * larg).toFixed(2),
+        chapas,
+        barras,
+        parafusos: chapas * 24,
+        fita: Math.ceil(chapas * 1.8) + " m",
+        massa: Math.ceil(area * 0.3) + " kg"
+      };
+    }
+
+    function calcParede(){
+      const comp = val("parede-comp"), alt = val("parede-alt"), qtd = val("parede-qtd") || 1;
+      if (!comp || !alt){ alert("Preencha comprimento e altura."); return null; }
+      const area = comp * alt * qtd * FOLGA;
+      const chapas = Math.ceil((area * 2) / CHAPA_AREA); // 2 faces
+      const guias = Math.ceil((comp * qtd * 2) / BARRA_M * FOLGA); // topo e piso
+      const montantes = Math.ceil((comp * qtd) / 0.60 * FOLGA);
+      const barras = Math.ceil(guias + montantes);
+      return {
+        tipo: "Parede",
+        medidas: comp + "m x " + alt + "m | " + qtd + " parede(s)",
+        area: (comp * alt * qtd).toFixed(2),
+        chapas,
+        barras,
+        parafusos: chapas * 24,
+        fita: Math.ceil(chapas * 1.8) + " m",
+        massa: Math.ceil(area * 0.3) + " kg"
+      };
+    }
+
+    function calcDivisoria(){
+      const comp = val("div-comp"), alt = val("div-alt");
+      if (!comp || !alt){ alert("Preencha comprimento e altura."); return null; }
+      const area = comp * alt * FOLGA;
+      const chapas = Math.ceil((area * 2) / CHAPA_AREA); // 2 faces
+      const guias = Math.ceil((comp * 2) / BARRA_M * FOLGA);
+      const montantes = Math.ceil(comp / 0.60 * FOLGA);
+      const barras = Math.ceil(guias + montantes);
+      return {
+        tipo: "Divisória",
+        medidas: comp + "m x " + alt + "m",
+        area: (comp * alt).toFixed(2),
+        chapas,
+        barras,
+        parafusos: chapas * 24,
+        fita: Math.ceil(chapas * 1.8) + " m",
+        massa: Math.ceil(area * 0.3) + " kg"
+      };
+    }
+
+    document.getElementById("calcBtn").addEventListener("click", function(){
+      const activeTab = document.querySelector(".calc-tab.active").dataset.tab;
+      let r;
+      if (activeTab === "forro")     r = calcForro();
+      if (activeTab === "parede")    r = calcParede();
+      if (activeTab === "divisoria") r = calcDivisoria();
+      if (!r) return;
+
+      const grid = document.getElementById("calcResultGrid");
+      grid.innerHTML = [
+        { label:"Chapas Drywall", value: r.chapas, unit:"unidades (1,20x1,80m)" },
+        { label:"Barras de Perfil", value: r.barras, unit:"unidades (3m cada)" },
+        { label:"Parafusos (aprox.)", value: r.parafusos, unit:"unidades" },
+        { label:"Fita de Junção", value: r.fita, unit:"" },
+        { label:"Massa de Rejunte", value: r.massa, unit:"" },
+        { label:"Área calculada", value: r.area + " m²", unit:"com 10% de folga" },
+      ].map(i => `
+        <div class="calc-item">
+          <span class="calc-item-label">${i.label}</span>
+          <span class="calc-item-value">${i.value}</span>
+          <span class="calc-item-unit">${i.unit}</span>
+        </div>`).join("");
+
+      // Adicionar observação
+      if (!document.querySelector(".calc-obs")){
+        const obs = document.createElement("p");
+        obs.className = "calc-obs";
+        obs.textContent = "* Valores com 10% de folga para cortes e ajustes.";
+        grid.after(obs);
+      }
+
+      // Link WhatsApp com resultado
+      const msg = "Olá Gesso Natureza! Calculei o material pelo site:%0A%0A"
+        + "Tipo: " + r.tipo + "%0A"
+        + "Medidas: " + r.medidas + "%0A"
+        + "Chapas Drywall: " + r.chapas + " unidades%0A"
+        + "Barras de Perfil: " + r.barras + " unidades%0A"
+        + "Parafusos: " + r.parafusos + " unidades%0A"
+        + "Fita: " + r.fita + "%0A"
+        + "Massa: " + r.massa + "%0A%0A"
+        + "Quero um orçamento!";
+      document.getElementById("calcWaBtn").href = "https://wa.me/5511998483800?text=" + msg;
+
+      document.getElementById("calcResult").style.display = "block";
+      document.getElementById("calcResult").scrollIntoView({ behavior:"smooth", block:"nearest" });
+    });
+  })();
+
 </script>
 
 </body>
