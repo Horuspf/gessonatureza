@@ -14,10 +14,19 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: "Sem resultado", details: data });
     }
 
-    // Só 5 estrelas, ordenar pelas mais longas (mais digitadas), top 5 para o carrossel
-    const reviews = (data.result.reviews || [])
+    const all = data.result.reviews || [];
+
+    // Prioriza 5 estrelas com mais texto, depois 4 estrelas
+    const cincoEstrelas = all
       .filter(r => r.rating === 5)
-      .sort((a, b) => (b.text||"").length - (a.text||"").length)
+      .sort((a, b) => (b.text||"").length - (a.text||"").length);
+
+    const quatroEstrelas = all
+      .filter(r => r.rating === 4)
+      .sort((a, b) => (b.text||"").length - (a.text||"").length);
+
+    // Pega pelo menos 3, preenchendo com 4 estrelas se necessário
+    const reviews = [...cincoEstrelas, ...quatroEstrelas]
       .slice(0, 5)
       .map(r => ({
         author_name:       r.author_name,
