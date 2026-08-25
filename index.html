@@ -807,21 +807,62 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 }
 .grw-btn:hover{ background:#1557b0; }
 /* Carrossel */
-.grw-carousel{ position:relative; }
+.grw-carousel{
+  position:relative;
+}
+.grw-overflow{
+  overflow:hidden;
+  width:100%;
+}
+.grw-track{
+  display:flex;
+  gap:16px;
+  transition:transform .35s ease;
+  will-change:transform;
+}
+/* Desktop/tablet: cards flexíveis */
+.grw-card{
+  flex:1; min-width:0;
+  background:#fff; border:1px solid #e8eaed;
+  border-radius:12px; padding:20px;
+  box-shadow:0 1px 6px rgba(0,0,0,.06);
+}
+/* Mobile: 1 card por vez, largura 100% do overflow */
+@media(max-width:600px){
+  .grw-card{
+    flex:0 0 100%;
+    width:100%;
+    min-width:100%;
+  }
+  .grw-wrap{ padding:16px; }
+}
+@media(max-width:900px) and (min-width:601px){
+  .grw-card{ flex:0 0 calc(50% - 8px); min-width:calc(50% - 8px); }
+}
 .grw-arr{
   display:none;
   position:absolute; top:50%; transform:translateY(-50%);
-  width:36px; height:36px; border-radius:50%;
+  width:40px; height:40px; border-radius:50%;
   background:#fff; border:1px solid #e8eaed;
-  box-shadow:0 2px 8px rgba(0,0,0,.12);
-  font-size:18px; cursor:pointer; z-index:10;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+  font-size:20px; line-height:1; cursor:pointer; z-index:10;
   align-items:center; justify-content:center;
-  color:#1a1a1a; font-weight:700; transition:.2s;
+  color:#333; transition:.2s;
 }
-.grw-arr:hover{ background:#f8f9fa; }
-.grw-arr.left{ left:-14px; }
-.grw-arr.right{ right:-14px; }
-@media(max-width:600px){ .grw-arr{ display:flex; } .grw-carousel{ overflow:hidden; } }
+.grw-arr:hover{ background:#f0f0f0; }
+.grw-arr.left{ left:-20px; }
+.grw-arr.right{ right:-20px; }
+.grw-arr:disabled{ opacity:.3; cursor:default; }
+/* setas só no desktop — mobile usa autoplay */
+.grw-dots{
+  display:flex; justify-content:center; gap:6px; margin-top:16px;
+}
+.grw-dot{
+  width:8px; height:8px; border-radius:50%;
+  background:#dadce0; cursor:pointer; border:none; transition:.2s;
+  padding:0;
+}
+.grw-dot.active{ background:#1a73e8; width:20px; border-radius:4px; } .grw-carousel{ overflow:hidden; } }
 .grw-track{
   display:flex; gap:16px;
 }
@@ -2248,15 +2289,16 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 
     function render(data){
       reviews = data.reviews||[];
-      CARDS_PER_PAGE = window.innerWidth < 600 ? 1 : reviews.length;
-      var rating = data.rating||"4,7";
-      var total  = data.total||"";
-
-      var totalPages = Math.ceil(reviews.length/CARDS_PER_PAGE);
+      CARDS_PER_PAGE = window.innerWidth <= 600 ? 1 : window.innerWidth <= 900 ? 2 : 3;
+      var totalPages = Math.ceil(reviews.length / CARDS_PER_PAGE);
+      var currentPage = 0;
+      var rating = data.rating || "4,7";
+      var total  = data.total  || "";
 
       function buildHTML(){
-        // Header
         var h = '<div class="grw-wrap">';
+
+        // Header
         h += '<div class="grw-header">';
         h +=   '<div class="grw-header-left">';
         h +=     '<div class="grw-google-logo"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></div>';
@@ -2265,30 +2307,28 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
         h +=   '<div class="grw-meta">';
         h +=     '<span class="grw-rating-num">'+String(rating).replace(".",",")+'</span>';
         h +=     '<span class="grw-stars-row">★★★★★</span>';
-        h +=     (total?'<span class="grw-total">('+total+')</span>':'');
+        h +=     (total ? '<span class="grw-total">('+total+')</span>' : '');
         h +=   '</div>';
-        h +=   '<a class="grw-btn" href="https://www.google.com/search?q=Gesso+Natureza+Arujá" target="_blank">Avaliar no Google</a>';
+        h +=   '<a class="grw-btn" href="https://www.google.com/search?q=Gesso+Natureza+Aruj%C3%A1&hl=pt" target="_blank">Avaliar no Google</a>';
         h += '</div>';
 
         // Carrossel
         h += '<div class="grw-carousel">';
-        h += '<button class="grw-arr left" id="grw-prev">&#8249;</button>';
-        h += '<button class="grw-arr right" id="grw-next">&#8250;</button>';
-        h += '<div style="overflow:hidden"><div class="grw-track" id="grw-track">';
+        h +=   '<button class="grw-arr left" id="grw-prev">&#8249;</button>';
+        h +=   '<button class="grw-arr right" id="grw-next">&#8250;</button>';
+        h +=   '<div class="grw-overflow"><div class="grw-track" id="grw-track">';
+
         reviews.forEach(function(r){
-          var foto = r.profile_photo_url||"";
-          var texto = (r.text||"").trim();
-          var curto = texto.length > 180;
-          var trecho = curto ? texto.substring(0,180)+"..." : texto;
+          var foto  = r.profile_photo_url || "";
+          var texto = (r.text || "").trim();
+          var curto = texto.length > 200;
+          var trecho= curto ? texto.substring(0,200)+"..." : texto;
 
           h += '<div class="grw-card">';
           h +=   '<div class="grw-card-top">';
           h +=     '<div class="grw-avatar">';
-          if(foto){
-            h += '<img src="'+foto+'" alt="'+r.author_name+'" loading="lazy">';
-          } else {
-            h += inicial(r.author_name);
-          }
+          if(foto){ h += '<img src="'+foto+'" alt="'+r.author_name+'" loading="lazy">'; }
+          else     { h += inicial(r.author_name); }
           h +=     '</div>';
           h +=     '<div class="grw-card-author">';
           h +=       '<div class="grw-card-name">'+r.author_name+'</div>';
@@ -2298,58 +2338,75 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
           h +=   '<div class="grw-card-stars">'+estrelas(r.rating)+'</div>';
           if(texto){
             h += '<div class="grw-card-text">'+trecho+'</div>';
-            if(curto){
-              var fullEncoded = encodeURIComponent(texto);
-              h += '<button class="grw-read-more" data-full="'+fullEncoded+'">Ler mais</button>';
-            }
+            if(curto){ h += '<button class="grw-read-more" data-full="'+encodeURIComponent(texto)+'">Ler mais</button>'; }
           }
           h += '</div>';
         });
+
         h += '</div></div></div>';
 
-        // Dots
-        if(window.innerWidth < 600 && totalPages > 1){
+        // Dots (sempre visíveis se tiver mais de 1 página)
+        if(totalPages > 1){
           h += '<div class="grw-dots">';
           for(var i=0;i<totalPages;i++){
-            h += '<button class="grw-dot'+(i===0?' active':'')+'" data-page="'+i+'"></button>';
+            h += '<button class="grw-dot'+(i===0?" active":"")+'" data-page="'+i+'"></button>';
           }
           h += '</div>';
         }
+
         h += '</div>';
         return h;
       }
 
       container.innerHTML = buildHTML();
 
-      // Ler mais — event delegation
-      container.addEventListener('click', function(e){
-        if(e.target.classList.contains('grw-read-more')){
-          var full = decodeURIComponent(e.target.dataset.full||'');
+      var track = document.getElementById("grw-track");
+      var prev  = document.getElementById("grw-prev");
+      var next  = document.getElementById("grw-next");
+
+      function getCardW(){
+        var card = track.children[0];
+        if(!card) return 0;
+        return card.offsetWidth + 16; // width + gap
+      }
+
+      function goTo(page){
+        page = Math.max(0, Math.min(totalPages-1, page));
+        currentPage = page;
+        track.style.transform = "translateX(-"+(page * getCardW() * CARDS_PER_PAGE)+"px)";
+        document.querySelectorAll(".grw-dot").forEach(function(d,i){
+          d.classList.toggle("active", i===page);
+        });
+        if(prev){ prev.disabled = page === 0; }
+        if(next){ next.disabled = page === totalPages-1; }
+      }
+
+      if(prev) prev.addEventListener("click", function(){ goTo(currentPage-1); });
+      if(next) next.addEventListener("click", function(){ goTo(currentPage+1); });
+
+      document.querySelectorAll(".grw-dot").forEach(function(d){
+        d.addEventListener("click", function(){ goTo(parseInt(this.dataset.page)); });
+      });
+
+      // Ler mais
+      container.addEventListener("click", function(e){
+        if(e.target.classList.contains("grw-read-more")){
+          var full = decodeURIComponent(e.target.dataset.full||"");
           if(full && e.target.previousSibling){ e.target.previousSibling.textContent = full; e.target.remove(); }
         }
       });
 
-      // Controle do carrossel
-      var track = document.getElementById("grw-track");
-      function goTo(page){
-        if(page < 0 || page >= totalPages) return;
-        currentPage = page;
-        if(window.innerWidth < 600){
-          var cardW = track.children[0] ? track.children[0].offsetWidth + 16 : 0;
-          track.style.transform = "translateX(-"+(page * cardW)+"px)";
-        }
-        document.querySelectorAll(".grw-dot").forEach(function(d,i){
-          d.classList.toggle("active", i===page);
-        });
-        // Setas — opacidade quando no limite
-        var p = document.getElementById("grw-prev");
-        var n = document.getElementById("grw-next");
-        if(p) p.style.opacity = page===0 ? "0.3" : "1";
-        if(n) n.style.opacity = page===totalPages-1 ? "0.3" : "1";
+      goTo(0);
+
+      // Autoplay no mobile — troca de card a cada 4 segundos
+      if(window.innerWidth <= 600 && totalPages > 1){
+        var autoTimer = setInterval(function(){
+          var next = (currentPage + 1) % totalPages;
+          goTo(next);
+        }, 4000);
+        // Pausa ao tocar
+        container.addEventListener("touchstart", function(){ clearInterval(autoTimer); }, { passive:true });
       }
-      document.querySelectorAll(".grw-dot").forEach(function(d){
-        d.addEventListener("click", function(){ goTo(parseInt(this.dataset.page)); });
-      });
     }
 
     fetch("/api/reviews")
