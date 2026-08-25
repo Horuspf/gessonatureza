@@ -1374,6 +1374,18 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 </a>
 
 <script>
+  /* PERFIL BUTTONS — delegação de evento */
+  document.addEventListener('click', function(e){
+    if(e.target.classList.contains('perfil-btn')){
+      var idx = parseInt(e.target.dataset.idx);
+      var val = e.target.dataset.val;
+      if(!isNaN(idx) && paredeItems[idx] !== undefined){
+        paredeItems[idx].perfil = val;
+        paredeRender();
+      }
+    }
+  });
+
   /* PRODUTOS CARROSSEL MOBILE */
   function prodScroll(dir){
     var el = document.getElementById('productsScroll');
@@ -1728,10 +1740,9 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
               '<input type="number" placeholder="1 ou 2" min="1" max="2" step="1" value="'+it.faces+'" oninput="paredeItems['+idx+'].faces=this.value"></div>' +
             '<div class="calc-field" style="grid-column:1/-1"><label>Tamanho do montante / guia</label>' +
               '<div style="display:flex;gap:8px;margin-top:8px;">' +
-                ['48','70','90'].map(function(sz){
-                  var ativo = (it.perfil||'70')===sz;
-                  return '<button type="button" onclick="paredeItems['+idx+'].perfil=''+sz+'';paredeRender();" style="flex:1;padding:12px;border-radius:8px;border:2px solid '+(ativo?'#7BD494':'rgba(255,255,255,.2)')+';background:'+(ativo?'rgba(123,212,148,.15)':'transparent')+';color:'+(ativo?'#7BD494':'rgba(255,255,255,.6)')+';font-weight:700;font-size:14px;cursor:pointer;font-family:Inter,sans-serif;">'+sz+'mm</button>';
-                }).join('') +
+              '<button type="button" class="perfil-btn" data-idx="'+idx+'" data-val="48" style="flex:1;padding:12px;border-radius:8px;border:2px solid '+((it.perfil||'70')==='48'?'#7BD494':'rgba(255,255,255,.2)')+';background:'+((it.perfil||'70')==='48'?'rgba(123,212,148,.15)':'transparent')+';color:'+((it.perfil||'70')==='48'?'#7BD494':'rgba(255,255,255,.6)')+';font-weight:700;font-size:14px;cursor:pointer;font-family:Inter,sans-serif;">48mm</button>' +
+              '<button type="button" class="perfil-btn" data-idx="'+idx+'" data-val="70" style="flex:1;padding:12px;border-radius:8px;border:2px solid '+((it.perfil||'70')==='70'?'#7BD494':'rgba(255,255,255,.2)')+';background:'+((it.perfil||'70')==='70'?'rgba(123,212,148,.15)':'transparent')+';color:'+((it.perfil||'70')==='70'?'#7BD494':'rgba(255,255,255,.6)')+';font-weight:700;font-size:14px;cursor:pointer;font-family:Inter,sans-serif;">70mm</button>' +
+              '<button type="button" class="perfil-btn" data-idx="'+idx+'" data-val="90" style="flex:1;padding:12px;border-radius:8px;border:2px solid '+((it.perfil||'70')==='90'?'#7BD494':'rgba(255,255,255,.2)')+';background:'+((it.perfil||'70')==='90'?'rgba(123,212,148,.15)':'transparent')+';color:'+((it.perfil||'70')==='90'?'#7BD494':'rgba(255,255,255,.6)')+';font-weight:700;font-size:14px;cursor:pointer;font-family:Inter,sans-serif;">90mm</button>' +
               '</div></div>' +
           '</div>' +
         '</div>';
@@ -2074,9 +2085,9 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
     if(!cont) return;
     cont.innerHTML = extrasMap[tipo].map(function(it, idx){
       return '<div class="calc-extra-row">' +
-        '<input type="text" placeholder="Nome do produto" value="'+it.nome+'" oninput="extrasMap[''+tipo+'']['+idx+'].nome=this.value">' +
-        '<input type="text" placeholder="Qtd / obs" value="'+it.qtd+'" oninput="extrasMap[''+tipo+'']['+idx+'].qtd=this.value">' +
-        '<button class="calc-extra-del" onclick="extraRemove(''+tipo+'','+idx+')">✕</button>' +
+        '<input type="text" placeholder="Nome do produto" value="'+it.nome+'" data-tipo="'+tipo+'" data-idx="'+idx+'" data-field="nome" class="extra-input">' +
+        '<input type="text" placeholder="Qtd / obs" value="'+it.qtd+'" data-tipo="'+tipo+'" data-idx="'+idx+'" data-field="qtd" class="extra-input">' +
+        '<button class="calc-extra-del" data-tipo="'+tipo+'" data-idx="'+idx+'" data-action="remove">✕</button>' +
       '</div>';
     }).join('');
   }
