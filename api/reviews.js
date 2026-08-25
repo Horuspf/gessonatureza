@@ -3,7 +3,7 @@ export default async function handler(req, res) {
   const API_KEY  = "AIzaSyD9d4btFs0cLwSVkCdOdJ6bU_ytCWLdQcU";
 
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Cache-Control", "s-maxage=3600"); // cache 1h
+  res.setHeader("Cache-Control", "s-maxage=3600");
 
   try {
     const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=reviews,rating,user_ratings_total&language=pt-BR&reviews_sort=newest&key=${API_KEY}`;
@@ -11,18 +11,18 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     if (!data.result) {
-      return res.status(500).json({ error: "Sem resultado" });
+      return res.status(500).json({ error: "Sem resultado", details: data });
     }
 
-    // Filtrar 4-5 estrelas, ordenar por nota e pegar as 3 melhores
+    // Só 5 estrelas, ordenar pelas mais longas (mais digitadas) e pegar top 3
     const reviews = (data.result.reviews || [])
-      .filter(r => r.rating >= 4)
-      .sort((a, b) => b.rating - a.rating || b.time - a.time)
+      .filter(r => r.rating === 5 && r.text && r.text.trim().length > 10)
+      .sort((a, b) => b.text.length - a.text.length)
       .slice(0, 3);
 
     res.status(200).json({
       rating: data.result.rating,
-      total: data.result.user_ratings_total,
+      total:  data.result.user_ratings_total,
       reviews
     });
   } catch (err) {
