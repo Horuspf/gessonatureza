@@ -810,10 +810,9 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 .grw-carousel{ position:relative; overflow:hidden; }
 .grw-track{
   display:flex; gap:16px;
-  transition:transform .4s ease;
 }
 .grw-card{
-  min-width:calc(33.333% - 11px); flex-shrink:0;
+  flex:1; min-width:0;
   background:#fff; border:1px solid #e8eaed;
   border-radius:12px; padding:20px;
   box-shadow:0 1px 6px rgba(0,0,0,.06);
@@ -865,10 +864,13 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 }
 @keyframes grw-spin{ to{ transform:rotate(360deg); } }
 @media(max-width:900px){
-  .grw-card{ min-width:calc(50% - 8px); }
+  .grw-track{ flex-wrap:wrap; }
+  .grw-card{ min-width:calc(50% - 8px); flex:none; }
 }
 @media(max-width:600px){
-  .grw-card{ min-width:100%; }
+  .grw-carousel{ overflow:hidden; }
+  .grw-track{ flex-wrap:nowrap; transition:transform .4s ease; }
+  .grw-card{ min-width:calc(100vw - 80px); flex:none; flex-shrink:0; }
   .grw-wrap{ padding:16px; }
 }
 </style>
@@ -2214,7 +2216,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 
     container.innerHTML = '<div class="grw-loading"><div class="grw-spinner"></div>Carregando avaliações...</div>';
 
-    var CARDS_PER_PAGE = window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 2 : 3;
+    var CARDS_PER_PAGE = 1; // calculado dentro do render
     var currentPage = 0;
     var reviews = [];
 
@@ -2232,6 +2234,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 
     function render(data){
       reviews = data.reviews||[];
+      CARDS_PER_PAGE = window.innerWidth < 600 ? 1 : reviews.length;
       var rating = data.rating||"4,7";
       var total  = data.total||"";
 
@@ -2290,7 +2293,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
         h += '</div></div>';
 
         // Dots
-        if(totalPages > 1){
+        if(window.innerWidth < 600 && totalPages > 1){
           h += '<div class="grw-dots">';
           for(var i=0;i<totalPages;i++){
             h += '<button class="grw-dot'+(i===0?' active':'')+'" data-page="'+i+'"></button>';
@@ -2315,9 +2318,10 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       var track = document.getElementById("grw-track");
       function goTo(page){
         currentPage = page;
-        var offset = page * CARDS_PER_PAGE;
-        var cardW = track.children[0] ? track.children[0].offsetWidth + 16 : 0;
-        track.style.transform = "translateX(-"+(offset * cardW)+"px)";
+        if(window.innerWidth < 600){
+          var cardW = track.children[0] ? track.children[0].offsetWidth + 16 : 0;
+          track.style.transform = "translateX(-"+(page * cardW)+"px)";
+        }
         document.querySelectorAll(".grw-dot").forEach(function(d,i){
           d.classList.toggle("active", i===page);
         });
