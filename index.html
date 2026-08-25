@@ -757,6 +757,15 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
   font-size:18px; cursor:pointer; padding:0; line-height:1;
 }
 .calc-extra-del:hover{ color:#ff7a7a; }
+/* Corrigir cor das options do select da calculadora */
+.calc-item select option{
+  background:#1a3d22 !important;
+  color:#fff !important;
+}
+.calc-select-perfil option{
+  background-color:#063C10 !important;
+  color:#ffffff !important;
+}
 
 @media(max-width:600px){
   .calc-grid{ grid-template-columns:1fr; }
@@ -1615,8 +1624,9 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       var colunas   = ceil(comp/1.20)+1;
       var mT        = (linhas*comp)+(colunas*larg);
       var perfisT   = ceil(mT/3*1.10);
-      var tirantes  = ceil(area/(0.60*1.20)*1.10);
-      var reguladores = tirantes;
+      // 3 tirantes e 3 reguladores por barra de canaleta F530
+      var tirantes    = perfisU * 3;
+      var reguladores = perfisU * 3;
       var tamTirante  = baixar+10;
       var buchas      = ceil(perimetro/0.60*1.10);
       var parafGN25   = ceil(chapas*10*1.10);
@@ -1717,11 +1727,12 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
             '<div class="calc-field"><label>Chapas por face</label>' +
               '<input type="number" placeholder="1 ou 2" min="1" max="2" step="1" value="'+it.faces+'" oninput="paredeItems['+idx+'].faces=this.value"></div>' +
             '<div class="calc-field" style="grid-column:1/-1"><label>Tamanho do montante / guia</label>' +
-              '<select oninput="paredeItems['+idx+'].perfil=this.value" style="width:100%;padding:14px 16px;background:#1a3d22;border:1px solid rgba(255,255,255,.18);border-radius:10px;color:#fff;font-size:15px;font-family:Inter,sans-serif;outline:none;">' +
-                '<option value="48" '+(it.perfil==="48"?"selected":"")+'>48mm</option>' +
-                '<option value="70" '+(it.perfil==="70"?"selected":"")+'>70mm</option>' +
-                '<option value="90" '+(it.perfil==="90"?"selected":"")+'>90mm</option>' +
-              '</select></div>' +
+              '<div style="display:flex;gap:8px;margin-top:8px;">' +
+                ['48','70','90'].map(function(sz){
+                  var ativo = (it.perfil||'70')===sz;
+                  return '<button type="button" onclick="paredeItems['+idx+'].perfil=''+sz+'';paredeRender();" style="flex:1;padding:12px;border-radius:8px;border:2px solid '+(ativo?'#7BD494':'rgba(255,255,255,.2)')+';background:'+(ativo?'rgba(123,212,148,.15)':'transparent')+';color:'+(ativo?'#7BD494':'rgba(255,255,255,.6)')+';font-weight:700;font-size:14px;cursor:pointer;font-family:Inter,sans-serif;">'+sz+'mm</button>';
+                }).join('') +
+              '</div></div>' +
           '</div>' +
         '</div>';
     });
@@ -1774,7 +1785,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       var montP     = ceil(comp/0.60)+1;
       var montM     = montP*alt;
       var montantes = ceil(montM/3*1.10);
-      var parafGN25 = ceil(chapas*12*1.10);
+      var parafGN25 = ceil(chapas*40*1.10);
       var parafMetal13 = ceil(montP*4*1.10);
       var buchas    = ceil(guiaM/0.60*1.10);
       var juntasH   = ceil(alt/1.80)*comp*faces;
