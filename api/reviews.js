@@ -14,15 +14,22 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: "Sem resultado", details: data });
     }
 
-    // Só 5 estrelas, ordenar pelas mais longas (mais digitadas) e pegar top 3
+    // Só 5 estrelas, ordenar pelas mais longas (mais digitadas), top 5 para o carrossel
     const reviews = (data.result.reviews || [])
-      .filter(r => r.rating === 5 && r.text && r.text.trim().length > 10)
-      .sort((a, b) => b.text.length - a.text.length)
-      .slice(0, 3);
+      .filter(r => r.rating === 5)
+      .sort((a, b) => (b.text||"").length - (a.text||"").length)
+      .slice(0, 5)
+      .map(r => ({
+        author_name:       r.author_name,
+        profile_photo_url: r.profile_photo_url,
+        rating:            r.rating,
+        text:              r.text,
+        time:              r.time,
+      }));
 
     res.status(200).json({
-      rating: data.result.rating,
-      total:  data.result.user_ratings_total,
+      rating:  data.result.rating,
+      total:   data.result.user_ratings_total,
       reviews
     });
   } catch (err) {
