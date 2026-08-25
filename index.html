@@ -773,62 +773,104 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 }
 
 
-/* ── Google Reviews via API ── */
-.gr-grid{
-  display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:28px;
+
+
+/* ── Google Reviews Widget ── */
+.grw-wrap{
+  background:#fff; border-radius:16px; padding:24px 28px;
+  box-shadow:0 4px 24px rgba(0,0,0,.08);
 }
-.gr-card{
-  position:relative;
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:var(--raio);
-  padding:24px;
-  background-image: linear-gradient(90deg, rgba(255,255,255,.2) 50%, transparent 0);
-  background-size:14px 1px; background-repeat:repeat-x; background-position:0 68px;
+.grw-header{
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:20px; flex-wrap:wrap; gap:12px;
 }
-.gr-card::before,.gr-card::after{
-  content:""; position:absolute; top:68px; width:16px; height:16px; border-radius:50%;
-  background:var(--verde-esc); transform:translateY(-50%);
-  box-shadow:inset 0 0 0 2px rgba(255,255,255,.15);
+.grw-header-left{ display:flex; align-items:center; gap:10px; }
+.grw-google-logo{
+  font-size:22px; font-weight:800; letter-spacing:-.5px;
 }
-.gr-card::before{ left:-8px; }
-.gr-card::after{ right:-8px; }
-.gr-top{
-  display:flex; justify-content:space-between; align-items:flex-start;
-  gap:10px; padding-bottom:18px;
+.grw-google-logo span:nth-child(1){ color:#4285F4; }
+.grw-google-logo span:nth-child(2){ color:#EA4335; }
+.grw-google-logo span:nth-child(3){ color:#FBBC05; }
+.grw-google-logo span:nth-child(4){ color:#4285F4; }
+.grw-google-logo span:nth-child(5){ color:#34A853; }
+.grw-google-logo span:nth-child(6){ color:#EA4335; }
+.grw-google-logo-text{ font-size:17px; font-weight:800; color:#1a1a1a; }
+.grw-meta{ display:flex; align-items:center; gap:8px; }
+.grw-rating-num{ font-size:26px; font-weight:800; color:#1a1a1a; }
+.grw-stars-row{ color:#FBBC05; font-size:18px; letter-spacing:1px; }
+.grw-total{ font-size:13px; color:#666; }
+.grw-btn{
+  background:#1a73e8; color:#fff; border:none; border-radius:999px;
+  padding:10px 20px; font-size:13px; font-weight:700;
+  cursor:pointer; text-decoration:none; display:inline-block;
+  font-family:Inter,sans-serif; transition:.2s;
 }
-.gr-author{ display:flex; align-items:center; gap:10px; }
-.gr-avatar{
-  width:38px; height:38px; border-radius:50%;
-  background:var(--verde-vivo); color:#fff;
+.grw-btn:hover{ background:#1557b0; }
+/* Carrossel */
+.grw-carousel{ position:relative; overflow:hidden; }
+.grw-track{
+  display:flex; gap:16px;
+  transition:transform .4s ease;
+}
+.grw-card{
+  min-width:calc(33.333% - 11px); flex-shrink:0;
+  background:#fff; border:1px solid #e8eaed;
+  border-radius:12px; padding:20px;
+  box-shadow:0 1px 6px rgba(0,0,0,.06);
+}
+.grw-card-top{ display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.grw-avatar{
+  width:44px; height:44px; border-radius:50%; object-fit:cover;
+  flex-shrink:0; background:#e8eaed;
   display:flex; align-items:center; justify-content:center;
-  font-weight:700; font-size:15px; flex-shrink:0;
+  font-weight:700; font-size:18px; color:#666;
 }
-.gr-name{ font-weight:700; font-size:14px; color:#fff; line-height:1.3; }
-.gr-reviews-count{ font-size:11px; color:rgba(255,255,255,.45); margin-top:2px; }
-.gr-stars{ color:var(--amarelo); font-size:17px; letter-spacing:2px; flex-shrink:0; }
-.gr-text{
-  color:rgba(255,255,255,.82); font-size:14px;
-  margin:22px 0 12px; line-height:1.65;
+.grw-avatar img{ width:100%; height:100%; border-radius:50%; object-fit:cover; }
+.grw-card-author{ flex:1; min-width:0; }
+.grw-card-name{
+  font-weight:700; font-size:14px; color:#1a1a1a;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
-.gr-time{ color:rgba(255,255,255,.4); font-size:12px; }
-.gr-google-badge{
-  display:inline-flex; align-items:center; gap:5px;
-  margin-top:8px; font-size:11px; color:rgba(255,255,255,.35);
+.grw-card-time{ font-size:12px; color:#999; margin-top:2px; }
+.grw-card-stars{ color:#FBBC05; font-size:15px; letter-spacing:1px; margin-bottom:10px; }
+.grw-card-text{
+  font-size:13.5px; color:#333; line-height:1.6;
+  display:-webkit-box; -webkit-line-clamp:4;
+  -webkit-box-orient:vertical; overflow:hidden;
 }
-.gr-loading{
-  text-align:center; color:rgba(255,255,255,.5);
-  padding:60px 20px; font-size:14px;
-  display:flex; flex-direction:column; align-items:center; gap:12px;
+.grw-read-more{
+  color:#1a73e8; font-size:13px; font-weight:600;
+  cursor:pointer; margin-top:6px; display:inline-block;
+  background:none; border:none; padding:0; font-family:Inter,sans-serif;
 }
-.gr-spinner{
-  width:32px; height:32px; border:3px solid rgba(255,255,255,.15);
-  border-top-color:#7BD494; border-radius:50%;
-  animation:gr-spin .8s linear infinite;
+/* Dots */
+.grw-dots{
+  display:flex; justify-content:center; gap:6px; margin-top:18px;
 }
-@keyframes gr-spin{ to{ transform:rotate(360deg); } }
-.gr-error{ text-align:center; color:rgba(255,255,255,.4); padding:20px; font-size:13px; }
-@media(max-width:1000px){ .gr-grid{ grid-template-columns:1fr; } }
+.grw-dot{
+  width:8px; height:8px; border-radius:50%;
+  background:#dadce0; cursor:pointer; transition:.2s;
+  border:none;
+}
+.grw-dot.active{ background:#1a73e8; width:20px; border-radius:4px; }
+/* Loading */
+.grw-loading{
+  background:#fff; border-radius:16px; padding:60px;
+  text-align:center; color:#999; font-size:14px;
+}
+.grw-spinner{
+  width:32px; height:32px; border:3px solid #e8eaed;
+  border-top-color:#1a73e8; border-radius:50%;
+  animation:grw-spin .8s linear infinite; margin:0 auto 12px;
+}
+@keyframes grw-spin{ to{ transform:rotate(360deg); } }
+@media(max-width:900px){
+  .grw-card{ min-width:calc(50% - 8px); }
+}
+@media(max-width:600px){
+  .grw-card{ min-width:100%; }
+  .grw-wrap{ padding:16px; }
+}
 </style>
 </head>
 <body>
@@ -2163,75 +2205,133 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
   paredeRender();
 
 
-  /* GOOGLE REVIEWS via Vercel Function */
+
+
+  /* GOOGLE REVIEWS WIDGET — estilo Elfsight */
   (function(){
     var container = document.getElementById("google-reviews-widget");
     if(!container) return;
 
-    container.innerHTML = '<div class="gr-loading"><div class="gr-spinner"></div>Carregando avaliações...</div>';
+    container.innerHTML = '<div class="grw-loading"><div class="grw-spinner"></div>Carregando avaliações...</div>';
+
+    var CARDS_PER_PAGE = window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 2 : 3;
+    var currentPage = 0;
+    var reviews = [];
 
     function estrelas(n){
-      var s = ""; for(var i=0;i<5;i++) s += i<n?"★":"☆"; return s;
+      var s=""; for(var i=0;i<5;i++) s+=i<n?"★":"☆"; return s;
     }
-
-    function tempoRelativo(ts){
-      var diff = Math.floor((Date.now()/1000 - ts)/86400);
-      if(diff < 1)   return "hoje";
-      if(diff < 30)  return "há "+diff+" dias";
-      if(diff < 365) return "há "+Math.floor(diff/30)+" meses";
-      return "há "+Math.floor(diff/365)+" ano"+(Math.floor(diff/365)>1?"s":"");
+    function tempo(ts){
+      var d=Math.floor((Date.now()/1000-ts)/86400);
+      if(d<1) return "hoje";
+      if(d<30) return "há "+d+" dias";
+      if(d<365) return "há "+Math.floor(d/30)+" meses";
+      var y=Math.floor(d/365); return "há "+y+" ano"+(y>1?"s":"");
     }
+    function inicial(n){ return n?n.charAt(0).toUpperCase():"G"; }
 
-    function inicialAvatar(nome){
-      return nome ? nome.charAt(0).toUpperCase() : "G";
+    function render(data){
+      reviews = data.reviews||[];
+      var rating = data.rating||"4,7";
+      var total  = data.total||"";
+
+      var totalPages = Math.ceil(reviews.length/CARDS_PER_PAGE);
+
+      function buildHTML(){
+        // Header
+        var h = '<div class="grw-wrap">';
+        h += '<div class="grw-header">';
+        h +=   '<div class="grw-header-left">';
+        h +=     '<div class="grw-google-logo"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></div>';
+        h +=     '<div class="grw-google-logo-text">Reviews</div>';
+        h +=   '</div>';
+        h +=   '<div class="grw-meta">';
+        h +=     '<span class="grw-rating-num">'+String(rating).replace(".",",")+'</span>';
+        h +=     '<div>';
+        h +=       '<div class="grw-stars-row">★★★★★</div>';
+        h +=       (total?'<div class="grw-total">('+total+')</div>':'');
+        h +=     '</div>';
+        h +=   '</div>';
+        h +=   '<a class="grw-btn" href="https://www.google.com/search?q=Gesso+Natureza+Arujá" target="_blank">Avaliar no Google</a>';
+        h += '</div>';
+
+        // Carrossel
+        h += '<div class="grw-carousel"><div class="grw-track" id="grw-track">';
+        reviews.forEach(function(r){
+          var foto = r.profile_photo_url||"";
+          var texto = (r.text||"").trim();
+          var curto = texto.length > 180;
+          var trecho = curto ? texto.substring(0,180)+"..." : texto;
+
+          h += '<div class="grw-card">';
+          h +=   '<div class="grw-card-top">';
+          h +=     '<div class="grw-avatar">';
+          if(foto){
+            h += '<img src="'+foto+'" alt="'+r.author_name+'" loading="lazy">';
+          } else {
+            h += inicial(r.author_name);
+          }
+          h +=     '</div>';
+          h +=     '<div class="grw-card-author">';
+          h +=       '<div class="grw-card-name">'+r.author_name+'</div>';
+          h +=       '<div class="grw-card-time">'+tempo(r.time)+'</div>';
+          h +=     '</div>';
+          h +=   '</div>';
+          h +=   '<div class="grw-card-stars">'+estrelas(r.rating)+'</div>';
+          if(texto){
+            h += '<div class="grw-card-text">'+trecho+'</div>';
+            if(curto){
+              var fullEncoded = encodeURIComponent(texto);
+              h += '<button class="grw-read-more" data-full="'+fullEncoded+'">Ler mais</button>';
+            }
+          }
+          h += '</div>';
+        });
+        h += '</div></div>';
+
+        // Dots
+        if(totalPages > 1){
+          h += '<div class="grw-dots">';
+          for(var i=0;i<totalPages;i++){
+            h += '<button class="grw-dot'+(i===0?' active':'')+'" data-page="'+i+'"></button>';
+          }
+          h += '</div>';
+        }
+        h += '</div>';
+        return h;
+      }
+
+      container.innerHTML = buildHTML();
+
+      // Ler mais — event delegation
+      container.addEventListener('click', function(e){
+        if(e.target.classList.contains('grw-read-more')){
+          var full = decodeURIComponent(e.target.dataset.full||'');
+          if(full && e.target.previousSibling){ e.target.previousSibling.textContent = full; e.target.remove(); }
+        }
+      });
+
+      // Controle do carrossel
+      var track = document.getElementById("grw-track");
+      function goTo(page){
+        currentPage = page;
+        var offset = page * CARDS_PER_PAGE;
+        var cardW = track.children[0] ? track.children[0].offsetWidth + 16 : 0;
+        track.style.transform = "translateX(-"+(offset * cardW)+"px)";
+        document.querySelectorAll(".grw-dot").forEach(function(d,i){
+          d.classList.toggle("active", i===page);
+        });
+      }
+      document.querySelectorAll(".grw-dot").forEach(function(d){
+        d.addEventListener("click", function(){ goTo(parseInt(this.dataset.page)); });
+      });
     }
 
     fetch("/api/reviews")
       .then(function(r){ return r.json(); })
-      .then(function(data){
-        // Atualizar rating e total no header
-        if(data.rating){
-          var el = document.getElementById("gr-rating");
-          if(el) el.textContent = String(data.rating).replace(".",",");
-        }
-        if(data.total){
-          var el2 = document.getElementById("gr-total");
-          if(el2) el2.textContent = data.total + " avaliações no Google";
-        }
-
-        if(!data.reviews || data.reviews.length === 0){
-          container.innerHTML = '<p class="gr-error">Nenhuma avaliação disponível.</p>';
-          return;
-        }
-
-        var out = '<div class="gr-grid">';
-        data.reviews.forEach(function(r){
-          var texto = r.text && r.text.trim()
-            ? r.text.substring(0,240)+(r.text.length>240?"…":"")
-            : "Avaliação sem comentário.";
-          out +=
-            '<article class="gr-card">' +
-              '<div class="gr-top">' +
-                '<div class="gr-author">' +
-                  '<div class="gr-avatar">'+inicialAvatar(r.author_name)+'</div>' +
-                  '<div>' +
-                    '<div class="gr-name">'+r.author_name+'</div>' +
-                  '</div>' +
-                '</div>' +
-                '<span class="gr-stars">'+estrelas(r.rating)+'</span>' +
-              '</div>' +
-              '<p class="gr-text">'+texto+'</p>' +
-              '<div style="display:flex;align-items:center;justify-content:space-between;">' +
-                '<small class="gr-time">'+tempoRelativo(r.time)+'</small>' +
-                '<span class="gr-google-badge">via Google</span>' +
-              '</div>' +
-            '</article>';
-        });
-        out += '</div>';
-        container.innerHTML = out;
-      })
+      .then(render)
       .catch(function(){
-        container.innerHTML = '<p class="gr-error">Erro ao carregar avaliações.</p>';
+        container.innerHTML = '<div class="grw-loading">Erro ao carregar avaliações.</div>';
       });
   })();
 
