@@ -726,6 +726,37 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
   display:flex; align-items:center; justify-content:center; transition:.2s;
 }
 .calc-remove:hover{ background:rgba(220,80,80,.3); color:#fff; }
+.calc-extra{
+  margin-top:16px; padding:16px;
+  background:rgba(255,255,255,.04);
+  border:1px dashed rgba(255,255,255,.2);
+  border-radius:10px;
+}
+.calc-extra-title{
+  font-size:11px; font-weight:700; color:#7BD494;
+  letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px;
+}
+.calc-extra-row{
+  display:grid; grid-template-columns:1fr 120px 36px; gap:8px; align-items:center; margin-bottom:8px;
+}
+.calc-extra-row input{
+  padding:10px 12px;
+  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15);
+  border-radius:8px; color:#fff; font-size:13px; font-family:Inter,sans-serif; outline:none;
+}
+.calc-extra-row input::placeholder{ color:rgba(255,255,255,.3); }
+.calc-extra-add{
+  background:transparent; border:1px dashed rgba(255,255,255,.25);
+  color:rgba(255,255,255,.6); border-radius:8px; padding:8px 12px;
+  font-size:12px; font-weight:700; cursor:pointer; width:100%; margin-top:4px;
+  font-family:Inter,sans-serif; transition:.2s;
+}
+.calc-extra-add:hover{ border-color:#7BD494; color:#7BD494; }
+.calc-extra-del{
+  background:transparent; border:none; color:rgba(255,255,255,.3);
+  font-size:18px; cursor:pointer; padding:0; line-height:1;
+}
+.calc-extra-del:hover{ color:#ff7a7a; }
 
 @media(max-width:600px){
   .calc-grid{ grid-template-columns:1fr; }
@@ -1044,6 +1075,11 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       <div id="calc-forro">
         <div id="forro-lista"></div>
         <button class="calc-add-btn" onclick="forroAddItem()">+ Adicionar outro forro</button>
+        <div class="calc-extra" style="margin-top:12px">
+          <div class="calc-extra-title">Adicionar produto extra</div>
+          <div id="extra-forro"></div>
+          <button class="calc-extra-add" onclick="extraAdd('forro')">+ Adicionar produto</button>
+        </div>
         <button class="calc-btn" onclick="calcForro()" style="margin-top:8px">Calcular materiais</button>
         <div class="calc-result" id="forro-result"></div>
         <div class="calc-obs" id="forro-obs">
@@ -1061,6 +1097,11 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       <div id="calc-plaquinha" style="display:none">
         <div id="plaquinha-lista"></div>
         <button class="calc-add-btn" onclick="plaquinhaAddItem()">+ Adicionar outro ambiente</button>
+        <div class="calc-extra" style="margin-top:12px">
+          <div class="calc-extra-title">Adicionar produto extra</div>
+          <div id="extra-plaquinha"></div>
+          <button class="calc-extra-add" onclick="extraAdd('plaquinha')">+ Adicionar produto</button>
+        </div>
         <button class="calc-btn" onclick="calcPlaquinha()" style="margin-top:8px">Calcular materiais</button>
         <div class="calc-result" id="plaquinha-result"></div>
         <div class="calc-obs" id="plaquinha-obs">
@@ -1078,6 +1119,11 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       <div id="calc-parede" style="display:none">
         <div id="parede-lista"></div>
         <button class="calc-add-btn" onclick="paredeAddItem()">+ Adicionar outra parede</button>
+        <div class="calc-extra" style="margin-top:12px">
+          <div class="calc-extra-title">Adicionar produto extra</div>
+          <div id="extra-parede"></div>
+          <button class="calc-extra-add" onclick="extraAdd('parede')">+ Adicionar produto</button>
+        </div>
         <button class="calc-btn" onclick="calcParede()" style="margin-top:8px">Calcular materiais</button>
         <div class="calc-result" id="parede-result"></div>
         <div class="calc-obs" id="parede-obs">
@@ -1648,6 +1694,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       "• Parafuso Metal 13: "+tot.parafMetal13+" unid\n" +
       "• Fita Telada: "+tot.fitaTelada+"m ("+fitaSugestao+")\n" +
       "• Massa Drywall: "+tot.massa+"kg ("+massaSugestao+")\n\n" +
+      (extraLinhas("forro") ? "\nEXTRAS:\n" + extraLinhas("forro") + "\n\n" : "\n") +
       "Pode me passar o orçamento gratuito?";
     document.getElementById('forro-wa-btn').href = "https://wa.me/5511998483800?text=" + encodeURIComponent(msg);
   }
@@ -1670,7 +1717,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
             '<div class="calc-field"><label>Chapas por face</label>' +
               '<input type="number" placeholder="1 ou 2" min="1" max="2" step="1" value="'+it.faces+'" oninput="paredeItems['+idx+'].faces=this.value"></div>' +
             '<div class="calc-field" style="grid-column:1/-1"><label>Tamanho do montante / guia</label>' +
-              '<select oninput="paredeItems['+idx+'].perfil=this.value" style="width:100%;padding:14px 16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:10px;color:#fff;font-size:15px;font-family:Inter,sans-serif;outline:none;">' +
+              '<select oninput="paredeItems['+idx+'].perfil=this.value" style="width:100%;padding:14px 16px;background:#1a3d22;border:1px solid rgba(255,255,255,.18);border-radius:10px;color:#fff;font-size:15px;font-family:Inter,sans-serif;outline:none;">' +
                 '<option value="48" '+(it.perfil==="48"?"selected":"")+'>48mm</option>' +
                 '<option value="70" '+(it.perfil==="70"?"selected":"")+'>70mm</option>' +
                 '<option value="90" '+(it.perfil==="90"?"selected":"")+'>90mm</option>' +
@@ -1800,6 +1847,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       "• Fita Telada: "+tot.fitaTelada+"m ("+fitaSugestaoP+")\n" +
       "• Massa Drywall: "+tot.massa+"kg ("+massaSugestaoP+")\n" +
       "• Cantoneiras: "+tot.cantoneiras+" unid\n\n" +
+      (extraLinhas("parede") ? "\nEXTRAS:\n" + extraLinhas("parede") + "\n\n" : "\n") +
       "Pode me passar o orçamento gratuito?";
     document.getElementById('parede-wa-btn').href = "https://wa.me/5511998483800?text=" + encodeURIComponent(msg);
   }
@@ -1994,8 +2042,36 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       "• Arame: "+tot.arame+"m ("+tamArameStr+" por pitão)%0A" +
       "• Estopa: "+tot.estopa+" rolo(s) de 1kg%0A" +
       "• Gesso Cola: "+tot.gessoColaSacos+" saco(s) de 40kg%0A%0A" +
+      (extraLinhas("plaquinha") ? "\nEXTRAS:\n" + extraLinhas("plaquinha") + "\n\n" : "\n") +
       "Pode me passar o orçamento gratuito?";
     document.getElementById('plaquinha-wa-btn').href = "https://wa.me/5511998483800?text=" + encodeURIComponent(msg);
+  }
+
+  /* ITENS EXTRAS DA CALCULADORA */
+  var extrasMap = { forro:[], plaquinha:[], parede:[] };
+
+  function extraAdd(tipo){
+    extrasMap[tipo].push({nome:'', qtd:''});
+    extraRender(tipo);
+  }
+  function extraRemove(tipo, idx){
+    extrasMap[tipo].splice(idx,1);
+    extraRender(tipo);
+  }
+  function extraRender(tipo){
+    var cont = document.getElementById('extra-'+tipo);
+    if(!cont) return;
+    cont.innerHTML = extrasMap[tipo].map(function(it, idx){
+      return '<div class="calc-extra-row">' +
+        '<input type="text" placeholder="Nome do produto" value="'+it.nome+'" oninput="extrasMap[''+tipo+'']['+idx+'].nome=this.value">' +
+        '<input type="text" placeholder="Qtd / obs" value="'+it.qtd+'" oninput="extrasMap[''+tipo+'']['+idx+'].qtd=this.value">' +
+        '<button class="calc-extra-del" onclick="extraRemove(''+tipo+'','+idx+')">✕</button>' +
+      '</div>';
+    }).join('');
+  }
+  function extraLinhas(tipo){
+    return extrasMap[tipo].filter(function(e){ return e.nome.trim(); })
+      .map(function(e){ return "• "+e.nome+(e.qtd ? ": "+e.qtd : ""); }).join("\n");
   }
 
   // Inicializa
