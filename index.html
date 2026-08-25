@@ -2291,7 +2291,11 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
     function render(data){
       reviews = data.reviews||[];
       CARDS_PER_PAGE = window.innerWidth <= 600 ? 1 : window.innerWidth <= 900 ? 2 : 3;
-      var totalPages = Math.ceil(reviews.length / CARDS_PER_PAGE);
+      // No desktop mostra só os primeiros CARDS_PER_PAGE, sem paginar
+      if(window.innerWidth > 600){
+        reviews = reviews.slice(0, CARDS_PER_PAGE);
+      }
+      var totalPages = window.innerWidth <= 600 ? reviews.length : 1;
       var currentPage = 0;
       var rating = data.rating || "4,7";
       var total  = data.total  || "";
