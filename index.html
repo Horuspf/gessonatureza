@@ -774,26 +774,59 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 
 
 /* ── Google Reviews via API ── */
-.gr-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:28px; }
+.gr-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:28px;
+}
 .gr-card{
-  position:relative; background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.12); border-radius:var(--raio);
+  position:relative;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--raio);
   padding:24px;
-  background-image: linear-gradient(90deg, rgba(255,255,255,.15) 50%, transparent 0);
-  background-size:14px 1px; background-repeat:repeat-x; background-position:0 62px;
+  background-image: linear-gradient(90deg, rgba(255,255,255,.2) 50%, transparent 0);
+  background-size:14px 1px; background-repeat:repeat-x; background-position:0 68px;
 }
 .gr-card::before,.gr-card::after{
-  content:""; position:absolute; top:62px; width:16px; height:16px; border-radius:50%;
+  content:""; position:absolute; top:68px; width:16px; height:16px; border-radius:50%;
   background:var(--verde-esc); transform:translateY(-50%);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.15);
 }
 .gr-card::before{ left:-8px; }
 .gr-card::after{ right:-8px; }
-.gr-top{ display:flex; justify-content:space-between; align-items:center; gap:10px; padding-bottom:16px; }
-.gr-name{ font-weight:700; font-size:14px; color:#fff; }
-.gr-stars{ color:var(--amarelo); font-size:16px; letter-spacing:1px; }
-.gr-text{ color:rgba(255,255,255,.85); font-size:14px; margin:20px 0 10px; line-height:1.6; }
-.gr-time{ color:rgba(255,255,255,.45); font-size:12px; }
-.gr-loading{ text-align:center; color:rgba(255,255,255,.5); padding:40px; font-size:14px; }
+.gr-top{
+  display:flex; justify-content:space-between; align-items:flex-start;
+  gap:10px; padding-bottom:18px;
+}
+.gr-author{ display:flex; align-items:center; gap:10px; }
+.gr-avatar{
+  width:38px; height:38px; border-radius:50%;
+  background:var(--verde-vivo); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700; font-size:15px; flex-shrink:0;
+}
+.gr-name{ font-weight:700; font-size:14px; color:#fff; line-height:1.3; }
+.gr-reviews-count{ font-size:11px; color:rgba(255,255,255,.45); margin-top:2px; }
+.gr-stars{ color:var(--amarelo); font-size:17px; letter-spacing:2px; flex-shrink:0; }
+.gr-text{
+  color:rgba(255,255,255,.82); font-size:14px;
+  margin:22px 0 12px; line-height:1.65;
+}
+.gr-time{ color:rgba(255,255,255,.4); font-size:12px; }
+.gr-google-badge{
+  display:inline-flex; align-items:center; gap:5px;
+  margin-top:8px; font-size:11px; color:rgba(255,255,255,.35);
+}
+.gr-loading{
+  text-align:center; color:rgba(255,255,255,.5);
+  padding:60px 20px; font-size:14px;
+  display:flex; flex-direction:column; align-items:center; gap:12px;
+}
+.gr-spinner{
+  width:32px; height:32px; border:3px solid rgba(255,255,255,.15);
+  border-top-color:#7BD494; border-radius:50%;
+  animation:gr-spin .8s linear infinite;
+}
+@keyframes gr-spin{ to{ transform:rotate(360deg); } }
 .gr-error{ text-align:center; color:rgba(255,255,255,.4); padding:20px; font-size:13px; }
 @media(max-width:1000px){ .gr-grid{ grid-template-columns:1fr; } }
 </style>
@@ -1263,6 +1296,18 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 <!-- AVALIAÇÕES -->
 <section class="section avaliacoes-section" id="avaliacoes">
   <div class="container">
+    <div class="reviews-header">
+      <div class="section-title" style="margin-bottom:0">
+        <div class="eyebrow">Google Reviews</div>
+        <h2>O que nossos clientes dizem</h2>
+        <p>Avaliações reais de quem já comprou e instalou com a gente.</p>
+      </div>
+      <div class="rating">
+        <strong id="gr-rating">4,7</strong>
+        <div class="stars">★★★★★</div>
+        <small id="gr-total">18 avaliações no Google</small>
+      </div>
+    </div>
     <div id="google-reviews-widget"></div>
 
     <div class="review-buttons">
@@ -2123,45 +2168,67 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
     var container = document.getElementById("google-reviews-widget");
     if(!container) return;
 
-    container.innerHTML = '<p class="gr-loading">Carregando avaliações...</p>';
+    container.innerHTML = '<div class="gr-loading"><div class="gr-spinner"></div>Carregando avaliações...</div>';
 
     function estrelas(n){
-      var s = "";
-      for(var i=0;i<5;i++) s += i<n ? "★" : "☆";
-      return s;
+      var s = ""; for(var i=0;i<5;i++) s += i<n?"★":"☆"; return s;
     }
 
     function tempoRelativo(ts){
-      var diff = Math.floor((Date.now()/1000 - ts) / 86400);
-      if(diff < 30)  return "há " + diff + " dias";
-      if(diff < 365) return "há " + Math.floor(diff/30) + " meses";
-      return "há " + Math.floor(diff/365) + " anos";
+      var diff = Math.floor((Date.now()/1000 - ts)/86400);
+      if(diff < 1)   return "hoje";
+      if(diff < 30)  return "há "+diff+" dias";
+      if(diff < 365) return "há "+Math.floor(diff/30)+" meses";
+      return "há "+Math.floor(diff/365)+" ano"+(Math.floor(diff/365)>1?"s":"");
+    }
+
+    function inicialAvatar(nome){
+      return nome ? nome.charAt(0).toUpperCase() : "G";
     }
 
     fetch("/api/reviews")
       .then(function(r){ return r.json(); })
       .then(function(data){
+        // Atualizar rating e total no header
+        if(data.rating){
+          var el = document.getElementById("gr-rating");
+          if(el) el.textContent = String(data.rating).replace(".",",");
+        }
+        if(data.total){
+          var el2 = document.getElementById("gr-total");
+          if(el2) el2.textContent = data.total + " avaliações no Google";
+        }
+
         if(!data.reviews || data.reviews.length === 0){
           container.innerHTML = '<p class="gr-error">Nenhuma avaliação disponível.</p>';
           return;
         }
-        var html = '<div class="gr-grid">';
+
+        var out = '<div class="gr-grid">';
         data.reviews.forEach(function(r){
           var texto = r.text && r.text.trim()
-            ? r.text.substring(0, 220) + (r.text.length > 220 ? "…" : "")
+            ? r.text.substring(0,240)+(r.text.length>240?"…":"")
             : "Avaliação sem comentário.";
-          html +=
+          out +=
             '<article class="gr-card">' +
               '<div class="gr-top">' +
-                '<span class="gr-name">' + r.author_name + '</span>' +
-                '<span class="gr-stars">' + estrelas(r.rating) + '</span>' +
+                '<div class="gr-author">' +
+                  '<div class="gr-avatar">'+inicialAvatar(r.author_name)+'</div>' +
+                  '<div>' +
+                    '<div class="gr-name">'+r.author_name+'</div>' +
+                  '</div>' +
+                '</div>' +
+                '<span class="gr-stars">'+estrelas(r.rating)+'</span>' +
               '</div>' +
-              '<p class="gr-text">' + texto + '</p>' +
-              '<small class="gr-time">Google Reviews · ' + tempoRelativo(r.time) + '</small>' +
+              '<p class="gr-text">'+texto+'</p>' +
+              '<div style="display:flex;align-items:center;justify-content:space-between;">' +
+                '<small class="gr-time">'+tempoRelativo(r.time)+'</small>' +
+                '<span class="gr-google-badge">via Google</span>' +
+              '</div>' +
             '</article>';
         });
-        html += '</div>';
-        container.innerHTML = html;
+        out += '</div>';
+        container.innerHTML = out;
       })
       .catch(function(){
         container.innerHTML = '<p class="gr-error">Erro ao carregar avaliações.</p>';
