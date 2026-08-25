@@ -813,6 +813,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 .grw-overflow{
   overflow:hidden;
   width:100%;
+  border-radius:8px;
 }
 .grw-track{
   display:flex;
@@ -2398,14 +2399,22 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 
       goTo(0);
 
-      // Autoplay no mobile — troca de card a cada 4 segundos
-      if(window.innerWidth <= 600 && totalPages > 1){
-        var autoTimer = setInterval(function(){
-          var next = (currentPage + 1) % totalPages;
-          goTo(next);
-        }, 4000);
-        // Pausa ao tocar
-        container.addEventListener("touchstart", function(){ clearInterval(autoTimer); }, { passive:true });
+      // Autoplay — funciona em qualquer tela mobile (portrait ou landscape)
+      if(totalPages > 1){
+        var autoTimer = null;
+        function startAuto(){
+          clearInterval(autoTimer);
+          autoTimer = setInterval(function(){
+            goTo((currentPage + 1) % totalPages);
+          }, 4000);
+        }
+        // Pausa ao tocar, retoma depois de 8s
+        container.addEventListener("touchstart", function(){
+          clearInterval(autoTimer);
+          setTimeout(startAuto, 8000);
+        }, { passive:true });
+        // Só inicia autoplay em telas pequenas
+        if(window.innerWidth <= 768) startAuto();
       }
     }
 
