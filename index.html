@@ -1669,13 +1669,19 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
               '<input type="number" placeholder="Ex: 2.80" min="0.1" step="0.1" value="'+it.alt+'" oninput="paredeItems['+idx+'].alt=this.value"></div>' +
             '<div class="calc-field"><label>Chapas por face</label>' +
               '<input type="number" placeholder="1 ou 2" min="1" max="2" step="1" value="'+it.faces+'" oninput="paredeItems['+idx+'].faces=this.value"></div>' +
+            '<div class="calc-field" style="grid-column:1/-1"><label>Tamanho do montante / guia</label>' +
+              '<select oninput="paredeItems['+idx+'].perfil=this.value" style="width:100%;padding:14px 16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:10px;color:#fff;font-size:15px;font-family:Inter,sans-serif;outline:none;">' +
+                '<option value="48" '+(it.perfil==="48"?"selected":"")+'>48mm</option>' +
+                '<option value="70" '+(it.perfil==="70"?"selected":"")+'>70mm</option>' +
+                '<option value="90" '+(it.perfil==="90"?"selected":"")+'>90mm</option>' +
+              '</select></div>' +
           '</div>' +
         '</div>';
     });
   }
 
   function paredeAddItem(){
-    paredeItems.push({comp:'',alt:'',faces:'1'});
+    paredeItems.push({comp:'',alt:'',faces:'1',perfil:'70'});
     paredeRender();
     document.getElementById('parede-result').classList.remove('visible');
     document.getElementById('parede-obs').classList.remove('visible');
@@ -1695,13 +1701,15 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
     var ok = true;
     inputs.forEach(function(item, idx){
       var nums = item.querySelectorAll('input[type="number"]');
-      var comp  = parseFloat(nums[0].value);
-      var alt   = parseFloat(nums[1].value);
-      var faces = parseInt(nums[2].value)||1;
+      var comp   = parseFloat(nums[0].value);
+      var alt    = parseFloat(nums[1].value);
+      var faces  = parseInt(nums[2].value)||1;
+      var selects = item.querySelectorAll('select');
+      var perfil = selects[0] ? selects[0].value : '70';
       if(!comp||!alt||comp<=0||alt<=0){
         alert('Preencha todos os campos da Parede '+(idx+1)+'.'); ok=false; return;
       }
-      ambientes.push({comp:comp, alt:alt, faces:faces});
+      ambientes.push({comp:comp, alt:alt, faces:faces, perfil:perfil});
     });
     if(!ok || ambientes.length===0) return;
 
@@ -1710,7 +1718,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
     var detalhes = '';
 
     ambientes.forEach(function(a, idx){
-      var comp=a.comp, alt=a.alt, faces=a.faces;
+      var comp=a.comp, alt=a.alt, faces=a.faces, perfil=a.perfil||'70';
       var areaChapa = 1.2*1.8;
       var areaTotal = comp*alt;
       var chapas    = ceil(areaTotal*faces/areaChapa*1.10);
@@ -1741,10 +1749,12 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       tot.cantoneiras+= cantoneiras;
 
       if(ambientes.length>1){
-        detalhes += "• Parede "+(idx+1)+": "+comp+"m × "+alt+"m ("+faces+" face(s))\n";
+        detalhes += "• Parede "+(idx+1)+": "+comp+"m × "+alt+"m ("+faces+" face(s), perfil "+perfil+"mm)\n";
       }
     });
 
+    var perfisSet = [...new Set(ambientes.map(function(a){ return a.perfil+'mm'; }))];
+    var perfisUsados = perfisSet.join(' / ');
     var resultDiv = document.getElementById('parede-result');
     resultDiv.innerHTML = [
       {val:tot.chapas,              label:'Chapas Drywall',     detail:'1,20 × 1,80 m cada'},
@@ -1757,6 +1767,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       {val:tot.massa+'kg',          label:'Massa Drywall',      detail:'rejunte das juntas'},
       {val:tot.cantoneiras,         label:'Cantoneiras',        detail:'para quinas e cantos'},
       {val:tot.area.toFixed(1)+'m²',label:'Área total',        detail:'por face'},
+      {val:perfisUsados,              label:'Perfil utilizado',    detail:'montante e guia'},
     ].map(function(i){
       return '<div class="calc-result-item"><div class="res-num">'+i.val+'</div>'+
              '<div class="res-label">'+i.label+'</div>'+
@@ -1778,7 +1789,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 
     var msg =
       "Olá Gesso Natureza! Usei a calculadora do site e preciso de orçamento:\n\n" +
-      "🧱 PAREDE DRYWALL\n" + nomes + "\n" + detalhes.replace(/%0A/g,"\n") + "\n" +
+      "🧱 PAREDE DRYWALL\n" + nomes + " | Perfil: " + perfisUsados + "\n" + detalhes.replace(/%0A/g,"\n") + "\n" +
       "MATERIAIS:\n" +
       "• Chapas drywall: "+tot.chapas+" unid\n" +
       "• Perfil U guia: "+tot.guias+" barras\n" +
@@ -1990,7 +2001,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
   // Inicializa
   forroItems      = [{comp:'',larg:'',baixar:''}];
   plaquinhaItems  = [{comp:'',larg:'',baixar:''}];
-  paredeItems = [{comp:'',alt:'',faces:'1'}];
+  paredeItems = [{comp:'',alt:'',faces:'1',perfil:'70'}];
   forroRender();
   plaquinhaRender();
   paredeRender();
