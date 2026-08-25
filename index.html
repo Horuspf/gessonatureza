@@ -1246,29 +1246,15 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
         <p>Confira nossas avaliações e deixe também a sua opinião.</p>
       </div>
       <div class="rating">
-        <strong id="rating">5,0</strong>
+        <strong id="rating">4,7</strong>
         <div class="stars">★★★★★</div>
-        <small id="reviewCount">18 avaliações</small>
+        <small id="reviewCount">18 avaliações no Google</small>
       </div>
     </div>
 
-    <div class="reviews">
-      <article class="review">
-        <div class="review-top"><strong>Cliente Gesso Natureza</strong><span class="stars">★★★★★</span></div>
-        <p>Excelente atendimento, material de qualidade e serviço muito bem feito.</p>
-        <small>Google Reviews</small>
-      </article>
-      <article class="review">
-        <div class="review-top"><strong>Cliente Gesso Natureza</strong><span class="stars">★★★★★</span></div>
-        <p>Atendimento rápido, equipe profissional e ótimo custo-benefício.</p>
-        <small>Google Reviews</small>
-      </article>
-      <article class="review">
-        <div class="review-top"><strong>Cliente Gesso Natureza</strong><span class="stars">★★★★★</span></div>
-        <p>Recomendo para quem procura gesso e drywall em Arujá.</p>
-        <small>Google Reviews</small>
-      </article>
-    </div>
+    <!-- Elfsight Google Reviews | Gesso natureza Google Reviews -->
+    <script src="https://elfsightcdn.com/platform.js" async></script>
+    <div class="elfsight-app-cad85fdd-eb65-454b-9a14-0e2ee28dd68c" data-elfsight-app-lazy></div>
 
     <div class="review-buttons">
       <a class="btn btn-outline" href="https://www.google.com/search?q=Gesso+Natureza+Arujá" target="_blank">Ver avaliações no Google</a>
@@ -1382,6 +1368,24 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       if(!isNaN(idx) && paredeItems[idx] !== undefined){
         paredeItems[idx].perfil = val;
         paredeRender();
+      }
+    }
+    // Remover item extra
+    if(e.target.dataset.action === 'remove'){
+      var tipo = e.target.dataset.tipo;
+      var idx  = parseInt(e.target.dataset.idx);
+      if(extrasMap[tipo] !== undefined){ extrasMap[tipo].splice(idx,1); extraRender(tipo); }
+    }
+  });
+
+  /* EXTRAS INPUTS — delegação */
+  document.addEventListener('input', function(e){
+    if(e.target.classList.contains('extra-input')){
+      var tipo  = e.target.dataset.tipo;
+      var idx   = parseInt(e.target.dataset.idx);
+      var field = e.target.dataset.field;
+      if(extrasMap[tipo] && extrasMap[tipo][idx] !== undefined){
+        extrasMap[tipo][idx][field] = e.target.value;
       }
     }
   });
