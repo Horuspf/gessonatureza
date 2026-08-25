@@ -2409,11 +2409,45 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       }
     }
 
+    // Reviews fixas em destaque (aparecem primeiro)
+    var reviewsFixas = [
+      {
+        author_name: "Fernando",
+        profile_photo_url: "",
+        rating: 5,
+        time: Math.floor(Date.now()/1000) - 86400*365*4,
+        text: "Estou aprendendo a trabalhar com drywall, mas os atendentes tiveram o maior cuidado em me explicar os detalhes e tive várias dicas. Comprei ferramentas e material. VALE RESSALTAR QUE O PREÇO É EXCELENTE, MELHOR QUE AS LOJAS DE MOGI DAS CRUZES."
+      },
+      {
+        author_name: "Solange Moreira",
+        profile_photo_url: "",
+        rating: 5,
+        time: Math.floor(Date.now()/1000) - 86400*30*5,
+        text: "Ótimo preço, excelente atendimento pontual na entrega e excelentes no serviços. Para mim é 10 de 10 super recomendo."
+      },
+      {
+        author_name: "Erica Santos",
+        profile_photo_url: "",
+        rating: 5,
+        time: Math.floor(Date.now()/1000) - 86400*365*3,
+        text: "A Instalação ficou ótimo! Os Profissionais são ótimos! Muito Satisfeita, Recomendo."
+      }
+    ];
+
     fetch("/api/reviews")
       .then(function(r){ return r.json(); })
-      .then(render)
+      .then(function(data){
+        // Mescla: reviews fixas primeiro, depois as da API que não sejam duplicatas
+        var nomes = reviewsFixas.map(function(r){ return r.author_name.toLowerCase(); });
+        var extras = (data.reviews||[]).filter(function(r){
+          return nomes.indexOf(r.author_name.toLowerCase()) === -1;
+        });
+        data.reviews = reviewsFixas.concat(extras).slice(0,5);
+        render(data);
+      })
       .catch(function(){
-        container.innerHTML = '<div class="grw-loading">Erro ao carregar avaliações.</div>';
+        // Se API falhar, usa só as fixas
+        render({ rating: "4,7", total: 53, reviews: reviewsFixas });
       });
   })();
 
