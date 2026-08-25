@@ -936,6 +936,28 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
   .grw-card{ min-width:calc(100vw - 80px); flex:none; flex-shrink:0; }
   .grw-wrap{ padding:16px; }
 }
+
+/* Mobile stack — só 1 card visível por vez */
+.grw-mobile-stack{ position:relative; min-height:160px; }
+.grw-mobile-card{
+  display:none;
+  background:#fff; border:1px solid #e8eaed;
+  border-radius:12px; padding:20px;
+  box-shadow:0 1px 6px rgba(0,0,0,.06);
+  animation:grw-fade .4s ease;
+}
+.grw-mobile-card.active{ display:block; }
+@keyframes grw-fade{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
+
+/* Desktop grid */
+.grw-desktop-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+@media(max-width:900px) and (min-width:601px){
+  .grw-desktop-grid{ grid-template-columns:repeat(2,1fr); }
+}
 </style>
 </head>
 <body>
@@ -2297,146 +2319,126 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
 
     function render(data){
       reviews = data.reviews||[];
-      CARDS_PER_PAGE = window.innerWidth <= 600 ? 1 : reviews.length;
-      var totalPages = window.innerWidth <= 600 ? reviews.length : 1;
-      // Mobile: garantir overflow hidden no container do track
-      if(window.innerWidth <= 600){
-        setTimeout(function(){
-          var ov = document.querySelector(".grw-overflow");
-          if(ov){ ov.style.overflow = "hidden"; }
-        }, 50);
-      }
+
+      var isMobile = window.innerWidth <= 600;
       var currentPage = 0;
+      var totalPages  = isMobile ? reviews.length : 1;
+      var autoTimer   = null;
       var rating = data.rating || "4,7";
       var total  = data.total  || "";
 
-      function buildHTML(){
-        var h = '<div class="grw-wrap">';
+      function estrelas(n){ var s=""; for(var i=0;i<5;i++) s+=i<n?"★":"☆"; return s; }
+      function tempo(ts){
+        var d=Math.floor((Date.now()/1000-ts)/86400);
+        if(d<1) return "hoje";
+        if(d<30) return "há "+d+" dia"+(d>1?"s":"");
+        if(d<365) return "há "+Math.floor(d/30)+" mes"+(Math.floor(d/30)>1?"es":"");
+        var y=Math.floor(d/365); return "há "+y+" ano"+(y>1?"s":"");
+      }
+      function inicial(n){ return n?n.charAt(0).toUpperCase():"G"; }
 
-        // Header
-        h += '<div class="grw-header">';
-        h +=   '<div class="grw-header-left">';
-        h +=     '<div class="grw-google-logo"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></div>';
-        h +=     '<div class="grw-google-logo-text">Reviews</div>';
-        h +=   '</div>';
-        h +=   '<div class="grw-meta">';
-        h +=     '<span class="grw-rating-num">'+String(rating).replace(".",",")+'</span>';
-        h +=     '<span class="grw-stars-row">★★★★★</span>';
-        h +=     (total ? '<span class="grw-total">('+total+')</span>' : '');
-        h +=   '</div>';
-        h +=   '<a class="grw-btn" href="https://www.google.com/search?q=Gesso+Natureza+Aruj%C3%A1&hl=pt" target="_blank">Avaliar no Google</a>';
-        h += '</div>';
+      // ── BUILD HTML ───────────────────────────────────────────────
+      var h = '<div class="grw-wrap">';
 
-        // Carrossel
-        h += '<div class="grw-carousel">';
-        h +=   '<button class="grw-arr left" id="grw-prev">&#8249;</button>';
-        h +=   '<button class="grw-arr right" id="grw-next">&#8250;</button>';
-        h +=   '<div class="grw-overflow"><div class="grw-track" id="grw-track">';
+      // Header
+      h += '<div class="grw-header">';
+      h +=   '<div class="grw-header-left">';
+      h +=     '<div class="grw-google-logo"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></div>';
+      h +=     '<div class="grw-google-logo-text">Reviews</div>';
+      h +=   '</div>';
+      h +=   '<div class="grw-meta">';
+      h +=     '<span class="grw-rating-num">'+String(rating).replace(".",",")+'</span>';
+      h +=     '<span class="grw-stars-row">★★★★★</span>';
+      h +=     (total?'<span class="grw-total">('+total+')</span>':'');
+      h +=   '</div>';
+      h +=   '<a class="grw-btn" href="https://www.google.com/search?q=Gesso+Natureza+Aruj%C3%A1" target="_blank">Avaliar no Google</a>';
+      h += '</div>';
 
-        reviews.forEach(function(r){
-          var foto  = r.profile_photo_url || "";
-          var texto = (r.text || "").trim();
-          var curto = texto.length > 200;
-          var trecho= curto ? texto.substring(0,200)+"..." : texto;
-
-          h += '<div class="grw-card">';
+      if(isMobile){
+        // ── MOBILE: stack de cards, visibilidade por CSS ──────────
+        h += '<div class="grw-mobile-stack">';
+        reviews.forEach(function(r, idx){
+          var texto = (r.text||"").trim();
+          var foto  = r.profile_photo_url||"";
+          h += '<div class="grw-mobile-card'+(idx===0?" active":"")+'" data-idx="'+idx+'">';
           h +=   '<div class="grw-card-top">';
-          h +=     '<div class="grw-avatar">';
-          if(foto){ h += '<img src="'+foto+'" alt="'+r.author_name+'" loading="lazy">'; }
-          else     { h += inicial(r.author_name); }
-          h +=     '</div>';
+          h +=     '<div class="grw-avatar">'+(foto?'<img src="'+foto+'" alt="'+r.author_name+'" loading="lazy">':inicial(r.author_name))+'</div>';
           h +=     '<div class="grw-card-author">';
           h +=       '<div class="grw-card-name">'+r.author_name+'</div>';
           h +=       '<div class="grw-card-time">'+tempo(r.time)+'</div>';
           h +=     '</div>';
           h +=   '</div>';
           h +=   '<div class="grw-card-stars">'+estrelas(r.rating)+'</div>';
-          if(texto){
-            h += '<div class="grw-card-text">'+trecho+'</div>';
-            if(curto){ h += '<button class="grw-read-more" data-full="'+encodeURIComponent(texto)+'">Ler mais</button>'; }
-          }
+          if(texto) h += '<div class="grw-card-text">'+texto+'</div>';
           h += '</div>';
         });
-
-        h += '</div></div></div>';
-
-        // Dots (sempre visíveis se tiver mais de 1 página)
-        if(totalPages > 1){
-          h += '<div class="grw-dots">';
-          for(var i=0;i<totalPages;i++){
-            h += '<button class="grw-dot'+(i===0?" active":"")+'" data-page="'+i+'"></button>';
-          }
-          h += '</div>';
-        }
-
         h += '</div>';
-        return h;
-      }
-
-      container.innerHTML = buildHTML();
-
-      var track = document.getElementById("grw-track");
-      var prev  = document.getElementById("grw-prev");
-      var next  = document.getElementById("grw-next");
-
-      function getCardW(){
-        var card = track.children[0];
-        if(!card) return 0;
-        return card.offsetWidth + 16; // width + gap
-      }
-
-      function goTo(page){
-        page = Math.max(0, Math.min(totalPages-1, page));
-        currentPage = page;
-        // Mobile: move 1 card por vez. Desktop: flex-wrap, sem transform
-        if(window.innerWidth <= 600){
-          var cardW = getCardW();
-          track.style.transform = "translateX(-"+(page * cardW)+"px)";
-        }
-        document.querySelectorAll(".grw-dot").forEach(function(d,i){
-          d.classList.toggle("active", i===page);
+        // Dots
+        h += '<div class="grw-dots">';
+        reviews.forEach(function(_,i){
+          h += '<button class="grw-dot'+(i===0?" active":"")+'" data-page="'+i+'"></button>';
         });
-        if(prev){ prev.disabled = page === 0; }
-        if(next){ next.disabled = page === totalPages-1; }
+        h += '</div>';
+      } else {
+        // ── DESKTOP: grid normal ──────────────────────────────────
+        h += '<div class="grw-desktop-grid">';
+        reviews.forEach(function(r){
+          var texto = (r.text||"").trim();
+          var foto  = r.profile_photo_url||"";
+          h += '<div class="grw-card">';
+          h +=   '<div class="grw-card-top">';
+          h +=     '<div class="grw-avatar">'+(foto?'<img src="'+foto+'" alt="'+r.author_name+'" loading="lazy">':inicial(r.author_name))+'</div>';
+          h +=     '<div class="grw-card-author">';
+          h +=       '<div class="grw-card-name">'+r.author_name+'</div>';
+          h +=       '<div class="grw-card-time">'+tempo(r.time)+'</div>';
+          h +=     '</div>';
+          h +=   '</div>';
+          h +=   '<div class="grw-card-stars">'+estrelas(r.rating)+'</div>';
+          if(texto) h += '<div class="grw-card-text">'+texto+'</div>';
+          h += '</div>';
+        });
+        h += '</div>';
       }
 
-      if(prev) prev.addEventListener("click", function(){ goTo(currentPage-1); });
-      if(next) next.addEventListener("click", function(){ goTo(currentPage+1); });
+      h += '</div>';
+      container.innerHTML = h;
 
-      document.querySelectorAll(".grw-dot").forEach(function(d){
-        d.addEventListener("click", function(){ goTo(parseInt(this.dataset.page)); });
-      });
-
-      // Ler mais
-      container.addEventListener("click", function(e){
-        if(e.target.classList.contains("grw-read-more")){
-          var full = decodeURIComponent(e.target.dataset.full||"");
-          if(full && e.target.previousSibling){ e.target.previousSibling.textContent = full; e.target.remove(); }
+      // ── MOBILE: autoplay ─────────────────────────────────────────
+      if(isMobile && totalPages > 1){
+        function goTo(page){
+          page = ((page % totalPages) + totalPages) % totalPages;
+          currentPage = page;
+          container.querySelectorAll(".grw-mobile-card").forEach(function(c,i){
+            c.classList.toggle("active", i===page);
+          });
+          container.querySelectorAll(".grw-dot").forEach(function(d,i){
+            d.classList.toggle("active", i===page);
+          });
         }
-      });
 
-      goTo(0);
-
-      // Autoplay — funciona em qualquer tela mobile (portrait ou landscape)
-      if(totalPages > 1){
-        var autoTimer = null;
         function startAuto(){
           clearInterval(autoTimer);
-          autoTimer = setInterval(function(){
-            goTo((currentPage + 1) % totalPages);
-          }, 4000);
+          autoTimer = setInterval(function(){ goTo(currentPage+1); }, 3000);
         }
-        // Pausa ao tocar, retoma depois de 8s
-        container.addEventListener("touchstart", function(){
-          clearInterval(autoTimer);
-          setTimeout(startAuto, 8000);
-        }, { passive:true });
-        // Só inicia autoplay em telas pequenas
-        if(window.innerWidth <= 768) startAuto();
+
+        // Dots clicáveis
+        container.querySelectorAll(".grw-dot").forEach(function(d){
+          d.addEventListener("click", function(){
+            clearInterval(autoTimer);
+            goTo(parseInt(this.dataset.page));
+            setTimeout(startAuto, 6000);
+          });
+        });
+
+        // Pausa no toque
+        container.addEventListener("touchstart", function(){ clearInterval(autoTimer); }, {passive:true});
+        container.addEventListener("touchend",   function(){ setTimeout(startAuto, 5000); }, {passive:true});
+
+        startAuto();
       }
     }
 
-    // Reviews fixas em destaque (aparecem primeiro)
+    // Reviews fixas    // Reviews fixas em destaque (aparecem primeiro)
     var reviewsFixas = [
       {
         author_name: "Fernando",
