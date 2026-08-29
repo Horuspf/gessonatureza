@@ -1841,7 +1841,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       // 3 tirantes e 3 reguladores por barra de canaleta F530
       var tirantes    = perfisU * 3;
       var reguladores = perfisU * 3;
-      var tamTirante  = baixar+10;
+      var tamTirante  = baixar+10; // sem sobra — medida real
       var buchas      = ceil(perimetro/0.60*1.10);
       var parafGN25   = ceil(chapas*10*1.10);
       var numMont     = linhas+colunas;
@@ -1890,11 +1890,9 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
              '<div class="res-label">'+i.label+'</div>'+
              '<div class="res-detail">'+i.detail+'</div></div>';
     }).join('');
-    var massaSugestao = sugereMassa(tot.massa);
     var fitaSugestao  = sugereRoloFita(tot.fitaTelada);
     resultDiv.querySelectorAll('.calc-result-item').forEach(function(el){
       var lbl = el.querySelector('.res-label');
-      if(lbl && lbl.textContent==='Massa Drywall') el.querySelector('.res-detail').textContent = massaSugestao;
       if(lbl && lbl.textContent==='Fita Telada')   el.querySelector('.res-detail').textContent = fitaSugestao;
     });
     resultDiv.classList.add('visible');
@@ -1917,7 +1915,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       "• Parafuso GN 25: "+tot.parafGN25+" unid\n" +
       "• Parafuso Metal 13: "+tot.parafMetal13+" unid\n" +
       "• Fita Telada: "+tot.fitaTelada+"m ("+fitaSugestao+")\n" +
-      "• Massa Drywall: "+tot.massa+"kg ("+massaSugestao+")\n\n" +
+      "• Massa Drywall: "+tot.massa+"kg\n\n" +
       (extraLinhas("forro") ? "\nEXTRAS:\n" + extraLinhas("forro") + "\n\n" : "\n") +
       "Pode me passar o orçamento gratuito?";
     document.getElementById('forro-wa-btn').href = "https://wa.me/5511998483800?text=" + encodeURIComponent(msg);
@@ -2005,7 +2003,7 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       var juntasV   = ceil(comp/1.20)*alt*faces;
       var metrosFita= (juntasH+juntasV)*1.05;
       var fitaTelada= Math.ceil(metrosFita); // metros lineares
-      var massa     = ceil(metrosFita*0.5);
+      var massa     = chapas; // 1kg por chapa drywall
       var cantoneiras = 4;
 
       tot.area       += areaTotal;
@@ -2036,7 +2034,6 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       {val:tot.parafMetal13,        label:'Parafuso Metal 13',  detail:'guia no montante'},
       {val:tot.fitaTelada+'m',      label:'Fita Telada',        detail:'veja embalagens abaixo'},
       {val:tot.massa+'kg',          label:'Massa Drywall',      detail:'rejunte das juntas'},
-      {val:tot.cantoneiras,         label:'Cantoneiras',        detail:'para quinas e cantos'},
       {val:tot.area.toFixed(1)+'m²',label:'Área total',        detail:'por face'},
       {val:perfisUsados,              label:'Perfil utilizado',    detail:'montante e guia'},
     ].map(function(i){
@@ -2044,11 +2041,9 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
              '<div class="res-label">'+i.label+'</div>'+
              '<div class="res-detail">'+i.detail+'</div></div>';
     }).join('');
-    var massaSugestaoP = sugereMassa(tot.massa);
     var fitaSugestaoP  = sugereRoloFita(tot.fitaTelada);
     resultDiv.querySelectorAll('.calc-result-item').forEach(function(el){
       var lbl = el.querySelector('.res-label');
-      if(lbl && lbl.textContent==='Massa Drywall') el.querySelector('.res-detail').textContent = massaSugestaoP;
       if(lbl && lbl.textContent==='Fita Telada')   el.querySelector('.res-detail').textContent = fitaSugestaoP;
     });
     resultDiv.classList.add('visible');
@@ -2069,8 +2064,8 @@ footer{ background:#052013; color:#fff; padding:36px 0 20px; }
       "• Parafuso GN 25: "+tot.parafGN25+" unid\n" +
       "• Parafuso Metal 13: "+tot.parafMetal13+" unid\n" +
       "• Fita Telada: "+tot.fitaTelada+"m ("+fitaSugestaoP+")\n" +
-      "• Massa Drywall: "+tot.massa+"kg ("+massaSugestaoP+")\n" +
-      "• Cantoneiras: "+tot.cantoneiras+" unid\n\n" +
+      "• Massa Drywall: "+tot.massa+"kg\n" +
+      "\n" +
       (extraLinhas("parede") ? "\nEXTRAS:\n" + extraLinhas("parede") + "\n\n" : "\n") +
       "Pode me passar o orçamento gratuito?";
     document.getElementById('parede-wa-btn').href = "https://wa.me/5511998483800?text=" + encodeURIComponent(msg);
